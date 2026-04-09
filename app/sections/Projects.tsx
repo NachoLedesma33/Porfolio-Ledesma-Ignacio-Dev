@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-
+  const placeholderImage = "/game-2048/placeholder.png";
   // Close modal on Escape key and trigger animations
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -131,7 +131,7 @@ export default function Projects() {
               <div className="h-32 relative overflow-hidden">
                 {project.images && project.images.length > 0 ? (
                   <Image 
-                    src={project.images[0]} 
+                    src={placeholderImage} 
                     alt={project.title}
                     width={400}
                     height={192}
