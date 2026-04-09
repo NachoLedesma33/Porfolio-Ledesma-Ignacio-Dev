@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export interface SidebarProps {
   onClose: () => void;
-  isOpen: boolean;
 }
 
 export type NavigationItem = "about" | "skills" | "projects" | "contact";
@@ -16,7 +15,7 @@ const navigationItems: { id: NavigationItem; label: string; icon: string }[] = [
   { id: "contact", label: "Contacto", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
 ];
 
-export default function Sidebar({ onClose, isOpen }: SidebarProps) {
+export default function Sidebar({ onClose }: SidebarProps) {
   const [activeItem, setActiveItem] = useState<NavigationItem>("about");
 
   const handleNavigation = (itemId: NavigationItem) => {
@@ -60,7 +59,7 @@ export default function Sidebar({ onClose, isOpen }: SidebarProps) {
                 `}
               >
                 <svg 
-                  className="w-5 h-5 flex-shrink-0" 
+                  className="w-5 h-5 shrink-0" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"

@@ -61,7 +61,7 @@ export default function SwiperContainer() {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
       <Swiper
         ref={swiperRef}
         effect="cube"

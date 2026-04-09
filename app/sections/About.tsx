@@ -6,7 +6,7 @@ export default function About() {
       <div className="max-w-2xl mx-auto text-center">
         {/* Profile Section */}
         <div className="mb-8">
-          <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
+          <div className="w-32 h-32 mx-auto mb-6 bg-linear-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
             <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
@@ -14,7 +14,7 @@ export default function About() {
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Sobre Mi
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-600 mx-auto rounded-full"></div>
         </div>
 
         {/* Content */}

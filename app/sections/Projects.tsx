@@ -65,7 +65,7 @@ export default function Projects() {
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Proyectos
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-600 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-purple-400 to-pink-600 mx-auto rounded-full"></div>
       </div>
 
       <div className="max-w-6xl mx-auto w-full">
@@ -76,7 +76,7 @@ export default function Projects() {
               className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               {/* Project Header */}
-              <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-600 relative">
+              <div className="h-48 bg-linear-to-br from-purple-400 to-pink-600 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg className="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />

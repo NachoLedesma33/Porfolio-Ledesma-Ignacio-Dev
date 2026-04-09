@@ -38,7 +38,7 @@ export default function Contact() {
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Contacto
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-red-600 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-orange-400 to-red-600 mx-auto rounded-full"></div>
       </div>
 
       <div className="max-w-4xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -100,7 +100,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-orange-400 to-red-600 text-white font-medium py-3 px-6 rounded-lg hover:from-orange-500 hover:to-red-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-linear-to-r from-orange-400 to-red-600 text-white font-medium py-3 px-6 rounded-lg hover:from-orange-500 hover:to-red-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
             </button>

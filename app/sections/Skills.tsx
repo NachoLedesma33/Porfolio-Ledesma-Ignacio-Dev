@@ -24,7 +24,7 @@ export default function Skills() {
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Habilidades
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-600 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-green-400 to-blue-600 mx-auto rounded-full"></div>
       </div>
 
       <div className="max-w-4xl mx-auto w-full">
@@ -51,7 +51,7 @@ export default function Skills() {
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-green-400 to-blue-600 h-2 rounded-full transition-all duration-500 ease-out"
+                        className="bg-linear-to-r from-green-400 to-blue-600 h-2 rounded-full transition-all duration-500 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>

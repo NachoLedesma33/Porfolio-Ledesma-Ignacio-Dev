@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Sidebar from "../Sidebar";
-import SwiperContainer from "../SwiperContainer";
+import Sidebar from "./../Sidebar";
+import SwiperContainer from "./../SwiperContainer";
 
 export default function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -16,7 +16,6 @@ export default function Layout() {
       `}>
         <Sidebar 
           onClose={() => setIsSidebarOpen(false)}
-          isOpen={isSidebarOpen}
         />
       </div>
 
