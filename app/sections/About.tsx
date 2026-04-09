@@ -33,7 +33,7 @@ export default function About() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-8 sm:mb-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">5+</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Años Exp</div>
