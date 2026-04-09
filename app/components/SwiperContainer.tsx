@@ -8,6 +8,7 @@ import { NavigationItem } from "./Sidebar";
 import About from "../sections/About";
 import Skills from "../sections/Skills";
 import Projects from "../sections/Projects";
+import Certificates from "../sections/Certificates";
 import Contact from "../sections/Contact";
 
 import "swiper/css";
@@ -19,7 +20,8 @@ const slideMapping: Record<NavigationItem, number> = {
   about: 0,
   skills: 1,
   projects: 2,
-  contact: 3,
+  certificates: 3,
+  contact: 4,
 };
 
 export default function SwiperContainer() {
@@ -82,6 +84,12 @@ export default function SwiperContainer() {
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-4 sm:p-6 lg:p-8">
             <Projects />
+          </div>
+        </SwiperSlide>
+        
+        <SwiperSlide className="flex items-center justify-center">
+          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+            <Certificates />
           </div>
         </SwiperSlide>
         
