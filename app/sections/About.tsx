@@ -2,10 +2,10 @@
 
 export default function About() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-      <div className="max-w-2xl mx-auto text-center">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 min-h-screen">
+      <div className="w-full max-w-6xl mx-auto text-center px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
         {/* Profile Section */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-6 lg:mb-8">
           <div className="w-32 h-32 mx-auto mb-6 bg-linear-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
             <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -18,7 +18,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div className="space-y-6 text-left">
+        <div className="space-y-4 sm:space-y-6 text-left flex-1">
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           </p>
@@ -33,7 +33,7 @@ export default function About() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-8">
           <div className="text-center">
             <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">5+</div>
             <div className="text-sm text-gray-600 dark:text-gray-400">Años Exp</div>

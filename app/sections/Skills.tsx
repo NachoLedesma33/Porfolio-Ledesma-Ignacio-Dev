@@ -19,7 +19,7 @@ export default function Skills() {
   const categories = Array.from(new Set(skills.map(skill => skill.category)));
 
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 overflow-y-auto">
+    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 overflow-y-auto min-h-screen">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Habilidades
@@ -27,13 +27,13 @@ export default function Skills() {
         <div className="w-24 h-1 bg-linear-to-r from-green-400 to-blue-600 mx-auto rounded-full"></div>
       </div>
 
-      <div className="max-w-4xl mx-auto w-full">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
         {categories.map((category) => (
-          <div key={category} className="mb-8">
+          <div key={category} className="mb-4 sm:mb-6 lg:mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
               {category}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
               {skills
                 .filter(skill => skill.category === category)
                 .map((skill) => (

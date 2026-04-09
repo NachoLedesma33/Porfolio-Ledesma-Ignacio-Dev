@@ -60,7 +60,7 @@ export default function Projects() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 overflow-y-auto">
+    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 overflow-y-auto min-h-screen">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Proyectos
@@ -68,8 +68,8 @@ export default function Projects() {
         <div className="w-24 h-1 bg-linear-to-r from-purple-400 to-pink-600 mx-auto rounded-full"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 flex-1">
           {projects.map((project, index) => (
             <div
               key={index}

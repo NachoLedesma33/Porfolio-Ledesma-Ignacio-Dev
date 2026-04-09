@@ -32,22 +32,8 @@ export default function SwiperContainer() {
       const targetSlide = slideMapping[slideId as NavigationItem];
       
       if (swiperRef.current && targetSlide !== undefined) {
-        // Always navigate to the left (next slide direction)
-        if (targetSlide > currentSlide) {
-          swiperRef.current.swiper.slideNext();
-        } else if (targetSlide < currentSlide) {
-          // Wrap around to the end if going backwards
-          swiperRef.current.swiper.slideTo(slideMapping.contact);
-          setTimeout(() => {
-            for (let i = 0; i < slideMapping.contact; i++) {
-              setTimeout(() => {
-                if (swiperRef.current) {
-                  swiperRef.current.swiper.slideNext();
-                }
-              }, i * 100);
-            }
-          }, 100);
-        }
+        // Instant direct navigation - go straight to target
+        swiperRef.current.swiper.slideTo(targetSlide);
         setCurrentSlide(targetSlide);
       }
     };
@@ -61,7 +47,7 @@ export default function SwiperContainer() {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div className="w-full h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
       <Swiper
         ref={swiperRef}
         effect="cube"
@@ -76,31 +62,31 @@ export default function SwiperContainer() {
         pagination={false}
         modules={[EffectCube, Navigation, Pagination]}
         onSlideChange={handleSlideChange}
-        className="w-full max-w-4xl h-full max-h-[600px]"
+        className="w-full h-screen max-h-[600px] px-2 sm:px-4 lg:px-6"
         style={{
           "--swiper-navigation-size": "30px",
         } as React.CSSProperties}
       >
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-8">
+          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
             <About />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-8">
+          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
             <Skills />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-8">
+          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
             <Projects />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-8">
+          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
             <Contact />
           </div>
         </SwiperSlide>
