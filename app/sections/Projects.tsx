@@ -63,6 +63,20 @@ export default function Projects() {
       ],
     },
     {
+      title: "Snake Game",
+      description:
+        "¡Clásico juego de la serpiente implementado con HTML5, CSS3 y JavaScript puro! Este proyecto recrea el icónico juego arcade con movimiento fluido, sistema de puntuación, niveles progresivos, controles de teclado responsive y diseño moderno adaptable a diferentes dispositivos.",
+      tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      status: "Completed",
+      link: "https://nacholedesma33.github.io/Snake-Game/",
+      repo: "https://github.com/NachoLedesma33/Snake-Game",
+      images: [
+        "/game-snake/1-snake.png",
+        "/game-snake/2snake.png",
+        "/game-snake/3snake.png",
+      ],
+    },
+    {
       title: "Budget App",
       description:
         "Aplicación web para gestión de presupuestos personales desarrollada con HTML5, CSS3 y JavaScript puro. Interfaz moderna y responsive con gráficos interactivos, categorización de gastos y análisis financiero en tiempo real.",
@@ -163,7 +177,7 @@ export default function Projects() {
                     alt={project.title}
                     width={800}
                     height={320}
-                    className="w-full h-full object-contain bg-gray-100 dark:bg-gray-700 p-4 rounded-t-xl"
+                    className="w-full h-full object-cover bg-gray-100 dark:bg-gray-700 rounded-t-xl"
                     priority={index === 0}
                   />
                 ) : (
@@ -305,7 +319,7 @@ export default function Projects() {
                                 alt={`${selectedProject.title} - Imagen ${index + 1}`}
                                 width={400}
                                 height={300}
-                                className="rounded-lg shadow-lg"
+                                className="w-96 h-72 object-cover rounded-lg shadow-lg"
                                 priority={index < 2}
                               />
                             </div>
