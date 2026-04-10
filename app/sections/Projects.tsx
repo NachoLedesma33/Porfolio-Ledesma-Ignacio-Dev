@@ -71,7 +71,7 @@ export default function Projects() {
       link: "https://nacholedesma33.github.io/Snake-Game/",
       repo: "https://github.com/NachoLedesma33/Snake-Game",
       images: [
-        "/game-snake/1-snake.png",
+        "/game-snake/1placeholder.png",
         "/game-snake/2snake.png",
         "/game-snake/3snake.png",
       ],
