@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore } from "react";
+import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 
 type SvglRoute = string | { light: string; dark: string };
 
@@ -50,6 +51,9 @@ function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
 }
 
 export default function Skills() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useMouseDragScroll(scrollRef);
+
   const skills: Skill[] = [
     {
       name: "JavaScript",
@@ -250,7 +254,10 @@ export default function Skills() {
   const categories = Array.from(new Set(skills.map((skill) => skill.category)));
 
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 overflow-y-auto min-h-screen">
+    <div
+      ref={scrollRef}
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+    >
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Habilidades Aprendidas
@@ -258,7 +265,7 @@ export default function Skills() {
         <div className="w-24 h-1 bg-linear-to-r from-green-400 to-blue-600 mx-auto rounded-full"></div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
+      <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Additional Info */}
         <div className="mb-12 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-lg">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-3">
@@ -284,20 +291,22 @@ export default function Skills() {
                     href={skill.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-lg transition-all duration-200 hover:scale-105 flex flex-col items-center justify-center text-center min-h-[120px]"
+                    className="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-lg transition-shadow duration-200 flex flex-col items-center justify-center text-center min-h-[120px] cursor-pointer"
                   >
-                    <div className="flex flex-col items-center justify-center min-h-[2.5rem]">
-                      {skill.svgl ? (
-                        <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
-                      ) : (
-                        <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
-                          {skill.emoji}
-                        </div>
-                      )}
+                    <div className="flex w-full flex-col items-center justify-center text-center transition-transform duration-200 group-hover:scale-105">
+                      <div className="flex flex-col items-center justify-center min-h-[2.5rem]">
+                        {skill.svgl ? (
+                          <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
+                        ) : (
+                          <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
+                            {skill.emoji}
+                          </div>
+                        )}
+                      </div>
+                      <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                        {skill.name}
+                      </span>
                     </div>
-                    <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                      {skill.name}
-                    </span>
                   </a>
                 ))}
             </div>

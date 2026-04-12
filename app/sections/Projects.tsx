@@ -1,12 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<
     (typeof projects)[0] | null
   >(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const modalScrollRef = useRef<HTMLDivElement>(null);
+  useMouseDragScroll(scrollRef);
+  useMouseDragScroll(modalScrollRef, !!selectedProject);
   // Close modal on Escape key and trigger animations
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -154,7 +159,10 @@ export default function Projects() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 overflow-y-auto min-h-screen">
+    <div
+      ref={scrollRef}
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+    >
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Proyectos
@@ -162,7 +170,7 @@ export default function Projects() {
         <div className="w-24 h-1 bg-linear-to-r from-purple-400 to-pink-600 mx-auto rounded-full"></div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
+      <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 flex-1">
           {projects.map((project, index) => (
             <div
@@ -271,8 +279,9 @@ export default function Projects() {
             onClick={handleBackdropClick}
           >
             <div
+              ref={modalScrollRef}
               data-modal-content
-              className="bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out"
+              className="scrollbar-hide bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button positioned outside the content */}
@@ -310,7 +319,10 @@ export default function Projects() {
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         Galería del Proyecto
                       </h3>
-                      <div className="flex gap-4 overflow-x-auto pb-4">
+                      <div
+                        className="flex gap-4 overflow-x-auto pb-4"
+                        data-no-vertical-drag-scroll
+                      >
                         {selectedProject.images.map(
                           (image: string, index: number) => (
                             <div key={index} className="shrink-0">

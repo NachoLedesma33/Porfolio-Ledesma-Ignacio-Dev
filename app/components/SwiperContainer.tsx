@@ -53,7 +53,7 @@ export default function SwiperContainer() {
       <Swiper
         ref={swiperRef}
         effect="cube"
-        grabCursor={true}
+        grabCursor={false}
         cubeEffect={{
           shadow: true,
           slideShadows: true,
@@ -64,37 +64,37 @@ export default function SwiperContainer() {
         pagination={false}
         modules={[EffectCube, Navigation, Pagination]}
         onSlideChange={handleSlideChange}
-        className="w-full h-screen max-h-[600px] px-2 sm:px-4 lg:px-6"
+        className="w-full h-screen max-h-[600px] px-0.5 sm:px-2 lg:px-3"
         style={{
           "--swiper-navigation-size": "30px",
         } as React.CSSProperties}
       >
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
             <About />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
             <Skills />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
             <Projects />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
             <Certificates />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
-          <div className="w-full h-full p-4 sm:p-6 lg:p-8">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
             <Contact />
           </div>
         </SwiperSlide>

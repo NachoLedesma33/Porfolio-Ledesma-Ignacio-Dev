@@ -1,6 +1,11 @@
 "use client";
 
+import { useRef } from "react";
+import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
+
 export default function Certificates() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useMouseDragScroll(scrollRef);
   const certificates = [
     {
       title: "React Developer Certification",
@@ -74,7 +79,10 @@ export default function Certificates() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 overflow-y-auto min-h-screen">
+    <div
+      ref={scrollRef}
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+    >
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Certificados
@@ -82,7 +90,7 @@ export default function Certificates() {
         <div className="w-24 h-1 bg-linear-to-r from-indigo-400 to-purple-600 mx-auto rounded-full"></div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
+      <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {categories.map((category) => (
           <div key={category} className="mb-6 sm:mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">

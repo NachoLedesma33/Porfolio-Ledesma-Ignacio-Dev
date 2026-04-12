@@ -1,9 +1,18 @@
 "use client";
 
+import { useRef } from "react";
+import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
+
 export default function About() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useMouseDragScroll(scrollRef);
+
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 sm:p-4 lg:p-6 min-h-screen">
-      <div className="w-full max-w-6xl mx-auto text-center px-2 sm:px-4 lg:px-6 flex-1 flex flex-col">
+    <div
+      ref={scrollRef}
+      className="scrollbar-hide w-full h-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 min-h-screen overflow-y-auto"
+    >
+      <div className="w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Profile Section */}
         <div className="mb-4 sm:mb-6 lg:mb-8">
           <div className="w-32 h-32 mx-auto mb-6 bg-linear-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
