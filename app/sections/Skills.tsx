@@ -1,179 +1,247 @@
 "use client";
 
+import Image from "next/image";
+import { useSyncExternalStore } from "react";
+
+type SvglRoute = string | { light: string; dark: string };
+
+type Skill = {
+  name: string;
+  url: string;
+  category: string;
+  /** Ruta en SVGL (https://svgl.app). Si falta, se usa `emoji`. */
+  svgl?: SvglRoute;
+  emoji?: string;
+};
+
+function subscribePreferredDark(cb: () => void) {
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+
+function getPreferredDarkSnapshot() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function getPreferredDarkServerSnapshot() {
+  return false;
+}
+
+function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
+  const prefersDark = useSyncExternalStore(
+    subscribePreferredDark,
+    getPreferredDarkSnapshot,
+    getPreferredDarkServerSnapshot
+  );
+
+  const src = typeof route === "string" ? route : prefersDark ? route.dark : route.light;
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={40}
+      height={40}
+      unoptimized
+      className="h-10 w-10 object-contain mb-2 group-hover:scale-110 transition-transform duration-200"
+    />
+  );
+}
+
 export default function Skills() {
-  const skills = [
-    // Frontend
+  const skills: Skill[] = [
     {
       name: "JavaScript",
-      icon: "🟨",
+      svgl: "https://svgl.app/library/javascript.svg",
       url: "https://developer.mozilla.org/es/docs/Web/JavaScript",
       category: "Frontend",
     },
     {
       name: "TypeScript",
-      icon: "🔷",
+      svgl: "https://svgl.app/library/typescript.svg",
       url: "https://www.typescriptlang.org/",
       category: "Frontend",
     },
     {
       name: "HTML",
-      icon: "🌐",
+      svgl: "https://svgl.app/library/html5.svg",
       url: "https://developer.mozilla.org/es/docs/Web/HTML",
       category: "Frontend",
     },
     {
       name: "CSS",
-      icon: "🎨",
+      svgl: "https://svgl.app/library/css.svg",
       url: "https://developer.mozilla.org/es/docs/Web/CSS",
       category: "Frontend",
     },
     {
       name: "ReactJS",
-      icon: "⚛️",
+      svgl: {
+        light: "https://svgl.app/library/react_light.svg",
+        dark: "https://svgl.app/library/react_dark.svg",
+      },
       url: "https://react.dev/",
       category: "Frontend",
     },
     {
       name: "Next Js",
-      icon: "▲",
+      svgl: "https://svgl.app/library/nextjs_icon_dark.svg",
       url: "https://nextjs.org/",
       category: "Frontend",
     },
     {
       name: "Astro",
-      icon: "🚀",
+      svgl: {
+        light: "https://svgl.app/library/astro-icon-light.svg",
+        dark: "https://svgl.app/library/astro-icon-dark.svg",
+      },
       url: "https://astro.build/",
       category: "Frontend",
     },
     {
       name: "TailwindCSS",
-      icon: "🌊",
+      svgl: "https://svgl.app/library/tailwindcss.svg",
       url: "https://tailwindcss.com/",
       category: "Frontend",
     },
     {
       name: "Bootstrap CSS",
-      icon: "🅱️",
+      svgl: "https://svgl.app/library/bootstrap.svg",
       url: "https://getbootstrap.com/",
       category: "Frontend",
     },
 
-    // Backend
     {
       name: "Node.js",
-      icon: "🟢",
+      svgl: "https://svgl.app/library/nodejs.svg",
       url: "https://nodejs.org/",
       category: "Backend",
     },
     {
+      name: "NestJS",
+      svgl: "https://svgl.app/library/nestjs.svg",
+      url: "https://nestjs.com/",
+      category: "Backend",
+    },
+    {
       name: "Java",
-      icon: "☕",
+      svgl: "https://svgl.app/library/java.svg",
       url: "https://www.java.com/",
       category: "Backend",
     },
     {
       name: "Python",
-      icon: "🐍",
+      svgl: "https://svgl.app/library/python.svg",
       url: "https://www.python.org/",
       category: "Backend",
     },
     {
       name: "Spring Boot",
-      icon: "🍃",
+      svgl: "https://svgl.app/library/spring.svg",
       url: "https://spring.io/projects/spring-boot",
       category: "Backend",
     },
     {
       name: "Django",
-      icon: "🎸",
+      svgl: "https://svgl.app/library/django.svg",
       url: "https://www.djangoproject.com/",
       category: "Backend",
     },
     {
       name: "Flask",
-      icon: "🧪",
+      svgl: {
+        light: "https://svgl.app/library/flask-light.svg",
+        dark: "https://svgl.app/library/flask-dark.svg",
+      },
       url: "https://flask.palletsprojects.com/",
       category: "Backend",
     },
     {
       name: "FastAPI",
-      icon: "⚡",
+      svgl: "https://svgl.app/library/fastapi.svg",
       url: "https://fastapi.tiangolo.com/",
       category: "Backend",
     },
     {
       name: "Hibernate",
-      icon: "🐘",
+      emoji: "🐘",
       url: "https://hibernate.org/",
       category: "Backend",
     },
-
-    // Database
-    {
-      name: "SQL",
-      icon: "📊",
-      url: "https://en.wikipedia.org/wiki/SQL",
-      category: "Database",
-    },
-    {
-      name: "NoSQL",
-      icon: "🗄️",
-      url: "https://en.wikipedia.org/wiki/NoSQL",
-      category: "Database",
-    },
     {
       name: "PostgreSQL",
-      icon: "🐘",
+      svgl: "https://svgl.app/library/postgresql.svg",
       url: "https://www.postgresql.org/",
       category: "Database",
     },
     {
+      name: "MySQL",
+      svgl: {
+        light: "https://svgl.app/library/mysql-icon-light.svg",
+        dark: "https://svgl.app/library/mysql-icon-dark.svg",
+      },
+      url: "https://www.mysql.com/",
+      category: "Database",
+    },
+    {
       name: "SQLite",
-      icon: "📦",
+      svgl: "https://svgl.app/library/sqlite.svg",
       url: "https://www.sqlite.org/",
       category: "Database",
     },
     {
       name: "MongoDB",
-      icon: "🍃",
+      svgl: {
+        light: "https://svgl.app/library/mongodb-icon-light.svg",
+        dark: "https://svgl.app/library/mongodb-icon-dark.svg",
+      },
       url: "https://www.mongodb.com/",
       category: "Database",
     },
 
-    // DevOps & Tools
     {
       name: "Docker",
-      icon: "🐳",
+      svgl: "https://svgl.app/library/docker.svg",
       url: "https://www.docker.com/",
       category: "DevOps & Tools",
     },
     {
       name: "AWS",
-      icon: "☁️",
+      svgl: {
+        light: "https://svgl.app/library/aws_light.svg",
+        dark: "https://svgl.app/library/aws_dark.svg",
+      },
       url: "https://aws.amazon.com/",
       category: "DevOps & Tools",
     },
     {
       name: "Git",
-      icon: "📦",
+      svgl: "https://svgl.app/library/git.svg",
       url: "https://git-scm.com/",
       category: "DevOps & Tools",
     },
     {
       name: "Github",
-      icon: "🐙",
+      svgl: {
+        light: "https://svgl.app/library/github_light.svg",
+        dark: "https://svgl.app/library/github_dark.svg",
+      },
       url: "https://github.com/",
       category: "DevOps & Tools",
     },
     {
       name: "BASH",
-      icon: "💻",
+      svgl: {
+        light: "https://svgl.app/library/bash.svg",
+        dark: "https://svgl.app/library/bash_dark.svg",
+      },
       url: "https://www.gnu.org/software/bash/",
       category: "DevOps & Tools",
     },
     {
       name: "GraphQL",
-      icon: "🔷",
+      svgl: "https://svgl.app/library/graphql.svg",
       url: "https://graphql.org/",
       category: "DevOps & Tools",
     },
@@ -218,8 +286,14 @@ export default function Skills() {
                     rel="noopener noreferrer"
                     className="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-lg transition-all duration-200 hover:scale-105 flex flex-col items-center justify-center text-center min-h-[120px]"
                   >
-                    <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
-                      {skill.icon}
+                    <div className="flex flex-col items-center justify-center min-h-[2.5rem]">
+                      {skill.svgl ? (
+                        <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
+                      ) : (
+                        <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
+                          {skill.emoji}
+                        </div>
+                      )}
                     </div>
                     <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                       {skill.name}
