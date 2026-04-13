@@ -1,38 +1,93 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 
 export default function Contact() {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
+  const statusId = useId();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    website: "", // honeypot (should stay empty)
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "idle" | "success" | "error"; message?: string }>({
+    type: "idle",
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setStatus({ type: "idle" });
     setIsSubmitting(true);
-    
-    // Simulate form submission (no backend)
-    setTimeout(() => {
-      console.log("Form data:", formData);
-      alert("Lorem ipsum: Formulario enviado exitosamente (simulación)");
-      setFormData({ name: "", email: "", message: "" });
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (name.length < 2) {
+      setStatus({ type: "error", message: "Por favor, ingresá un nombre válido." });
       setIsSubmitting(false);
-    }, 1000);
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus({ type: "error", message: "Por favor, ingresá un email válido." });
+      setIsSubmitting(false);
+      return;
+    }
+    if (message.length < 10) {
+      setStatus({ type: "error", message: "Contame un poco más (mínimo 10 caracteres)." });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          website: formData.website, // honeypot
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as null | { ok?: boolean; error?: string };
+
+      if (!res.ok || data?.ok === false) {
+        const msg =
+          res.status === 429
+            ? "Estás enviando demasiados mensajes. Probá de nuevo en un minuto."
+            : data?.error || "No se pudo enviar el mensaje. Probá de nuevo más tarde.";
+        setStatus({ type: "error", message: msg });
+        setIsSubmitting(false);
+        return;
+      }
+
+      setStatus({ type: "success", message: "¡Listo! Tu mensaje fue enviado. Te respondo a la brevedad." });
+      setFormData({ name: "", email: "", message: "", website: "" });
+      setIsSubmitting(false);
+    } catch {
+      setStatus({
+        type: "error",
+        message: "No se pudo conectar con el servidor. Revisá tu conexión e intentá de nuevo.",
+      });
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,8 +108,23 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
             Envíame un mensaje
           </h2>
+
+          <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+            Usá este formulario para contactarme. No compartas contraseñas ni información sensible. Tu email se usa
+            únicamente para responderte.
+          </p>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" aria-describedby={statusId}>
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleInputChange}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Nombre
@@ -66,6 +136,9 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
+                minLength={2}
+                maxLength={80}
+                autoComplete="name"
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 placeholder="Tu nombre"
               />
@@ -82,6 +155,8 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
+                maxLength={254}
+                autoComplete="email"
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 placeholder="Ejemplo: tu-mail@gmail.com"
               />
@@ -98,9 +173,21 @@ export default function Contact() {
                 onChange={handleInputChange}
                 required
                 rows={4}
+                minLength={10}
+                maxLength={2000}
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none"
                 placeholder="Tu mensaje"
               />
+            </div>
+
+            <div id={statusId} aria-live="polite" className="min-h-[1.25rem]">
+              {status.type === "success" ? (
+                <p className="text-sm text-green-700 dark:text-green-300">{status.message}</p>
+              ) : status.type === "error" ? (
+                <p className="text-sm text-red-700 dark:text-red-300">{status.message}</p>
+              ) : (
+                <span className="text-sm text-transparent select-none">.</span>
+              )}
             </div>
 
             <button
