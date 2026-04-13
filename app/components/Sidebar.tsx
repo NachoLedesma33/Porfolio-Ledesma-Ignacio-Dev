@@ -33,7 +33,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
   };
 
   return (
-    <div className="w-64 h-full bg-white dark:bg-stone-950 border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center">
+    <div className="w-54 h-full bg-white dark:bg-stone-950 border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center">
       {/* Header */}
       <div className="p-6 border-b border-red-100/80 dark:border-red-950/60">
         <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-red-100">
@@ -49,9 +49,9 @@ export default function Sidebar({ onClose }: SidebarProps) {
               <button
                 onClick={() => handleNavigation(item.id)}
                 className={`
-                  w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200
+                  w-full flex items-center space-x-3 px-4 py-6 text-lg font-medium rounded-lg transition-all duration-200
                   ${activeItem === item.id
-                    ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-l-4 border-rose-600 dark:border-rose-400'
+                    ? 'bg-rose-50 dark:bg-red-950/40 text-rose-700 dark:text-red-300 border-l-4 border-red-600 dark:border-red-400'
                     : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50/70 dark:hover:bg-stone-900'
                   }
                 `}
