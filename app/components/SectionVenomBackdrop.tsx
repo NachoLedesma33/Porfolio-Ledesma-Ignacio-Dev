@@ -9,15 +9,15 @@ import VenomBeam from "@/app/components/ui/venom-beam";
  */
 export default function SectionVenomBackdrop({ children }: { children: ReactNode }) {
   return (
-    <div className="relative isolate min-h-full w-full flex-1 flex flex-col rounded-[inherit]">
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]">
+    <div className="relative isolate w-full min-h-full shrink-0 rounded-[inherit]">
+      <div className="pointer-events-none absolute inset-0 z-0 min-h-full overflow-hidden rounded-[inherit]">
         <VenomBeam fill embed />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] bg-linear-to-b from-white/80 via-white/88 to-white/93 shadow-[inset_0_0_0_1px_rgba(255,228,230,0.45)] dark:from-stone-950/78 dark:via-stone-900/88 dark:to-stone-900/94 dark:shadow-[inset_0_0_0_1px_rgba(69,10,10,0.25)]"
+        className="pointer-events-none absolute inset-0 z-[1] min-h-full rounded-[inherit] bg-linear-to-b from-white/80 via-white/88 to-white/93 shadow-[inset_0_0_0_1px_rgba(255,228,230,0.45)] dark:from-stone-950/78 dark:via-stone-900/88 dark:to-stone-900/94 dark:shadow-[inset_0_0_0_1px_rgba(69,10,10,0.25)]"
         aria-hidden
       />
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col">{children}</div>
+      <div className="relative z-10 w-full">{children}</div>
     </div>
   );
 }

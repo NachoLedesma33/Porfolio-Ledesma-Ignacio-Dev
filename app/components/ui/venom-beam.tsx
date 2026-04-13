@@ -91,6 +91,12 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
 
     window.addEventListener("resize", handleResize);
 
+    const resizeHost = canvas.parentElement ?? canvas;
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(resizeHost);
+
     const initParticles = () => {
       particlesRef.current = [];
       const count = embed ? 56 : 80;
@@ -222,6 +228,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
     animate();
 
     return () => {
+      resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
       if (!embed) {
         canvas.removeEventListener("mousemove", handleMouseMove);
@@ -232,8 +239,8 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
   }, [embed]);
 
   const rootClass = fill
-    ? `relative h-full w-full min-h-full overflow-hidden pointer-events-none ${embed ? "" : ""}`
-    : `relative h-96 md:h-screen w-full overflow-hidden bg-white dark:bg-black pointer-events-auto`;
+    ? "relative h-full min-h-full w-full overflow-hidden pointer-events-none"
+    : "relative h-96 md:h-screen w-full overflow-hidden bg-white dark:bg-black pointer-events-auto";
 
   const canvasBg = embed
     ? "absolute inset-0 h-full w-full bg-transparent"
