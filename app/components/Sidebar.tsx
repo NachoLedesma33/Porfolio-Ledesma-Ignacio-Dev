@@ -33,19 +33,16 @@ export default function Sidebar({ onClose }: SidebarProps) {
   };
 
   return (
-    <div className="w-64 h-full bg-white dark:bg-stone-950 border-r border-rose-100/80 dark:border-rose-950/60 flex flex-col">
+    <div className="w-64 h-full bg-white dark:bg-stone-950 border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center">
       {/* Header */}
-      <div className="p-6 border-b border-rose-100/80 dark:border-rose-950/60">
-        <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-rose-50">
-          Portfolio
+      <div className="p-6 border-b border-red-100/80 dark:border-red-950/60">
+        <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-red-100">
+          Portfolio <br/> Ledesma Ignacio, Manuel Dev
         </h2>
-        <p className="text-sm text-stone-600 dark:text-rose-200/70 mt-1">
-          Navegación
-        </p>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
+      <nav className="flex-1 p-4 w-full items-center justify-center">
         <ul className="space-y-2">
           {navigationItems.map((item) => (
             <li key={item.id}>

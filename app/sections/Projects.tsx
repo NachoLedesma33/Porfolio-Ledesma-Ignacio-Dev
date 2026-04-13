@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
 
@@ -161,8 +162,9 @@ export default function Projects() {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-stone-900 rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+      className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
+      <SectionVenomBackdrop>
       <div className="text-center mb-8">
         <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
           Proyectos
@@ -440,6 +442,7 @@ export default function Projects() {
           </p>
         </div>
       </div>
+      </SectionVenomBackdrop>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 
 export default function About() {
@@ -10,8 +11,9 @@ export default function About() {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide w-full h-full flex flex-col items-center justify-center bg-white dark:bg-stone-900 rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 min-h-screen overflow-y-auto"
+      className="scrollbar-hide relative w-full h-full flex flex-col items-center justify-center rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 min-h-screen overflow-y-auto"
     >
+      <SectionVenomBackdrop>
       <div className="w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Profile Section */}
         <div className="mb-4 sm:mb-6 lg:mb-8">
@@ -57,6 +59,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      </SectionVenomBackdrop>
     </div>
   );
 }
