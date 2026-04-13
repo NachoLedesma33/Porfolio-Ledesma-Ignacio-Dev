@@ -62,38 +62,38 @@ export default function Certificates() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Frontend":
-        return "from-blue-400 to-cyan-600";
+        return "from-rose-400 to-red-600";
       case "Languages":
-        return "from-purple-400 to-pink-600";
+        return "from-red-500 to-rose-800";
       case "Cloud":
-        return "from-orange-400 to-red-600";
+        return "from-orange-500 to-red-700";
       case "DevOps":
-        return "from-green-400 to-teal-600";
+        return "from-red-600 to-stone-800";
       case "Data Science":
-        return "from-indigo-400 to-purple-600";
+        return "from-fuchsia-500 to-rose-700";
       case "Full Stack":
-        return "from-yellow-400 to-orange-600";
+        return "from-amber-500 to-red-600";
       default:
-        return "from-gray-400 to-gray-600";
+        return "from-stone-500 to-stone-700";
     }
   };
 
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-stone-900 rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
           Certificados
         </h1>
-        <div className="w-24 h-1 bg-linear-to-r from-indigo-400 to-purple-600 mx-auto rounded-full"></div>
+        <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {categories.map((category) => (
           <div key={category} className="mb-6 sm:mb-8">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+            <h2 className="text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-4">
               {category}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -102,7 +102,7 @@ export default function Certificates() {
                 .map((cert, index) => (
                   <div
                     key={index}
-                    className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    className="bg-rose-50/30 dark:bg-stone-800 rounded-lg overflow-hidden hover:shadow-xl hover:ring-1 hover:ring-rose-200/70 dark:hover:ring-rose-900/50 transition-all duration-300 transform hover:-translate-y-1"
                   >
                     {/* Certificate Header */}
                     <div className={`h-32 bg-linear-to-br ${getCategoryColor(cert.category)} relative`}>
@@ -115,20 +115,20 @@ export default function Certificates() {
                     
                     {/* Certificate Content */}
                     <div className="p-4 sm:p-6">
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      <h3 className="text-lg font-bold text-stone-900 dark:text-stone-50 mb-2">
                         {cert.title}
                       </h3>
                       
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        <span className="text-sm font-medium text-stone-600 dark:text-stone-300">
                           {cert.issuer}
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-500">
+                        <span className="text-xs text-stone-500 dark:text-stone-400">
                           {cert.date}
                         </span>
                       </div>
                       
-                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+                      <p className="text-sm text-stone-700 dark:text-stone-200 mb-4 line-clamp-3">
                         {cert.description}
                       </p>
                       
@@ -136,7 +136,7 @@ export default function Certificates() {
                         {cert.skills.map((skill, skillIndex) => (
                           <span
                             key={skillIndex}
-                            className="px-2 py-1 text-xs font-medium bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-full"
+                            className="px-2 py-1 text-xs font-medium bg-rose-100/90 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded-full"
                           >
                             {skill}
                           </span>

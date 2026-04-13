@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f8;
+  --foreground: #1c1917;
+  --foreground-muted: #57534e;
+  --surface: #ffffff;
+  --surface-muted: #fff1f2;
+  --border: #e7e5e4;
+  --accent: #be123c;
+  --accent-soft: #ffe4e6;
+  --accent-foreground: #ffffff;
+  --ring: #e11d48;
 }
 
 @theme inline {
@@ -14,15 +22,103 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c0a0a;
+    --foreground: #f5f5f4;
+    --foreground-muted: #a8a29e;
+    --surface: #1c1917;
+    --surface-muted: #292524;
+    --border: #44403c;
+    --accent: #fb7185;
+    --accent-soft: #3f2026;
+    --accent-foreground: #450a0a;
+    --ring: #fb7185;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--accent) 35%, white);
+  color: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background-color: color-mix(in srgb, var(--accent) 45%, #0c0a0a);
+    color: #fef2f2;
+  }
+}
+
+strong {
+  font-weight: 600;
+  color: color-mix(in srgb, var(--foreground) 92%, var(--accent));
+}
+
+/* Títulos de sección: gradiente rojo animado (solo relleno del texto) */
+@keyframes section-title-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.section-heading {
+  background-image: linear-gradient(
+    105deg,
+    #881337 0%,
+    #be123c 25%,
+    #fb7185 50%,
+    #be123c 75%,
+    #881337 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-heading {
+    background-image: linear-gradient(
+      105deg,
+      #fecdd3 0%,
+      #fb7185 30%,
+      #fda4af 55%,
+      #fb7185 80%,
+      #fecdd3 100%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-heading {
+    animation: section-title-shimmer 7s ease-in-out infinite alternate;
+  }
+}
+
+.accent-rule {
+  background: linear-gradient(
+    90deg,
+    #fb7185,
+    #be123c,
+    #9f1239
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .accent-rule {
+    background: linear-gradient(90deg, #fda4af, #fb7185, #f43f5e);
+  }
 }
 
 /* Scroll funcional (rueda / táctil / arrastre con ratón) sin barra visible */

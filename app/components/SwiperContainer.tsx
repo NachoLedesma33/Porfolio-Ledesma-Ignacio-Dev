@@ -49,7 +49,7 @@ export default function SwiperContainer() {
   };
 
   return (
-    <div className="w-full h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div className="w-full h-screen bg-linear-to-br from-rose-50/90 via-stone-50 to-rose-100/50 dark:from-stone-950 dark:via-neutral-950 dark:to-rose-950/20">
       <Swiper
         ref={swiperRef}
         effect="cube"

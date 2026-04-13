@@ -33,13 +33,13 @@ export default function Sidebar({ onClose }: SidebarProps) {
   };
 
   return (
-    <div className="w-64 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+    <div className="w-64 h-full bg-white dark:bg-stone-950 border-r border-rose-100/80 dark:border-rose-950/60 flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="p-6 border-b border-rose-100/80 dark:border-rose-950/60">
+        <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-rose-50">
           Portfolio
         </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+        <p className="text-sm text-stone-600 dark:text-rose-200/70 mt-1">
           Navegación
         </p>
       </div>
@@ -54,8 +54,8 @@ export default function Sidebar({ onClose }: SidebarProps) {
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200
                   ${activeItem === item.id
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 dark:border-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-l-4 border-rose-600 dark:border-rose-400'
+                    : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50/70 dark:hover:bg-stone-900'
                   }
                 `}
               >
@@ -80,8 +80,8 @@ export default function Sidebar({ onClose }: SidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-        <div className="text-xs text-gray-500 dark:text-gray-400">
+      <div className="p-4 border-t border-rose-100/80 dark:border-rose-950/60">
+        <div className="text-xs text-stone-500 dark:text-rose-200/60">
           © 2024 Portfolio
         </div>
       </div>

@@ -152,7 +152,7 @@ export default function Projects() {
       case "In Progress":
         return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
       case "Planning":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
+        return "bg-rose-100 text-rose-900 dark:bg-rose-950 dark:text-rose-200";
       default:
         return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
     }
@@ -161,13 +161,13 @@ export default function Projects() {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-stone-900 rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
           Proyectos
         </h1>
-        <div className="w-24 h-1 bg-linear-to-r from-purple-400 to-pink-600 mx-auto rounded-full"></div>
+        <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
@@ -175,7 +175,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 dark:border-gray-600"
+              className="bg-white dark:bg-stone-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-rose-100/80 dark:border-stone-700"
             >
               {/* Project Header */}
               <div className="h-40 relative overflow-hidden rounded-t-xl">
@@ -185,11 +185,11 @@ export default function Projects() {
                     alt={project.title}
                     width={800}
                     height={320}
-                    className="w-full h-full object-cover bg-gray-100 dark:bg-gray-700 rounded-t-xl"
+                    className="w-full h-full object-cover bg-stone-100 dark:bg-stone-800 rounded-t-xl"
                     priority={index === 0}
                   />
                 ) : (
-                  <div className="w-full h-full bg-linear-to-br from-purple-400 to-pink-600 flex items-center justify-center">
+                  <div className="w-full h-full bg-linear-to-br from-rose-500 to-red-700 flex items-center justify-center">
                     <svg
                       className="w-16 h-16 text-white/50"
                       fill="none"
@@ -216,10 +216,10 @@ export default function Projects() {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-3">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3 text-base leading-relaxed">
+                <p className="text-stone-600 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed">
                   {project.description}
                 </p>
 
@@ -228,7 +228,7 @@ export default function Projects() {
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                      className="px-3 py-1 text-sm font-medium bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-100 rounded-full hover:bg-rose-200/90 dark:hover:bg-rose-900 transition-colors"
                     >
                       {tech}
                     </span>
@@ -239,20 +239,20 @@ export default function Projects() {
                   {project.images && project.images.length > 0 && (
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="w-full bg-linear-to-r from-purple-600 to-purple-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-purple-700 hover:to-purple-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-full bg-linear-to-r from-rose-600 to-red-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-rose-700 hover:to-red-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-rose-600/20 hover:shadow-xl"
                     >
                       Ver Proyecto
                     </button>
                   )}
                   <a
                     href={project.link}
-                    className="w-full bg-purple-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors text-center"
+                    className="w-full bg-rose-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors text-center"
                   >
                     Abrir Proyecto
                   </a>
 
                   {/* Información resumida */}
-                  <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                  <div className="text-sm text-stone-600 dark:text-stone-300 space-y-1">
                     <p>
                       <strong>Tecnologías:</strong> {project.tech.join(", ")}
                     </p>
@@ -281,7 +281,7 @@ export default function Projects() {
             <div
               ref={modalScrollRef}
               data-modal-content
-              className="scrollbar-hide bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out"
+              className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg max-w-6xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button positioned outside the content */}
@@ -307,7 +307,7 @@ export default function Projects() {
 
               <div className="p-6">
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
                     {selectedProject.title}
                   </h2>
                 </div>
@@ -316,7 +316,7 @@ export default function Projects() {
                 {selectedProject.images &&
                   selectedProject.images.length > 0 && (
                     <div className="mb-8">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-4">
                         Galería del Proyecto
                       </h3>
                       <div
@@ -344,16 +344,16 @@ export default function Projects() {
                 {/* Project Info */}
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">
                       Descripción
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-stone-700 dark:text-stone-200">
                       {selectedProject.description}
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">
                       Tecnologías
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -361,7 +361,7 @@ export default function Projects() {
                         (tech: string, index: number) => (
                           <span
                             key={index}
-                            className="px-3 py-1 text-sm font-medium bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-full"
+                            className="px-3 py-1 text-sm font-medium bg-rose-100/90 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded-full"
                           >
                             {tech}
                           </span>
@@ -371,7 +371,7 @@ export default function Projects() {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">
                       Estado
                     </h3>
                     <span
@@ -384,14 +384,14 @@ export default function Projects() {
                   <div className="flex space-x-4">
                     <a
                       href={selectedProject.link}
-                      className="flex-1 bg-purple-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors text-center"
+                      className="flex-1 bg-rose-700 text-white font-medium py-3 px-6 rounded-lg hover:bg-red-800 transition-colors text-center"
                     >
                       Abrir Proyecto
                     </a>
                     {selectedProject.repo && (
                       <a
                         href={selectedProject.repo}
-                        className="flex-1 bg-gray-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors text-center"
+                        className="flex-1 bg-stone-700 text-white font-medium py-3 px-6 rounded-lg hover:bg-stone-800 transition-colors text-center"
                       >
                         Ver Código
                       </a>
@@ -428,11 +428,11 @@ export default function Projects() {
         )}
 
         {/* Additional Info */}
-        <div className="mt-8 p-6 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
-          <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-300 mb-3">
+        <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-950/30 rounded-lg ring-1 ring-rose-100/70 dark:ring-rose-900/40">
+          <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">
             Lorem Ipsum
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-stone-700 dark:text-stone-200 leading-relaxed">
             Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
             fugit, sed quia consequuntur magni dolores eos qui ratione
             voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem

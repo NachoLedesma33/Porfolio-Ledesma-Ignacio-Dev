@@ -256,22 +256,22 @@ export default function Skills() {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+      className="scrollbar-hide w-full h-full flex flex-col bg-white dark:bg-stone-900 rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
           Habilidades Aprendidas
         </h1>
-        <div className="w-24 h-1 bg-linear-to-r from-green-400 to-blue-600 mx-auto rounded-full"></div>
+        <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Additional Info */}
-        <div className="mb-12 p-6 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-lg">
-          <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-3">
+        <div className="mb-12 p-6 bg-linear-to-r from-rose-50 to-red-50/80 dark:from-rose-950/35 dark:to-red-950/25 rounded-lg ring-1 ring-rose-100/60 dark:ring-rose-900/40">
+          <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">
             Mi Trayectoria Profesional
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-stone-700 dark:text-stone-200 leading-relaxed">
             Durante los últimos 5 años he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
             Esta experiencia me permite abordar desafíos complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
             siempre manteniendo un enfoque en las mejores prácticas y la calidad del código.
@@ -279,7 +279,7 @@ export default function Skills() {
         </div>
         {categories.map((category) => (
           <div key={category} className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
+            <h2 className="text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-6">
               {category}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -291,7 +291,7 @@ export default function Skills() {
                     href={skill.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-lg transition-shadow duration-200 flex flex-col items-center justify-center text-center min-h-[120px] cursor-pointer"
+                    className="group bg-rose-50/40 dark:bg-stone-800 rounded-lg p-4 hover:shadow-lg hover:ring-1 hover:ring-rose-200/80 dark:hover:ring-rose-800/60 transition-shadow duration-200 flex flex-col items-center justify-center text-center min-h-[120px] cursor-pointer"
                   >
                     <div className="flex w-full flex-col items-center justify-center text-center transition-transform duration-200 group-hover:scale-105">
                       <div className="flex flex-col items-center justify-center min-h-[2.5rem]">
@@ -303,7 +303,7 @@ export default function Skills() {
                           </div>
                         )}
                       </div>
-                      <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+                      <span className="text-xs sm:text-sm font-medium text-stone-900 dark:text-stone-100 group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors duration-200">
                         {skill.name}
                       </span>
                     </div>
