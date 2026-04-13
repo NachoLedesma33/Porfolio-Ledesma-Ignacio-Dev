@@ -1,330 +1,153 @@
-# 📋 Guía de Integración de Nuevos Proyectos
+# Guía de la sección Habilidades (Skills)
 
-## 🎯 Propósito
-Este documento proporciona una guía detallada y genérica para agregar nuevos proyectos a la sección de proyectos del portfolio, asegurando consistencia y reutilizabilidad del código.
+## Propósito
 
----
-
-## 📁 Estructura de Archivos
-
-### Archivos Principales
-```
-app/
-├── sections/
-│   └── Projects.tsx     # Componente principal de proyectos
-├── components/
-│   └── Sidebar.tsx       # Navegación (si se agrega nueva sección)
-└── public/
-    └── game-2048/      # Imágenes del proyecto (crear carpeta específica)
-        ├── 1.png
-        ├── 2.png
-        ├── 3.png
-        └── 4.png
-```
+Este documento describe cómo está implementada la sección **Habilidades** del portfolio y cómo agregar o modificar habilidades manteniendo el mismo comportamiento y estilo que el código actual en `app/sections/Skills.tsx`.
 
 ---
 
-## 🔧 Proceso de Integración
+## Archivos relacionados
 
-### Paso 1: Preparar Assets del Proyecto
-
-#### Organizar Imágenes
-1. **Crear carpeta específica** en `public/`
-   ```
-   public/nombre-proyecto/
-   ├── 1.png    # Imagen principal (card)
-   ├── 2.png    # Imágenes adicionales (galería)
-   ├── 3.png
-   └── 4.png
-   ```
-
-2. **Optimizar imágenes**:
-   - **Formato**: PNG o WebP
-   - **Dimensiones recomendadas**:
-     - Card: 800x600px (proporción 4:3)
-     - Galería: 1200x900px
-   - **Tamaño máximo**: 500KB por imagen
-
-### Paso 2: Agregar Proyecto al Array
-
-#### Estructura de Datos del Proyecto
-```typescript
-{
-  title: "Nombre del Proyecto",
-  description: "Descripción detallada del proyecto (máximo 200 caracteres)",
-  tech: ["Tecnología1", "Tecnología2", "Tecnología3"],
-  status: "Completed" | "In Progress" | "Planning",
-  link: "https://url-del-proyecto.com",
-  repo: "https://github.com/usuario/repositorio", // Opcional
-  images: ["/nombre-proyecto/1.png", "/nombre-proyecto/2.png", "/nombre-proyecto/3.png", "/nombre-proyecto/4.png"]
-}
-```
-
-#### Ejemplo Completo
-```typescript
-{
-  title: "Mi App Innovadora",
-  description: "Aplicación web revolucionaria que utiliza inteligencia artificial para automatizar procesos empresariales, con interfaz moderna y responsive design.",
-  tech: ["React", "Node.js", "MongoDB", "AI/ML", "TypeScript"],
-  status: "Completed",
-  link: "https://miappinnovadora.com",
-  repo: "https://github.com/miusuario/miapp",
-  images: ["/miapp/1.png", "/miapp/2.png", "/miapp/3.png", "/miapp/4.png"]
-}
-```
-
-### Paso 3: Integrar en Projects.tsx
-
-#### Ubicación en el Array
-```typescript
-export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-  
-  const projects = [
-    // ...proyectos existentes...
-    
-    // NUEVO PROYECTO - Insertar aquí
-    {
-      title: "Mi App Innovadora",
-      description: "Aplicación web revolucionaria que utiliza inteligencia artificial...",
-      tech: ["React", "Node.js", "MongoDB", "AI/ML", "TypeScript"],
-      status: "Completed",
-      link: "https://miappinnovadora.com",
-      repo: "https://github.com/miusuario/miapp",
-      images: ["/miapp/1.png", "/miapp/2.png", "/miapp/3.png", "/miapp/4.png"]
-    },
-    
-    // ...más proyectos...
-  ];
-```
+| Archivo | Rol |
+|--------|-----|
+| `app/sections/Skills.tsx` | Lista de habilidades, categorías, grid y enlaces externos |
+| `app/hooks/useMouseDragScroll.ts` | Scroll con arrastre (ratón) en el contenedor de la sección |
+| `app/components/SectionVenomBackdrop.tsx` | Fondo animado (Venom Beam) + velo para legibilidad |
+| `app/components/ui/venom-beam.tsx` | Canvas del efecto de fondo en modo embebido |
+| `app/globals.css` | Clases globales como `.section-heading`, `.accent-rule` |
+| `next.config.ts` | `images.remotePatterns` para logos desde **svgl.app** |
 
 ---
 
-## 🎨 Características del Sistema
+## Modelo de datos
 
-### Modal de Proyecto
-El modal incluye automáticamente:
-- ✅ **Galería de imágenes** en fila horizontal
-- ✅ **Información completa** del proyecto
-- ✅ **Botones de acción**: "Abrir Proyecto" y "Ver Código"
-- ✅ **Cierre múltiple**: X, clic fuera, tecla Esc
-- ✅ **Animaciones suaves** de entrada y salida
+Cada entrada del array `skills` cumple el tipo `Skill`:
 
-### Cards de Proyectos
-Cada proyecto muestra:
-- ✅ **Imagen principal** optimizada
-- ✅ **Título y descripción** resumida
-- ✅ **Tecnologías** en badges
-- ✅ **Estado** con color codificado
-- ✅ **Botones**: "Ver Proyecto" y "Abrir Proyecto"
-
----
-
-## 🔄 Estados y Colores
-
-### Estados Disponibles
 ```typescript
-type ProjectStatus = "Completed" | "In Progress" | "Planning";
-```
+type SvglRoute = string | { light: string; dark: string };
 
-### Colores Asociados
-```typescript
-const getStatusColor = (status: ProjectStatus) => {
-  switch (status) {
-    case "Completed":
-      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
-    case "In Progress":
-      return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
-    case "Planning":
-      return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
-    default:
-      return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
-  }
+type Skill = {
+  name: string;
+  url: string;
+  category: string;
+  /** Ruta en SVGL (https://svgl.app). Si falta, se usa `emoji`. */
+  svgl?: SvglRoute;
+  emoji?: string;
 };
 ```
 
----
-
-## 📝 Buenas Prácticas
-
-### Nomenclatura
-- **Carpetas**: `kebab-case` (ej: `mi-proyecto`)
-- **Títulos**: `Title Case` (ej: "Mi Proyecto Innovador")
-- **Tecnologías**: `PascalCase` para frameworks, `UPPERCASE` para lenguajes
-
-### Imágenes
-1. **Siempre incluir la primera imagen** para el card
-2. **Máximo 4 imágenes** por proyecto para consistencia
-3. **Nomenclatura secuencial**: 1.png, 2.png, 3.png, 4.png
-4. **Optimización WebP** para mejor rendimiento
-
-### Enlaces
-- **Demo**: Siempre incluir enlace funcional
-- **Repositorio**: Agregar si el código es público
-- **Protocolo**: Usar `https://` siempre
+- **`name`**: Texto visible bajo el icono.
+- **`url`**: Destino del enlace (`target="_blank"`, `rel="noopener noreferrer"`).
+- **`category`**: Agrupa la habilidad. Las categorías que ves en pantalla se calculan con `Array.from(new Set(skills.map((s) => s.category)))`, es decir, **no hay lista fija**: basta con usar un string nuevo para crear una nueva sección.
+- **`svgl`**: URL del SVG en [SVGL](https://svgl.app). Puede ser un string único o un objeto `{ light, dark }` cuando el logo cambia entre tema claro y oscuro (el componente `SkillIcon` usa `useSyncExternalStore` con `prefers-color-scheme`).
+- **`emoji`**: Solo si no hay `svgl` (ejemplo actual: Hibernate con 🐘).
 
 ---
 
-## 🚀 Flujo Completo de Integración
+## Categorías actuales en el proyecto
 
-### Checklist de Integración
-- [ ] **Preparar imágenes** en carpeta `public/nombre-proyecto/`
-- [ ] **Optimizar imágenes** (tamaño y formato)
-- [ ] **Definir objeto** del proyecto con todos los campos
-- [ ] **Agregar al array** de proyectos en `Projects.tsx`
-- [ ] **Probar visualización** en cards
-- [ ] **Verificar modal** con imágenes y botones
-- [ ] **Testear enlaces** (demo y repositorio)
-- [ ] **Validar responsive** en diferentes tamaños
+Según el array definido en `Skills.tsx`, las categorías usadas son:
 
-### Validación Final
-```bash
-# Compilar y verificar errores
-npx tsc --noEmit
+- **Frontend**
+- **Backend**
+- **Database**
+- **DevOps & Tools**
 
-# Probar localmente
-npm run dev
-```
+Si agregás una habilidad con `category: "Mobile"`, aparecerá automáticamente un bloque **Mobile** en la UI.
 
 ---
 
-## 🔧 Personalización Avanzada
+## Cómo agregar una habilidad
 
-### Modificar Estructura del Modal
-Si necesitas personalizar el modal, edita esta sección en `Projects.tsx`:
-```typescript
-{/* Project Detail View */}
-{selectedProject && (
-  <div data-modal-backdrop className="fixed inset-0 bg-black bg-opacity-0 ...">
-    <div data-modal-content className="bg-white dark:bg-gray-800 rounded-lg ...">
-      {/* Contenido personalizado aquí */}
-    </div>
-  </div>
-)}
-```
+1. Abrí `app/sections/Skills.tsx`.
+2. Dentro del array `skills`, agregá un objeto respetando el tipo `Skill`.
+3. Preferí un logo desde **SVGL** copiando la ruta de la documentación del icono (formato `https://svgl.app/library/...`).
+4. Si el sitio ofrece variantes claro/oscuro, usá el objeto `{ light: "...", dark: "..." }` como en React, Astro, MySQL, etc.
+5. Ejecutá `npm run build` para comprobar tipos y que las URLs remotas sigan permitidas en `next.config.ts`.
 
-### Agregar Nuevos Estados
-Para agregar nuevos estados:
-1. **Actualizar el tipo** `ProjectStatus`
-2. **Agregar caso** en `getStatusColor()`
-3. **Definir estilo** CSS para el nuevo color
+### Ejemplo con un solo SVG
 
----
-
-## 📱 Consideraciones de Responsive Design
-
-### Cards en Grid
-- **Móvil**: 1 columna (`grid-cols-1`)
-- **Tablet**: 2 columnas (`grid-cols-2`)
-- **Desktop**: 3 columnas (`grid-cols-3`)
-
-### Modal en Móvil
-- **Ancho**: `w-full` con padding
-- **Altura**: `max-h-[90vh]` para no exceder pantalla
-- **Scroll**: `overflow-y-auto` para contenido largo
-
----
-
-## 🎯 Ejemplo Práctico Completo
-
-### Agregar Proyecto "E-Commerce Moderno"
-
-#### 1. Preparar Assets
-```bash
-# Crear carpeta
-mkdir public/ecommerce-moderno
-
-# Agregar imágenes (optimizadas)
-cp ~/imagenes/ecommerce/* public/ecommerce-moderno/
-```
-
-#### 2. Definir Objeto
 ```typescript
 {
-  title: "E-Commerce Moderno",
-  description: "Plataforma de e-commerce con carrito de compras, pasarela de pago integrada, panel de administración y sistema de inventario en tiempo real.",
-  tech: ["Next.js", "Stripe", "PostgreSQL", "Redis", "Tailwind CSS"],
-  status: "Completed",
-  link: "https://tienda-ejemplo.com",
-  repo: "https://github.com/miusuario/ecommerce-moderno",
-  images: ["/ecommerce-moderno/1.png", "/ecommerce-moderno/2.png", "/ecommerce-moderno/3.png", "/ecommerce-moderno/4.png"]
-}
+  name: "Vite",
+  svgl: "https://svgl.app/library/vite.svg",
+  url: "https://vite.dev/",
+  category: "Frontend",
+},
 ```
 
-#### 3. Integrar
+### Ejemplo con variantes claro / oscuro
+
 ```typescript
-const projects = [
-  // ...proyectos existentes
-  
-  // NUEVO PROYECTO
-  {
-    title: "E-Commerce Moderno",
-    description: "Plataforma de e-commerce con carrito de compras...",
-    tech: ["Next.js", "Stripe", "PostgreSQL", "Redis", "Tailwind CSS"],
-    status: "Completed",
-    link: "https://tienda-ejemplo.com",
-    repo: "https://github.com/miusuario/ecommerce-moderno",
-    images: ["/ecommerce-moderno/1.png", "/ecommerce-moderno/2.png", "/ecommerce-moderno/3.png", "/ecommerce-moderno/4.png"]
+{
+  name: "Ejemplo",
+  svgl: {
+    light: "https://svgl.app/library/ejemplo-light.svg",
+    dark: "https://svgl.app/library/ejemplo-dark.svg",
   },
-];
+  url: "https://ejemplo.com/",
+  category: "Frontend",
+},
+```
+
+### Ejemplo solo con emoji (sin SVGL)
+
+```typescript
+{
+  name: "Hibernate",
+  emoji: "🐘",
+  url: "https://hibernate.org/",
+  category: "Backend",
+},
 ```
 
 ---
 
-## 🐛 Troubleshooting Común
+## Imágenes remotas (Next.js)
 
-### Problemas Frecuentes
+Los logos se cargan con `next/image` y **`unoptimized`** en `SkillIcon` (SVG externos desde SVGL).
 
-#### Imágenes no cargan
+En `next.config.ts` debe existir el host permitido:
+
 ```typescript
-// ❌ Incorrecto
-images: ["game-2048/1.png"]
-
-// ✅ Correcto
-images: ["/game-2048/1.png"] // Siempre con /
+images: {
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "svgl.app",
+      pathname: "/library/**",
+    },
+  ],
+},
 ```
 
-#### Modal no abre
-```typescript
-// Verificar que el proyecto tenga imágenes
-{project.images && project.images.length > 0 && (
-  <button onClick={() => setSelectedProject(project)}>
-    Ver Proyecto
-  </button>
-)}
-```
-
-#### Enlaces rotos
-```typescript
-// Siempre usar https://
-link: "https://mi-proyecto.com" // ✅
-link: "mi-proyecto.com"         // ❌
-```
+Si en el futuro usás otro CDN para SVGs, agregá aquí el correspondiente `hostname` y `pathname`.
 
 ---
 
-## 📚 Referencias Útiles
+## Comportamiento de la sección (UI / UX)
 
-### Documentación
-- [Next.js Image Optimization](https://nextjs.org/docs/api-reference/next/image)
-- [Tailwind CSS Flexbox](https://tailwindcss.com/docs/flexbox)
-- [TypeScript React Types](https://react-typescript-cheatsheet.netlify.app/)
-
-### Herramientas Recomendadas
-- **Optimización de imágenes**: Squoosh.app
-- **Generador de placeholders**: Placehold.co
-- **Validación de TypeScript**: npx tsc --noEmit
+- **Scroll**: el contenedor principal usa `ref={scrollRef}` con `useMouseDragScroll` y la clase `scrollbar-hide` (scroll sin barra visible, coherente con el resto de secciones).
+- **Fondo**: `SectionVenomBackdrop` envuelve título, bloque “Mi Trayectoria Profesional” y grids; respeta `prefers-reduced-motion` dentro del componente Venom Beam.
+- **Título**: clases `section-heading` y regla `accent-rule` definidas en `globals.css` (paleta rosa / rojo del sitio).
+- **Grid**: `grid-cols-2` en móvil hasta `xl:grid-cols-6` en pantallas anchas; cada celda es un `<a>` con hover (sombra, anillo rose, texto rose en hover).
 
 ---
 
-## 🎉 Conclusión
+## Checklist rápido
 
-Siguiendo esta guía, cualquier nuevo proyecto se integrará de manera consistente y profesional en el portfolio. El sistema está diseñado para ser:
+- [ ] Objeto `Skill` con `name`, `url`, `category`.
+- [ ] `svgl` **o** `emoji` (al menos uno para que haya icono).
+- [ ] URL de documentación oficial o recurso coherente en `url`.
+- [ ] Si es host nuevo de imágenes, actualizar `next.config.ts`.
+- [ ] `npm run build` sin errores.
 
-- ✅ **Reutilizable**: Estructura genérica para cualquier tipo de proyecto
-- ✅ **Consistente**: Mismo estilo y comportamiento para todos
-- ✅ **Escalable**: Fácil de mantener y extender
-- ✅ **Optimizado**: Imágenes y rendimiento web
-- ✅ **Accesible**: Navegación por teclado y screen readers
+---
 
-**¡Tu portfolio está listo para crecer con nuevos proyectos! 🚀**
+## Referencias
+
+- [SVGL — biblioteca de logos](https://svgl.app)
+- [Next.js Image — remotePatterns](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns)
+- [ScrollX UI — Venom Beam](https://scrollxui.dev/docs/components/venom-beam) (fondo usado vía `SectionVenomBackdrop`)
+
+Para agregar o editar **proyectos** (cards, modal, imágenes en `public/`), usá la guía que corresponda a `Projects.tsx` o documentación específica de esa sección; este archivo queda dedicado solo a **Habilidades**.
