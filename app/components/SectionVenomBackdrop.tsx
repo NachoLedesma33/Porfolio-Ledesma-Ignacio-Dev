@@ -14,7 +14,7 @@ export default function SectionVenomBackdrop({ children }: { children: ReactNode
         <VenomBeam fill embed />
       </div>
       <div
-        className="pointer-events-none absolute inset-0 z-[1] min-h-full rounded-[inherit] bg-linear-to-b from-white/80 via-white/88 to-white/93 shadow-[inset_0_0_0_1px_rgba(255,228,230,0.45)] dark:from-stone-950/78 dark:via-stone-900/88 dark:to-stone-900/94 dark:shadow-[inset_0_0_0_1px_rgba(69,10,10,0.25)]"
+        className="pointer-events-none absolute inset-0 z-1 min-h-full rounded-[inherit] bg-linear-to-b from-white/80 via-white/88 to-white/93 shadow-[inset_0_0_0_1px_rgba(255,228,230,0.45)] dark:from-stone-950/78 dark:via-stone-900/88 dark:to-stone-900/94 dark:shadow-[inset_0_0_0_1px_rgba(69,10,10,0.25)]"
         aria-hidden
       />
       <div className="relative z-10 w-full">{children}</div>
