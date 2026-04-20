@@ -68,6 +68,15 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       images: ["/dashboard-productividad/placeholder-productividad.png", "/dashboard-productividad/uno-productividad.png", "/dashboard-productividad/dos-productividad.png", "/dashboard-productividad/tres-productividad.png"],
     },
     {
+      title: "Simulador Visual de Algoritmos",
+      description: "Herramienta educativa interactiva para visualizar y entender el funcionamiento de algoritmos de ordenamiento y búsqueda. Permite observar paso a paso cómo operan diferentes algoritmos con controles de velocidad y animaciones fluidas.",
+      tech: ["TypeScript", "CSS3", "TailwindCSS", "HTML", "React", "Vite"],
+      status: "Completed",
+      link: "https://simulador-visual-de-algoritmos-lede.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/Simulador-Visual-de-Algoritmos",
+      images: ["/visualizador-algoritmos/placeholderalgoritmo.png", "/visualizador-algoritmos/uno-algoritmo.png", "/visualizador-algoritmos/dos-algoritmo.png", "/visualizador-algoritmos/tres-algoritmo.png", "/visualizador-algoritmos/cuatro-algoritmo.png", "/visualizador-algoritmos/cinco-algoritmo.png"],
+    },
+    {
       title: "Weather Dashboard",
       description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.",
       tech: ["Vue.js", "API", "Tailwind"],
