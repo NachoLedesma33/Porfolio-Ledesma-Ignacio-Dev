@@ -59,6 +59,15 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       images: ["/budget-app/PlaceholderBudget.png", "/budget-app/2budget.png", "/budget-app/3budget.png"],
     },
     {
+      title: "Dashboard de Productividad",
+      description: "Dashboard interactivo para el seguimiento y análisis de productividad personal. Implementa métricas en tiempo real, gráficos dinámicos y sistema de gestión de tareas con interfaz moderna y responsive diseñada para optimizar el rendimiento diario.",
+      tech: ["TypeScript", "CSS3", "TailwindCSS", "HTML", "React", "Vite"],
+      status: "Completed",
+      link: "https://dashboard-productividad-ledesma.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/dashboard-productividad",
+      images: ["/dashboard-productividad/placeholder-productividad.png", "/dashboard-productividad/uno-productividad.png", "/dashboard-productividad/dos-productividad.png", "/dashboard-productividad/tres-productividad.png"],
+    },
+    {
       title: "Weather Dashboard",
       description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.",
       tech: ["Vue.js", "API", "Tailwind"],
