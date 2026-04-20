@@ -11,7 +11,6 @@ type Skill = {
   name: string;
   url: string;
   category: string;
-  /** Ruta en SVGL (https://svgl.app). Si falta, se usa `emoji`. */
   svgl?: SvglRoute;
   emoji?: string;
 };
@@ -43,10 +42,10 @@ function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
     <Image
       src={src}
       alt={alt}
-      width={40}
-      height={40}
+      width={48}
+      height={48}
       unoptimized
-      className="h-10 w-10 object-contain mb-2 group-hover:scale-110 transition-transform duration-200"
+      className="h-11 w-11 object-contain transition-transform duration-200 ease-out"
     />
   );
 }
@@ -116,7 +115,6 @@ export default function Skills() {
       url: "https://getbootstrap.com/",
       category: "Frontend",
     },
-
     {
       name: "Node.js",
       svgl: "https://svgl.app/library/nodejs.svg",
@@ -204,7 +202,6 @@ export default function Skills() {
       url: "https://www.mongodb.com/",
       category: "Database",
     },
-
     {
       name: "Docker",
       svgl: "https://svgl.app/library/docker.svg",
@@ -257,34 +254,38 @@ export default function Skills() {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
+      className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-2 sm:p-3 lg:p-4 overflow-y-auto min-h-screen"
     >
       <SectionVenomBackdrop>
-      <div className="text-center mb-8">
-        <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
-          Habilidades Aprendidas
+      <header className="text-center mb-10 sm:mb-12">
+        <h1 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
+          Habilidades
         </h1>
-        <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
-      </div>
+        <div className="accent-rule w-20 h-1 mx-auto rounded-full" />
+      </header>
 
-      <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
-        {/* Additional Info */}
-        <div className="mb-12 p-6 bg-linear-to-r from-rose-50 to-red-50/80 dark:from-rose-950/35 dark:to-red-950/25 rounded-lg ring-1 ring-rose-100/60 dark:ring-rose-900/40">
-          <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">
-            Mi Trayectoria Profesional
-          </h3>
-          <p className="text-stone-700 dark:text-stone-200 leading-relaxed">
-            Durante los últimos 5 años he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
-            Esta experiencia me permite abordar desafíos complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
-            siempre manteniendo un enfoque en las mejores prácticas y la calidad del código.
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 flex-1 flex flex-col">
+        <div className="mb-10 sm:mb-12 p-5 sm:p-6 rounded-xl ring-1 ring-rose-100/60 dark:ring-rose-900/40 bg-gradient-to-br from-rose-50/90 to-red-50/60 dark:from-rose-950/35 dark:to-red-950/20">
+          <h2 className="text-base sm:text-lg font-semibold text-rose-900 dark:text-rose-200 mb-2 sm:mb-3 flex items-center gap-2">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-rose-200/70 dark:bg-rose-800/50 text-[0.65rem] sm:text-xs" aria-hidden>
+              i
+            </span>
+            Mi Trayectoria
+          </h2>
+          <p className="text-sm sm:text-base text-stone-700 dark:text-stone-200 leading-relaxed">
+            Durante los ultimos 5 anos he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
+            Esta experiencia me permite abordar desafios complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
+            siempre manteniendo un enfoque en las mejores practicas y la calidad del codigo.
           </p>
         </div>
+
         {categories.map((category) => (
-          <div key={category} className="mb-8">
-            <h2 className="text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-6">
+          <section key={category} className="mb-8 sm:mb-10" aria-labelledby={`category-${category.replace(/\s+/g, "-").toLowerCase()}`}>
+            <h2 id={`category-${category.replace(/\s+/g, "-").toLowerCase()}`} className="text-xl sm:text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-5 sm:mb-6 flex items-center gap-3">
+              <span className="inline-block w-1.5 h-6 sm:h-7 rounded-full bg-gradient-to-b from-rose-400 to-rose-600 dark:from-rose-400 dark:to-rose-500" aria-hidden />
               {category}
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
               {skills
                 .filter((skill) => skill.category === category)
                 .map((skill) => (
@@ -293,26 +294,27 @@ export default function Skills() {
                     href={skill.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-rose-50/40 dark:bg-stone-800 rounded-lg p-4 hover:shadow-lg hover:ring-1 hover:ring-rose-200/80 dark:hover:ring-rose-800/60 transition-shadow duration-200 flex flex-col items-center justify-center text-center min-h-[120px] cursor-pointer"
+                    aria-label={`${skill.name} - View docs`}
+                    className="group relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-4 sm:p-5 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[130px] sm:min-h-[140px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
                   >
-                    <div className="flex w-full flex-col items-center justify-center text-center transition-transform duration-200 group-hover:scale-105">
-                      <div className="flex flex-col items-center justify-center min-h-[2.5rem]">
+                    <div className="flex w-full flex-col items-center justify-center text-center gap-2 sm:gap-3">
+                      <div className="flex flex-col items-center justify-center">
                         {skill.svgl ? (
                           <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
                         ) : (
-                          <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
+                          <div className="text-3xl sm:text-4xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
                             {skill.emoji}
                           </div>
                         )}
                       </div>
-                      <span className="text-xs sm:text-sm font-medium text-stone-900 dark:text-stone-100 group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors duration-200">
+                      <span className="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 line-clamp-2">
                         {skill.name}
                       </span>
                     </div>
                   </a>
                 ))}
             </div>
-          </div>
+          </section>
         ))}
 
       </div>

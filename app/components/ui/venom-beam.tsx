@@ -74,7 +74,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       const c = canvas.getContext("2d");
       if (!c) return;
       isDarkRef.current = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      c.fillStyle = isDarkRef.current ? "#0c0a0a" : "#faf8f8";
+      c.fillStyle = isDarkRef.current ? "#0c0a0a" : "#fef2f2";
       c.fillRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -99,17 +99,17 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
 
     const initParticles = () => {
       particlesRef.current = [];
-      const count = embed ? 56 : 80;
+      const count = embed ? 70 : 100;
       for (let i = 0; i < count; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
           life: 0,
-          maxLife: Math.random() * 100 + 50,
-          size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.55 + 0.12,
+          maxLife: Math.random() * 150 + 80,
+          size: Math.random() * 4 + 2,
+          opacity: Math.random() * 0.6 + 0.25,
         });
       }
     };
@@ -132,9 +132,9 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       isDarkRef.current = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (isDarkRef.current) {
-        ctx.fillStyle = "rgba(12, 10, 10, 0.06)";
+        ctx.fillStyle = "rgba(12, 10, 10, 0.4)";
       } else {
-        ctx.fillStyle = "rgba(250, 248, 248, 0.12)";
+        ctx.fillStyle = "rgba(254, 242, 242, 0.5)";
       }
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -185,20 +185,20 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
         );
 
         if (isDarkRef.current) {
-          gradient.addColorStop(0, `rgba(251, 113, 133, ${alpha * 0.85})`);
-          gradient.addColorStop(0.5, `rgba(190, 18, 60, ${alpha * 0.5})`);
-          gradient.addColorStop(1, `rgba(127, 29, 29, ${alpha * 0.2})`);
+          gradient.addColorStop(0, `rgba(244, 63, 94, ${alpha})`);
+          gradient.addColorStop(0.5, `rgba(225, 29, 72, ${alpha * 0.7})`);
+          gradient.addColorStop(1, `rgba(190, 18, 60, ${alpha * 0.3})`);
         } else {
-          gradient.addColorStop(0, `rgba(190, 18, 60, ${alpha * 0.45})`);
-          gradient.addColorStop(0.5, `rgba(225, 29, 72, ${alpha * 0.32})`);
-          gradient.addColorStop(1, `rgba(251, 113, 133, ${alpha * 0.12})`);
+          gradient.addColorStop(0, `rgba(220, 38, 38, ${alpha * 0.8})`);
+          gradient.addColorStop(0.5, `rgba(185, 28, 28, ${alpha * 0.5})`);
+          gradient.addColorStop(1, `rgba(127, 29, 29, ${alpha * 0.2})`);
         }
 
         ctx.fillStyle = gradient;
         ctx.fill();
       });
 
-      const linkDistance = embed ? 72 : 100;
+      const linkDistance = embed ? 90 : 120;
       particlesRef.current.forEach((particle, i) => {
         particlesRef.current.slice(i + 1).forEach((otherParticle) => {
           const dx = particle.x - otherParticle.x;
@@ -206,17 +206,17 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < linkDistance) {
-            const alpha = ((linkDistance - distance) / linkDistance) * (embed ? 0.14 : 0.22);
+            const alpha = ((linkDistance - distance) / linkDistance) * (embed ? 0.2 : 0.35);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
 
             if (isDarkRef.current) {
-              ctx.strokeStyle = `rgba(251, 113, 133, ${alpha})`;
+              ctx.strokeStyle = `rgba(244, 63, 94, ${alpha})`;
             } else {
               ctx.strokeStyle = `rgba(190, 18, 60, ${alpha})`;
             }
-            ctx.lineWidth = embed ? 0.35 : 0.5;
+            ctx.lineWidth = embed ? 0.5 : 0.8;
             ctx.stroke();
           }
         });
