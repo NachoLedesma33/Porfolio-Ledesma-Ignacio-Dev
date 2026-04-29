@@ -84,6 +84,15 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "#",
     },
     {
+      title: "API Client - Mini Postman",
+      description: "Cliente API ligero e interactivo construido con Astro y React. Inspirado en Postman, permite enviar solicitudes HTTP, gestionar colecciones, trabajar con variables de entorno, importar/exportar cURL y soportar OpenAPI 3.0. Con arquitectura Astro Islands para rendimiento óptimo.",
+      tech: ["Astro", "React", "TypeScript", "TailwindCSS", "Zustand", "Dexie", "IndexedDB"],
+      status: "Completed",
+      link: "https://client-api-interactive.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/client-api-interactive",
+      images: ["/api-client/1placeholder-api-client.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
+    },
+    {
       title: "Portfolio Website",
       description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
       tech: ["Next.js", "Framer", "SCSS"],
