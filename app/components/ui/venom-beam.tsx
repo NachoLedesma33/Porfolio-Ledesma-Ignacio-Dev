@@ -99,7 +99,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
 
     const initParticles = () => {
       particlesRef.current = [];
-      const count = embed ? 70 : 100;
+      const count = typeof window !== 'undefined' && window.innerWidth < 768 ? (embed ? 20 : 35) : (embed ? 35 : 55);
       for (let i = 0; i < count; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,

@@ -50,6 +50,15 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
   ],
   "Frontend": [
     {
+      title: "CraftUI",
+      description: "Librería de componentes UI modernos, accesibles y altamente personalizables. Diseñada para acelerar el desarrollo frontend con componentes listos para usar, animaciones fluidas, soporte para modo oscuro y una estética premium. Proyecto en proceso de desarrollo.",
+      tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      status: "In Progress",
+      link: "https://craft-ui-omega.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/CraftUI",
+      images: ["/craftUI/1craftUIPlaceholder.png"],
+    },
+    {
       title: "Budget App",
       description: "Aplicación web para gestión de presupuestos personales desarrollada con HTML5, CSS3 y JavaScript puro. Interfaz moderna y responsive con gráficos interactivos, categorización de gastos y análisis financiero en tiempo real.",
       tech: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
