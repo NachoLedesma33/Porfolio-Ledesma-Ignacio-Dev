@@ -20,11 +20,20 @@ type Project = {
 const projectsByCategory: Record<ProjectCategory, Project[]> = {
   "FullStack": [
     {
-      title: "E-Commerce Platform",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
-      tech: ["React", "Node.js", "MongoDB"],
+      title: "Simulador de Carrera IT",
+      description: "Simulador interactivo y no lineal de carrera en tecnología. Toma decisiones, desarrolla habilidades, gestiona el estrés y alcanza la cima: de Trainee a CTO. Desarrollado con Flask y Python, incluye motor de decisiones, eventos aleatorios y sistema de logros.",
+      tech: ["Python", "Flask", "JavaScript", "HTML5", "CSS3"],
       status: "Completed",
-      link: "#",
+      link: "https://nacholedesma.pythonanywhere.com/",
+      repo: "https://github.com/NachoLedesma33/Simulador-de-Carrera-IT",
+      images: [
+        "/carrera-IT/1ITplaceholder.png",
+        "/carrera-IT/2IT.png",
+        "/carrera-IT/3IT.png",
+        "/carrera-IT/4IT.png",
+        "/carrera-IT/5IT.png",
+        "/carrera-IT/6IT.png"
+      ],
     },
     {
       title: "Task Management App",
