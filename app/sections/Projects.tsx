@@ -5,7 +5,7 @@ import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
 
-type ProjectCategory = "FullStack" | "Frontend" | "Backend" | "Hobbies/Games";
+type ProjectCategory = "Proyectos" | "Juegos (Extra)";
 
 type Project = {
   title: string;
@@ -18,7 +18,7 @@ type Project = {
 };
 
 const projectsByCategory: Record<ProjectCategory, Project[]> = {
-  "FullStack": [
+  "Proyectos": [
     {
       title: "Simulador de Carrera IT",
       description: "Simulador interactivo y no lineal de carrera en tecnología. Toma decisiones, desarrolla habilidades, gestiona el estrés y alcanza la cima: de Trainee a CTO. Desarrollado con Flask y Python, incluye motor de decisiones, eventos aleatorios y sistema de logros.",
@@ -36,28 +36,14 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       ],
     },
     {
-      title: "Task Management App",
-      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL"],
-      status: "In Progress",
-      link: "#",
+      title: "API Client - Mini Postman",
+      description: "Cliente API ligero e interactivo construido con Astro y React. Inspirado en Postman, permite enviar solicitudes HTTP, gestionar colecciones, trabajar con variables de entorno, importar/exportar cURL y soportar OpenAPI 3.0. Con arquitectura Astro Islands para rendimiento óptimo.",
+      tech: ["Astro", "React", "TypeScript", "TailwindCSS", "Zustand", "Dexie", "IndexedDB"],
+      status: "Completed",
+      link: "https://client-api-interactive.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/client-api-interactive",
+      images: ["/api-client/1placeholder-api-client.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
     },
-    {
-      title: "Mobile Banking App",
-      description: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis.",
-      tech: ["React Native", "Node.js", "JWT"],
-      status: "In Progress",
-      link: "#",
-    },
-    {
-      title: "Social Media Analytics",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-      tech: ["Python", "React", "Docker"],
-      status: "Planning",
-      link: "#",
-    },
-  ],
-  "Frontend": [
     {
       title: "CraftUI",
       description: "Librería de componentes UI modernos, accesibles y altamente personalizables. Diseñada para acelerar el desarrollo frontend con componentes listos para usar, animaciones fluidas, soporte para modo oscuro y una estética premium. Proyecto en proceso de desarrollo.",
@@ -66,15 +52,6 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://craft-ui-omega.vercel.app/",
       repo: "https://github.com/NachoLedesma33/CraftUI",
       images: ["/craftUI/1craftUIPlaceholder.png"],
-    },
-    {
-      title: "Budget App",
-      description: "Aplicación web para gestión de presupuestos personales desarrollada con HTML5, CSS3 y JavaScript puro. Interfaz moderna y responsive con gráficos interactivos, categorización de gastos y análisis financiero en tiempo real.",
-      tech: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
-      status: "Completed",
-      link: "https://nacholedesma33.github.io/budgetApp/",
-      repo: "https://github.com/NachoLedesma33/budgetApp",
-      images: ["/budget-app/PlaceholderBudget.png", "/budget-app/2budget.png", "/budget-app/3budget.png"],
     },
     {
       title: "Dashboard de Productividad",
@@ -95,20 +72,34 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       images: ["/visualizador-algoritmos/placeholderalgoritmo.png", "/visualizador-algoritmos/uno-algoritmo.png", "/visualizador-algoritmos/dos-algoritmo.png", "/visualizador-algoritmos/tres-algoritmo.png", "/visualizador-algoritmos/cuatro-algoritmo.png", "/visualizador-algoritmos/cinco-algoritmo.png"],
     },
     {
-      title: "Weather Dashboard",
-      description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.",
-      tech: ["Vue.js", "API", "Tailwind"],
-      status: "Completed",
+      title: "Task Management App",
+      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
+      tech: ["Next.js", "TypeScript", "PostgreSQL"],
+      status: "In Progress",
       link: "#",
     },
     {
-      title: "API Client - Mini Postman",
-      description: "Cliente API ligero e interactivo construido con Astro y React. Inspirado en Postman, permite enviar solicitudes HTTP, gestionar colecciones, trabajar con variables de entorno, importar/exportar cURL y soportar OpenAPI 3.0. Con arquitectura Astro Islands para rendimiento óptimo.",
-      tech: ["Astro", "React", "TypeScript", "TailwindCSS", "Zustand", "Dexie", "IndexedDB"],
+      title: "Mobile Banking App",
+      description: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis.",
+      tech: ["React Native", "Node.js", "JWT"],
+      status: "In Progress",
+      link: "#",
+    },
+    {
+      title: "Budget App",
+      description: "Aplicación web para gestión de presupuestos personales desarrollada con HTML5, CSS3 y JavaScript puro. Interfaz moderna y responsive con gráficos interactivos, categorización de gastos y análisis financiero en tiempo real.",
+      tech: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
       status: "Completed",
-      link: "https://client-api-interactive.vercel.app/",
-      repo: "https://github.com/NachoLedesma33/client-api-interactive",
-      images: ["/api-client/1placeholder-api-client.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
+      link: "https://nacholedesma33.github.io/budgetApp/",
+      repo: "https://github.com/NachoLedesma33/budgetApp",
+      images: ["/budget-app/PlaceholderBudget.png", "/budget-app/2budget.png", "/budget-app/3budget.png"],
+    },
+    {
+      title: "Social Media Analytics",
+      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      tech: ["Python", "React", "Docker"],
+      status: "Planning",
+      link: "#",
     },
     {
       title: "Portfolio Website",
@@ -117,9 +108,15 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "#",
     },
+    {
+      title: "Weather Dashboard",
+      description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.",
+      tech: ["Vue.js", "API", "Tailwind"],
+      status: "Completed",
+      link: "#",
+    }
   ],
-  "Backend": [],
-  "Hobbies/Games": [
+  "Juegos (Extra)": [
     {
       title: "Game 2048",
       description: "¡Bienvenido al clásico juego 2048 implementado con HTML, CSS y JavaScript puro! Este proyecto es una versión moderna y responsive del popular juego de rompecabezas numérico con interfaz limpia, sistema de puntuación, tema claro/oscuro y compatible con teclado y pantallas táctiles.",
@@ -137,11 +134,11 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://nacholedesma33.github.io/Snake-Game/",
       repo: "https://github.com/NachoLedesma33/Snake-Game",
       images: ["/game-snake/1placeholder.png", "/game-snake/2snake.png", "/game-snake/3snake.png"],
-    },
-  ],
+    }
+  ]
 };
 
-const categories: ProjectCategory[] = ["FullStack", "Frontend", "Backend", "Hobbies/Games"];
+const categories: ProjectCategory[] = ["Proyectos", "Juegos (Extra)"];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
