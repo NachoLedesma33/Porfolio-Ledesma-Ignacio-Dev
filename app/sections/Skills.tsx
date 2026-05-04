@@ -273,9 +273,9 @@ export default function Skills() {
             Mi Trayectoria
           </h2>
           <p className="text-sm sm:text-base text-stone-700 dark:text-stone-200 leading-relaxed">
-            Durante los ultimos 5 anos he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
-            Esta experiencia me permite abordar desafios complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
-            siempre manteniendo un enfoque en las mejores practicas y la calidad del codigo.
+            Durante los últimos 5 años he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
+            Esta experiencia me permite abordar desafíos complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
+            siempre manteniendo un enfoque en las mejores prácticas y la calidad del código.
           </p>
         </div>
 

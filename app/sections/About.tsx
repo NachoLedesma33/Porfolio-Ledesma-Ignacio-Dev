@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
+import Image from "next/image";
 
 export default function About() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -17,10 +18,14 @@ export default function About() {
       <div className="w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Profile Section */}
         <div className="mb-4 sm:mb-6 lg:mb-8">
-          <div className="w-32 h-32 mx-auto mb-6 bg-linear-to-br from-rose-400 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-rose-500/25">
-            <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+          <div className="relative w-32 h-32 mx-auto mb-6 rounded-full shadow-lg shadow-rose-500/25 overflow-hidden ring-4 ring-rose-100 dark:ring-rose-900/40">
+            <Image
+              src="/portfolio_placeholder.jpg"
+              alt="Foto de perfil"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
           <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
             Sobre Mi
@@ -31,15 +36,11 @@ export default function About() {
         {/* Content */}
         <div className="space-y-4 sm:space-y-6 text-left flex-1">
           <p className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            Soy desarrollador full stack con enfoque en la creación de aplicaciones prácticas, claras y bien estructuradas. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de mantener y escalar. Trabajo tanto en frontend como en backend, priorizando una buena experiencia de usuario, rendimiento y lógica sólida detrás de cada proyecto.
           </p>
           
           <p className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-
-          <p className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Tengo una orientación marcada hacia proyectos aplicables a entornos reales, como herramientas de gestión, visualización de datos y aplicaciones web funcionales. Me enfoco en resolver problemas de manera eficiente, iterar rápido y mantener un equilibrio entre simplicidad y funcionalidad. Siempre estoy explorando nuevas tecnologías y mejores prácticas para mejorar la calidad de lo que construyo.
           </p>
         </div>
 
