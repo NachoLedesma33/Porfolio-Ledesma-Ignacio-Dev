@@ -24,7 +24,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       description: "Sistema de emparejamiento en tiempo real con algoritmos híbridos para gaming competitivo. Encuentra teammates perfectos para tus juegos favoritos al instante. Soporta 12 juegos populares incluyendo Valorant, League of Legends, CS2, Dota 2 y más.",
       tech: ["Node.js", "TypeScript", "Express", "Socket.io", "React", "Vite", "Tailwind CSS"],
       status: "In Progress",
-      link: "https://matchflow.vercel.app/",
+      link: "https://matchflow-one.vercel.app/",
       repo: "https://github.com/NachoLedesma33/matchflow",
       images: ["/matflow/1mateflowplaceholder.png", "/matflow/2matflow.png", "/matflow/3matflow.png", "/matflow/4matflow.png", "/matflow/5matflow.png"],
     },
