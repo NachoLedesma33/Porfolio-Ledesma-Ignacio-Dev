@@ -45,13 +45,29 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       ],
     },
     {
+      title: "Ejercicios de Python",
+      description: "Aplicación web interactiva para practicar programación en Python con un editor de código profesional directamente en el navegador. Incluye una amplia variedad de ejercicios interactivos sobre matemáticas, métodos numéricos y ciencia de datos. Utiliza WebAssembly (Pyodide) para ejecutar el código localmente de forma segura y sin necesidad de un servidor backend.",
+      tech: ["Next.js", "React", "TypeScript", "Pyodide", "Monaco Editor", "Tailwind CSS"],
+      status: "Completed",
+      link: "https://python-excercises.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/python-excercises",
+      images: [
+        "/python-excercises/1pythonexcercisesplaceholder.png",
+        "/python-excercises/2pythonexcercises.png",
+        "/python-excercises/3pythonexercises.png",
+        "/python-excercises/4pythonexercises.png",
+        "/python-excercises/5pythonexcersices.png",
+        "/python-excercises/Screenshot 2026-05-23 185928.png"
+      ],
+    },
+    {
       title: "API Client - Mini Postman",
       description: "Cliente API ligero e interactivo construido con Astro y React. Inspirado en Postman, permite enviar solicitudes HTTP, gestionar colecciones, trabajar con variables de entorno, importar/exportar cURL y soportar OpenAPI 3.0. Con arquitectura Astro Islands para rendimiento óptimo.",
       tech: ["Astro", "React", "TypeScript", "TailwindCSS", "Zustand", "Dexie", "IndexedDB"],
       status: "Completed",
       link: "https://client-api-interactive.vercel.app/",
       repo: "https://github.com/NachoLedesma33/client-api-interactive",
-      images: ["/api-client/1placeholder-api-client.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
+      images: ["/api-client/1placeholder-api-client-v2.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
     },
     {
       title: "CraftUI",
