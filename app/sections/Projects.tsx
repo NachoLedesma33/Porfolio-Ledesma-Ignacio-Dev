@@ -20,6 +20,21 @@ type Project = {
 const projectsByCategory: Record<ProjectCategory, Project[]> = {
   "Proyectos": [
     {
+      title: "CodeReflex",
+      description: "Plataforma interactiva de entrenamiento técnico para desarrolladores. Combina el speed typing de código real (Reflex Typing) con la resolución guiada de problemas de algoritmos (Guided Problems). Cuenta con editor Monaco integrado, sistema de gamificación con logros (XP), heatmaps de actividad y soporte multi-lenguaje.",
+      tech: ["Next.js 16", "TypeScript", "Monaco Editor", "Zustand", "Tailwind CSS v4", "Zod"],
+      status: "In Progress",
+      link: "https://code-reflex-lac.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/CodeReflex",
+      images: [
+        "/code-reflex/1placeholdercodereflex.png",
+        "/code-reflex/2codeflex.png",
+        "/code-reflex/3codereflex.png",
+        "/code-reflex/4codereflex.png",
+        "/code-reflex/5codereflex.png"
+      ],
+    },
+    {
       title: "MatchFlow",
       description: "Sistema de emparejamiento en tiempo real con algoritmos híbridos para gaming competitivo. Encuentra teammates perfectos para tus juegos favoritos al instante. Soporta 12 juegos populares incluyendo Valorant, League of Legends, CS2, Dota 2 y más.",
       tech: ["Node.js", "TypeScript", "Express", "Socket.io", "React", "Vite", "Tailwind CSS"],
@@ -97,20 +112,6 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       images: ["/visualizador-algoritmos/placeholderalgoritmo.png", "/visualizador-algoritmos/uno-algoritmo.png", "/visualizador-algoritmos/dos-algoritmo.png", "/visualizador-algoritmos/tres-algoritmo.png", "/visualizador-algoritmos/cuatro-algoritmo.png", "/visualizador-algoritmos/cinco-algoritmo.png"],
     },
     {
-      title: "Task Management App",
-      description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL"],
-      status: "In Progress",
-      link: "#",
-    },
-    {
-      title: "Mobile Banking App",
-      description: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis.",
-      tech: ["React Native", "Node.js", "JWT"],
-      status: "In Progress",
-      link: "#",
-    },
-    {
       title: "Budget App",
       description: "Aplicación web para gestión de presupuestos personales desarrollada con HTML5, CSS3 y JavaScript puro. Interfaz moderna y responsive con gráficos interactivos, categorización de gastos y análisis financiero en tiempo real.",
       tech: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
@@ -118,27 +119,6 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://nacholedesma33.github.io/budgetApp/",
       repo: "https://github.com/NachoLedesma33/budgetApp",
       images: ["/budget-app/PlaceholderBudget.png", "/budget-app/2budget.png", "/budget-app/3budget.png"],
-    },
-    {
-      title: "Social Media Analytics",
-      description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-      tech: ["Python", "React", "Docker"],
-      status: "Planning",
-      link: "#",
-    },
-    {
-      title: "Portfolio Website",
-      description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
-      tech: ["Next.js", "Framer", "SCSS"],
-      status: "Completed",
-      link: "#",
-    },
-    {
-      title: "Weather Dashboard",
-      description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.",
-      tech: ["Vue.js", "API", "Tailwind"],
-      status: "Completed",
-      link: "#",
     }
   ],
   "Juegos (Extra)": [
