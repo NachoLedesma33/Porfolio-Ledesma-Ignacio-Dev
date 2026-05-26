@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Ignacio Ledesma | Full Stack Developer",
   description: "Portafolio de Ignacio Ledesma, desarrollador Full Stack con enfoque en aplicaciones prácticas y escalables.",
   icons: {
-    icon: "/comunidad-de-desarrollo-32.png",
+    icon: "/comunidad-de-desarrollo-32.webp",
   },
 };
 

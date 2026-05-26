@@ -27,11 +27,11 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://code-reflex-lac.vercel.app/",
       repo: "https://github.com/NachoLedesma33/CodeReflex",
       images: [
-        "/code-reflex/1placeholdercodereflex.png",
-        "/code-reflex/2codeflex.png",
-        "/code-reflex/3codereflex.png",
-        "/code-reflex/4codereflex.png",
-        "/code-reflex/5codereflex.png"
+        "/code-reflex/1placeholdercodereflex.webp",
+        "/code-reflex/2codeflex.webp",
+        "/code-reflex/3codereflex.webp",
+        "/code-reflex/4codereflex.webp",
+        "/code-reflex/5codereflex.webp"
       ],
     },
     {
@@ -41,7 +41,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "In Progress",
       link: "https://matchflow-one.vercel.app/",
       repo: "https://github.com/NachoLedesma33/matchflow",
-      images: ["/matflow/1mateflowplaceholder.png", "/matflow/2matflow.png", "/matflow/3matflow.png", "/matflow/4matflow.png", "/matflow/5matflow.png"],
+      images: ["/matflow/1mateflowplaceholder.webp", "/matflow/2matflow.webp", "/matflow/3matflow.webp", "/matflow/4matflow.webp", "/matflow/5matflow.webp"],
     },
     {
       title: "Simulador de Carrera IT",
@@ -51,12 +51,12 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://nacholedesma.pythonanywhere.com/",
       repo: "https://github.com/NachoLedesma33/Simulador-de-Carrera-IT",
       images: [
-        "/carrera-IT/1ITplaceholder.png",
-        "/carrera-IT/2IT.png",
-        "/carrera-IT/3IT.png",
-        "/carrera-IT/4IT.png",
-        "/carrera-IT/5IT.png",
-        "/carrera-IT/6IT.png"
+        "/carrera-IT/1ITplaceholder.webp",
+        "/carrera-IT/2IT.webp",
+        "/carrera-IT/3IT.webp",
+        "/carrera-IT/4IT.webp",
+        "/carrera-IT/5IT.webp",
+        "/carrera-IT/6IT.webp"
       ],
     },
     {
@@ -67,12 +67,12 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://python-excercises.vercel.app/",
       repo: "https://github.com/NachoLedesma33/python-excercises",
       images: [
-        "/python-excercises/1pythonexcercisesplaceholder.png",
-        "/python-excercises/2pythonexcercises.png",
-        "/python-excercises/3pythonexercises.png",
-        "/python-excercises/4pythonexercises.png",
-        "/python-excercises/5pythonexcersices.png",
-        "/python-excercises/Screenshot 2026-05-23 185928.png"
+        "/python-excercises/1pythonexcercisesplaceholder.webp",
+        "/python-excercises/2pythonexcercises.webp",
+        "/python-excercises/3pythonexercises.webp",
+        "/python-excercises/4pythonexercises.webp",
+        "/python-excercises/5pythonexcersices.webp",
+        "/python-excercises/Screenshot 2026-05-23 185928.webp"
       ],
     },
     {
@@ -82,7 +82,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://client-api-interactive.vercel.app/",
       repo: "https://github.com/NachoLedesma33/client-api-interactive",
-      images: ["/api-client/1placeholder-api-client-v2.png", "/api-client/2api-client.png", "/api-client/3api-client.png", "/api-client/4api-client.png", "/api-client/5api-client.png"],
+      images: ["/api-client/1placeholder-api-client-v2.webp", "/api-client/2api-client.webp", "/api-client/3api-client.webp", "/api-client/4api-client.webp", "/api-client/5api-client.webp"],
     },
     {
       title: "CraftUI",
@@ -91,7 +91,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "In Progress",
       link: "https://craft-ui-omega.vercel.app/",
       repo: "https://github.com/NachoLedesma33/CraftUI",
-      images: ["/craftUI/1craftUIPlaceholder.png"],
+      images: ["/craftUI/1craftUIPlaceholder.webp"],
     },
     {
       title: "Dashboard de Productividad",
@@ -100,7 +100,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://dashboard-productividad-ledesma.vercel.app/",
       repo: "https://github.com/NachoLedesma33/dashboard-productividad",
-      images: ["/dashboard-productividad/placeholder-productividad.png", "/dashboard-productividad/uno-productividad.png", "/dashboard-productividad/dos-productividad.png", "/dashboard-productividad/tres-productividad.png"],
+      images: ["/dashboard-productividad/placeholder-productividad.webp", "/dashboard-productividad/uno-productividad.webp", "/dashboard-productividad/dos-productividad.webp", "/dashboard-productividad/tres-productividad.webp"],
     },
     {
       title: "Simulador Visual de Algoritmos",
@@ -109,7 +109,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://simulador-visual-de-algoritmos-lede.vercel.app/",
       repo: "https://github.com/NachoLedesma33/Simulador-Visual-de-Algoritmos",
-      images: ["/visualizador-algoritmos/placeholderalgoritmo.png", "/visualizador-algoritmos/uno-algoritmo.png", "/visualizador-algoritmos/dos-algoritmo.png", "/visualizador-algoritmos/tres-algoritmo.png", "/visualizador-algoritmos/cuatro-algoritmo.png", "/visualizador-algoritmos/cinco-algoritmo.png"],
+      images: ["/visualizador-algoritmos/placeholderalgoritmo.webp", "/visualizador-algoritmos/uno-algoritmo.webp", "/visualizador-algoritmos/dos-algoritmo.webp", "/visualizador-algoritmos/tres-algoritmo.webp", "/visualizador-algoritmos/cuatro-algoritmo.webp", "/visualizador-algoritmos/cinco-algoritmo.webp"],
     },
     {
       title: "Budget App",
@@ -118,7 +118,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://nacholedesma33.github.io/budgetApp/",
       repo: "https://github.com/NachoLedesma33/budgetApp",
-      images: ["/budget-app/PlaceholderBudget.png", "/budget-app/2budget.png", "/budget-app/3budget.png"],
+      images: ["/budget-app/PlaceholderBudget.webp", "/budget-app/2budget.webp", "/budget-app/3budget.webp"],
     }
   ],
   "Juegos (Extra)": [
@@ -129,7 +129,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://nacholedesma33.github.io/Game-2048/",
       repo: "https://github.com/NachoLedesma33/Game-2048",
-      images: ["/game-2048/placeholder.png", "/game-2048/2.png", "/game-2048/3.png", "/game-2048/4.png"],
+      images: ["/game-2048/placeholder.webp", "/game-2048/2.webp", "/game-2048/3.webp", "/game-2048/4.webp"],
     },
     {
       title: "Snake Game",
@@ -138,7 +138,7 @@ const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completed",
       link: "https://nacholedesma33.github.io/Snake-Game/",
       repo: "https://github.com/NachoLedesma33/Snake-Game",
-      images: ["/game-snake/1placeholder.png", "/game-snake/2snake.png", "/game-snake/3snake.png"],
+      images: ["/game-snake/1placeholder.webp", "/game-snake/2snake.webp", "/game-snake/3snake.webp"],
     }
   ]
 };

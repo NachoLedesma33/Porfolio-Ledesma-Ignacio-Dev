@@ -20,9 +20,10 @@ export default function About() {
         <div className="mb-4 sm:mb-6 lg:mb-8">
           <div className="relative w-32 h-32 mx-auto mb-6 rounded-full shadow-lg shadow-rose-500/25 overflow-hidden ring-4 ring-rose-100 dark:ring-rose-900/40">
             <Image
-              src="/portfolio_placeholder.jpg"
+              src="/portfolio_placeholder.webp"
               alt="Foto de perfil"
               fill
+              sizes="128px"
               className="object-cover"
               priority
             />
