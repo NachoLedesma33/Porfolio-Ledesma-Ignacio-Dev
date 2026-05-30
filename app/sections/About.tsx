@@ -5,6 +5,9 @@ import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
 import SplitReveal from "@/app/components/SplitReveal";
+import { getProjectCount } from "@/app/lib/projects";
+
+const projectCount = getProjectCount();
 
 export default function About() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -55,7 +58,7 @@ export default function About() {
             <div className="text-sm text-stone-600 dark:text-stone-400">Años Exp</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-700 dark:text-red-400 tabular-nums">50+</div>
+            <div className="text-3xl font-bold text-red-700 dark:text-red-400 tabular-nums">{projectCount}+</div>
             <div className="text-sm text-stone-600 dark:text-stone-400">Proyectos</div>
           </div>
           <div className="text-center">
