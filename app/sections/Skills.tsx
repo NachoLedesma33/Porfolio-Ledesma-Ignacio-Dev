@@ -288,65 +288,36 @@ export default function Skills() {
                 <span className="inline-block w-1.5 h-6 sm:h-7 rounded-full bg-gradient-to-b from-rose-400 to-rose-600 dark:from-rose-400 dark:to-rose-500" aria-hidden />
                 {category}
               </h2>
-              <div className="marquee-container group">
+              <div className="marquee-container">
                 <div
                   className="marquee-track"
-                  style={{ "--duration": `${duration}s` } as React.CSSProperties}
+                  style={{"--duration": `${duration}s`} as React.CSSProperties}
                 >
-                  <div className="marquee-set">
-                    {categorySkills.map((skill) => (
-                      <a
-                        key={skill.name}
-                        href={skill.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${skill.name} - View docs`}
-                        className="relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-3 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[90px] sm:min-h-[100px] min-w-[96px] sm:min-w-[108px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
-                      >
-                        <div className="flex w-full flex-col items-center justify-center text-center gap-1.5 sm:gap-2">
-                          <div className="flex flex-col items-center justify-center">
-                            {skill.svgl ? (
-                              <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
-                            ) : (
-                              <div className="text-2xl sm:text-3xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
-                                {skill.emoji}
-                              </div>
-                            )}
-                          </div>
-                          <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
-                            {skill.name}
-                          </span>
+                  {[...categorySkills, ...categorySkills].map((skill, idx) => (
+                    <a
+                      key={`${skill.name}-${idx}`}
+                      href={skill.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${skill.name} - View docs`}
+                      className="marquee-item relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-3 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[90px] sm:min-h-[100px] min-w-[96px] sm:min-w-[108px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
+                    >
+                      <div className="flex w-full flex-col items-center justify-center text-center gap-1.5 sm:gap-2">
+                        <div className="flex flex-col items-center justify-center">
+                          {skill.svgl ? (
+                            <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
+                          ) : (
+                            <div className="text-2xl sm:text-3xl transition-transform duration-200 ease-out hover:scale-110" aria-hidden>
+                              {skill.emoji}
+                            </div>
+                          )}
                         </div>
-                      </a>
-                    ))}
-                  </div>
-                  <div className="marquee-set">
-                    {categorySkills.map((skill) => (
-                      <a
-                        key={skill.name}
-                        href={skill.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${skill.name} - View docs`}
-                        className="relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-3 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[90px] sm:min-h-[100px] min-w-[96px] sm:min-w-[108px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
-                      >
-                        <div className="flex w-full flex-col items-center justify-center text-center gap-1.5 sm:gap-2">
-                          <div className="flex flex-col items-center justify-center">
-                            {skill.svgl ? (
-                              <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
-                            ) : (
-                              <div className="text-2xl sm:text-3xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
-                                {skill.emoji}
-                              </div>
-                            )}
-                          </div>
-                          <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
-                            {skill.name}
-                          </span>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
+                        <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 hover:text-rose-800 dark:hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
+                          {skill.name}
+                        </span>
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </section>
