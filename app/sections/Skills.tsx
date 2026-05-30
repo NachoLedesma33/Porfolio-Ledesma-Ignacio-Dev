@@ -281,7 +281,9 @@ export default function Skills() {
 
         {categories.map((category) => {
           const categorySkills = skills.filter((skill) => skill.category === category);
-          const duration = Math.max(6, categorySkills.length * 2);
+          const setWidth = categorySkills.length * 120;
+          const copies = Math.max(2, Math.ceil(2000 / setWidth));
+          const duration = Math.max(6, Math.round(setWidth / 60));
           return (
             <section key={category} className="mb-8 sm:mb-10" aria-labelledby={`category-${category.replace(/\s+/g, "-").toLowerCase()}`}>
               <h2 id={`category-${category.replace(/\s+/g, "-").toLowerCase()}`} className="text-xl sm:text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-5 sm:mb-6 flex items-center gap-3">
@@ -291,11 +293,11 @@ export default function Skills() {
               <div className="marquee-container">
                 <div
                   className="marquee-track"
-                  style={{"--duration": `${duration}s`} as React.CSSProperties}
+                  style={{"--duration": `${duration}s`, "--scroll-amount": `-${100 / copies}%`} as React.CSSProperties}
                 >
-                  {[...categorySkills, ...categorySkills].map((skill, idx) => (
+                  {Array.from({ length: copies }, (_, i) => categorySkills.map((skill) =>
                     <a
-                      key={`${skill.name}-${idx}`}
+                      key={`${skill.name}-${i}`}
                       href={skill.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -319,6 +321,7 @@ export default function Skills() {
                     </a>
                   ))}
                 </div>
+
               </div>
             </section>
           );
