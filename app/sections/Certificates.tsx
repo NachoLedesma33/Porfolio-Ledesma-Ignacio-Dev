@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
+import AnimatedBorder from "@/app/components/AnimatedBorder";
 
 export default function Certificates() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -102,10 +103,7 @@ export default function Certificates() {
               {certificates
                 .filter(cert => cert.category === category)
                 .map((cert, index) => (
-                  <div
-                    key={index}
-                    className="bg-rose-50/30 dark:bg-stone-800 rounded-lg overflow-hidden hover:shadow-xl hover:ring-1 hover:ring-rose-200/70 dark:hover:ring-rose-900/50 transition-all duration-300 transform hover:-translate-y-1"
-                  >
+                  <AnimatedBorder key={index} rounded="lg" className="hover:shadow-xl hover:ring-1 hover:ring-rose-200/70 dark:hover:ring-rose-900/50 transition-all duration-300 transform hover:-translate-y-1" innerClass="bg-rose-50/30 dark:bg-stone-800">
                     {/* Certificate Header */}
                     <div className={`h-32 bg-linear-to-br ${getCategoryColor(cert.category)} relative`}>
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -145,7 +143,7 @@ export default function Certificates() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </AnimatedBorder>
                 ))}
             </div>
           </div>

@@ -121,6 +121,49 @@ strong {
   }
 }
 
+/* ── Borde gradiente animado (sugerencia #4) ── */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border-wrap {
+  background: conic-gradient(
+    from var(--gradient-angle),
+    transparent 0deg,
+    rgba(190,18,60,0.35) 70deg,
+    rgba(251,113,133,0.2) 140deg,
+    transparent 180deg,
+    rgba(190,18,60,0.25) 250deg,
+    rgba(159,18,57,0.15) 305deg,
+    transparent 360deg
+  );
+  animation: gradient-spin 6s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradient-border-wrap {
+    background: conic-gradient(
+      from var(--gradient-angle),
+      transparent 0deg,
+      rgba(251,113,133,0.25) 70deg,
+      rgba(244,63,94,0.15) 140deg,
+      transparent 180deg,
+      rgba(251,113,133,0.2) 250deg,
+      rgba(159,18,57,0.2) 305deg,
+      transparent 360deg
+    );
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes gradient-spin {
+    to { --gradient-angle: 360deg; }
+  }
+}
+
+
 /* Scroll funcional (rueda / táctil / arrastre con ratón) sin barra visible */
 .scrollbar-hide {
   scrollbar-width: none;

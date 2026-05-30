@@ -4,6 +4,7 @@ import { useRef } from "react";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
+import SplitReveal from "@/app/components/SplitReveal";
 
 export default function About() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -36,13 +37,15 @@ export default function About() {
 
         {/* Content */}
         <div className="space-y-4 sm:space-y-6 text-left flex-1">
-          <p className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed">
-            Soy desarrollador full stack con enfoque en la creación de aplicaciones prácticas, claras y bien estructuradas. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de mantener y escalar. Trabajo tanto en frontend como en backend, priorizando una buena experiencia de usuario, rendimiento y lógica sólida detrás de cada proyecto.
-          </p>
+          <SplitReveal
+            text="Soy desarrollador full stack con enfoque en la creación de aplicaciones prácticas, claras y bien estructuradas. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de mantener y escalar. Trabajo tanto en frontend como en backend, priorizando una buena experiencia de usuario, rendimiento y lógica sólida detrás de cada proyecto."
+            className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed"
+          />
           
-          <p className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed">
-            Tengo una orientación marcada hacia proyectos aplicables a entornos reales, como herramientas de gestión, visualización de datos y aplicaciones web funcionales. Me enfoco en resolver problemas de manera eficiente, iterar rápido y mantener un equilibrio entre simplicidad y funcionalidad. Siempre estoy explorando nuevas tecnologías y mejores prácticas para mejorar la calidad de lo que construyo.
-          </p>
+          <SplitReveal
+            text="Tengo una orientación marcada hacia proyectos aplicables a entornos reales, como herramientas de gestión, visualización de datos y aplicaciones web funcionales. Me enfoco en resolver problemas de manera eficiente, iterar rápido y mantener un equilibrio entre simplicidad y funcionalidad. Siempre estoy explorando nuevas tecnologías y mejores prácticas para mejorar la calidad de lo que construyo."
+            className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed"
+          />
         </div>
 
         {/* Quick Stats */}

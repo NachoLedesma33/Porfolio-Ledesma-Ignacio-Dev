@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
+import AnimatedBorder from "@/app/components/AnimatedBorder";
+import SplitReveal from "@/app/components/SplitReveal";
 
 type ProjectCategory = "Proyectos" | "Juegos (Extra)";
 
@@ -215,7 +217,7 @@ export default function Projects() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {categoryProjects.map((project, index) => (
-                    <div key={index} className="bg-white dark:bg-stone-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-rose-100/80 dark:border-stone-700">
+                    <AnimatedBorder key={index} className="shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" innerClass="bg-white dark:bg-stone-900">
                       <div className="h-40 relative overflow-hidden rounded-t-xl">
                         {project.images && project.images.length > 0 ? (
                           <Image src={project.images[0]} alt={project.title} width={800} height={320} className="w-full h-full object-cover bg-stone-100 dark:bg-stone-800 rounded-t-xl" priority={index === 0} />
@@ -232,7 +234,7 @@ export default function Projects() {
                       </div>
                       <div className="p-6">
                         <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-3">{project.title}</h3>
-                        <p className="text-stone-600 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed">{project.description}</p>
+                        <SplitReveal text={project.description} className="text-stone-600 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed" />
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.tech.map((tech, techIndex) => (
                             <span key={techIndex} className="px-3 py-1 text-sm font-medium bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-100 rounded-full hover:bg-rose-200/90 dark:hover:bg-rose-900 transition-colors">{tech}</span>
@@ -249,7 +251,7 @@ export default function Projects() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </AnimatedBorder>
                   ))}
                 </div>
               </div>
@@ -273,7 +275,7 @@ export default function Projects() {
                   <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-50">{selectedProject.title}</h2>
                   <span className={`px-4 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedProject.status)}`}>{selectedProject.status}</span>
                 </div>
-                <p className="text-lg text-stone-700 dark:text-stone-200 mb-8">{selectedProject.description}</p>
+                <SplitReveal text={selectedProject.description} className="text-lg text-stone-700 dark:text-stone-200 mb-8" />
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-4">Galería del Proyecto</h3>
                   <div className="flex gap-4 overflow-x-auto pb-4" data-no-vertical-drag-scroll>
@@ -287,7 +289,7 @@ export default function Projects() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">Descripción</h3>
-                    <p className="text-stone-700 dark:text-stone-200">{selectedProject.description}</p>
+                    <SplitReveal text={selectedProject.description} className="text-stone-700 dark:text-stone-200" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">Tecnologías</h3>
