@@ -242,7 +242,7 @@ export default function Projects() {
                         </div>
                         <div className="flex flex-col space-y-3">
                           {project.images && project.images.length > 0 && (
-                            <button onClick={() => setSelectedProject(project)} className="w-full bg-linear-to-r from-rose-600 to-red-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-rose-700 hover:to-red-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-rose-600/20 hover:shadow-xl">Ver Proyecto</button>
+                            <button onClick={() => setSelectedProject(project)} className="w-full bg-linear-to-r from-rose-600 to-red-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-rose-700 hover:to-red-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-rose-600/20 hover:shadow-xl cursor-pointer">Ver Proyecto</button>
                           )}
                           <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full bg-rose-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors text-center">Abrir Proyecto</a>
                           <div className="text-sm text-stone-600 dark:text-stone-300 space-y-1">
