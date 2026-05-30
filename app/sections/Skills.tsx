@@ -281,7 +281,7 @@ export default function Skills() {
 
         {categories.map((category) => {
           const categorySkills = skills.filter((skill) => skill.category === category);
-          const duration = Math.max(20, categorySkills.length * 4);
+          const duration = Math.max(6, categorySkills.length * 2);
           return (
             <section key={category} className="mb-8 sm:mb-10" aria-labelledby={`category-${category.replace(/\s+/g, "-").toLowerCase()}`}>
               <h2 id={`category-${category.replace(/\s+/g, "-").toLowerCase()}`} className="text-xl sm:text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-5 sm:mb-6 flex items-center gap-3">
