@@ -61,14 +61,18 @@ strong {
   color: color-mix(in srgb, var(--foreground) 92%, var(--accent));
 }
 
-/* Títulos de sección: gradiente rojo animado (solo relleno del texto) */
+/* ── Títulos de sección: gradiente rojo animado + entrada fancy ── */
 @keyframes section-title-shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 100% 50%; }
+  50%  { background-position: 200% 50%; }
+  75%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes section-title-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(190,18,60,0.12)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(190,18,60,0.25)); }
 }
 
 .section-heading {
@@ -102,22 +106,47 @@ strong {
 
 @media (prefers-reduced-motion: no-preference) {
   .section-heading {
-    animation: section-title-shimmer 7s ease-in-out infinite alternate;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .swiper-slide-active .section-heading {
+    opacity: 1;
+    transform: translateY(0);
+    animation:
+      section-title-shimmer 5s ease-in-out infinite alternate,
+      section-title-glow 4s ease-in-out infinite;
   }
 }
 
+/* ── Línea decorativa debajo del título ── */
+@keyframes accent-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
 .accent-rule {
-  background: linear-gradient(
-    90deg,
-    #fb7185,
-    #be123c,
-    #9f1239
-  );
+  background: linear-gradient(90deg, #fb7185, #be123c, #9f1239);
+  transform-origin: center;
 }
 
 @media (prefers-color-scheme: dark) {
   .accent-rule {
     background: linear-gradient(90deg, #fda4af, #fb7185, #f43f5e);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accent-rule {
+    transform: scaleX(0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .swiper-slide-active .accent-rule {
+    transform: scaleX(1);
   }
 }
 
