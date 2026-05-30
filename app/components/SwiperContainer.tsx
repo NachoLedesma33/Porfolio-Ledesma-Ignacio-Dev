@@ -53,6 +53,7 @@ export default function SwiperContainer() {
       <Swiper
         ref={swiperRef}
         effect="cube"
+        speed={700}
         grabCursor={false}
         noSwiping={true}
         noSwipingSelector="p, h1, h2, h3, h4, h5, h6, li, blockquote, pre, code, th, td, label, legend, figcaption, summary, dt, dd, .split-word, .text-balance, .section-heading, .accent-rule span"
