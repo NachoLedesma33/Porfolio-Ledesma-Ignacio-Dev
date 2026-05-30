@@ -152,10 +152,7 @@ strong {
 
 /* ── Marquee infinito para habilidades (carrusel automático) ── */
 @keyframes marquee-scroll {
-  0%   { transform: translateX(0); }
-  45%  { transform: translateX(-50%); }
-  55%  { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .marquee-container {
