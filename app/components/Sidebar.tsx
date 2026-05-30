@@ -33,23 +33,23 @@ export default function Sidebar({ onClose }: SidebarProps) {
   };
 
   return (
-    <div className="w-64 max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl">
+    <div className="w-52 max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl">
       {/* Header */}
-      <div className="p-6 border-b border-red-100/80 dark:border-red-950/60">
-        <h2 className="text-xl font-bold tracking-tight text-stone-900 dark:text-red-100">
+      <div className="p-5 border-b border-red-100/80 dark:border-red-950/60">
+        <h2 className="text-lg font-bold tracking-tight text-stone-900 dark:text-red-100">
           Portfolio <br/> Ledesma Ignacio, Manuel Dev
         </h2>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 w-full items-center justify-center">
-        <ul className="space-y-2">
+      <nav className="flex-1 p-3 w-full items-center justify-center">
+        <ul className="space-y-1">
           {navigationItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => handleNavigation(item.id)}
                 className={`
-                  w-full flex items-center space-x-3 px-4 py-6 text-lg font-medium rounded-lg transition-all duration-200
+                  w-full flex items-center space-x-3 px-3 py-4 text-base font-medium rounded-lg transition-all duration-200
                   ${activeItem === item.id
                     ? 'bg-rose-50 dark:bg-red-950/40 text-rose-700 dark:text-red-300 border-l-4 border-red-600 dark:border-red-400'
                     : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50/70 dark:hover:bg-stone-900'
@@ -77,7 +77,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-rose-100/80 dark:border-rose-950/60">
+      <div className="p-3 border-t border-rose-100/80 dark:border-rose-950/60">
         <div className="text-xs text-stone-500 dark:text-rose-200/60">
           © 2024 Portfolio
         </div>

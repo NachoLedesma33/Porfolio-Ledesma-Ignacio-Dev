@@ -6,14 +6,10 @@ import { useEffect } from "react";
 const INTERACTIVE_SELECTOR =
   "a, button, input, textarea, select, option, label, [role='button'], [contenteditable='true']";
 
-/** Contenedores con scroll horizontal propio: no iniciar arrastre vertical aquí. */
 const HORIZONTAL_SCROLL_AREA = "[data-no-vertical-drag-scroll]";
 
-/**
- * Scroll vertical con el ratón (arrastrar) sobre un contenedor con overflow-y.
- * No interfiere con enlaces ni controles. Solo botón principal del ratón.
- * El gesto no se propaga al Swiper padre.
- */
+const DRAG_THRESHOLD = 8;
+
 export function useMouseDragScroll(
   scrollRef: RefObject<HTMLElement | null>,
   enabled = true,
@@ -29,6 +25,7 @@ export function useMouseDragScroll(
         !!target.closest(HORIZONTAL_SCROLL_AREA));
 
     let down = false;
+    let dragging = false;
     let startY = 0;
     let startScroll = 0;
 
@@ -38,20 +35,27 @@ export function useMouseDragScroll(
       if (skipDrag(e.target)) return;
       e.stopPropagation();
       down = true;
+      dragging = false;
       startY = e.clientY;
       startScroll = el.scrollTop;
-      document.body.style.userSelect = "none";
     };
 
     const onMouseMove = (e: MouseEvent) => {
       if (!down) return;
-      el.scrollTop = startScroll - (e.clientY - startY);
+      const dy = e.clientY - startY;
+      if (!dragging) {
+        if (Math.abs(dy) < DRAG_THRESHOLD) return;
+        dragging = true;
+        document.body.style.userSelect = "none";
+      }
+      el.scrollTop = startScroll - dy;
       e.preventDefault();
     };
 
     const onMouseUp = () => {
       if (!down) return;
       down = false;
+      dragging = false;
       document.body.style.userSelect = "";
     };
 

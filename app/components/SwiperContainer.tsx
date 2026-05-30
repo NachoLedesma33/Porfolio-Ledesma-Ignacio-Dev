@@ -54,6 +54,8 @@ export default function SwiperContainer() {
         ref={swiperRef}
         effect="cube"
         grabCursor={false}
+        noSwiping={true}
+        noSwipingSelector="p, h1, h2, h3, h4, h5, h6, li, blockquote, pre, code, th, td, label, legend, figcaption, summary, dt, dd, .split-word, .text-balance, .section-heading, .accent-rule span"
         cubeEffect={{
           shadow: true,
           slideShadows: true,
