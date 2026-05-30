@@ -279,43 +279,79 @@ export default function Skills() {
           </p>
         </div>
 
-        {categories.map((category) => (
-          <section key={category} className="mb-8 sm:mb-10" aria-labelledby={`category-${category.replace(/\s+/g, "-").toLowerCase()}`}>
-            <h2 id={`category-${category.replace(/\s+/g, "-").toLowerCase()}`} className="text-xl sm:text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-5 sm:mb-6 flex items-center gap-3">
-              <span className="inline-block w-1.5 h-6 sm:h-7 rounded-full bg-gradient-to-b from-rose-400 to-rose-600 dark:from-rose-400 dark:to-rose-500" aria-hidden />
-              {category}
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
-              {skills
-                .filter((skill) => skill.category === category)
-                .map((skill) => (
-                  <a
-                    key={skill.name}
-                    href={skill.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${skill.name} - View docs`}
-                    className="group relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-4 sm:p-5 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[130px] sm:min-h-[140px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
-                  >
-                    <div className="flex w-full flex-col items-center justify-center text-center gap-2 sm:gap-3">
-                      <div className="flex flex-col items-center justify-center">
-                        {skill.svgl ? (
-                          <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
-                        ) : (
-                          <div className="text-3xl sm:text-4xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
-                            {skill.emoji}
+        {categories.map((category) => {
+          const categorySkills = skills.filter((skill) => skill.category === category);
+          const duration = Math.max(20, categorySkills.length * 4);
+          return (
+            <section key={category} className="mb-8 sm:mb-10" aria-labelledby={`category-${category.replace(/\s+/g, "-").toLowerCase()}`}>
+              <h2 id={`category-${category.replace(/\s+/g, "-").toLowerCase()}`} className="text-xl sm:text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-5 sm:mb-6 flex items-center gap-3">
+                <span className="inline-block w-1.5 h-6 sm:h-7 rounded-full bg-gradient-to-b from-rose-400 to-rose-600 dark:from-rose-400 dark:to-rose-500" aria-hidden />
+                {category}
+              </h2>
+              <div className="marquee-container group">
+                <div
+                  className="marquee-track"
+                  style={{ "--duration": `${duration}s` } as React.CSSProperties}
+                >
+                  <div className="marquee-set">
+                    {categorySkills.map((skill) => (
+                      <a
+                        key={skill.name}
+                        href={skill.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${skill.name} - View docs`}
+                        className="relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-3 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[90px] sm:min-h-[100px] min-w-[96px] sm:min-w-[108px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
+                      >
+                        <div className="flex w-full flex-col items-center justify-center text-center gap-1.5 sm:gap-2">
+                          <div className="flex flex-col items-center justify-center">
+                            {skill.svgl ? (
+                              <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
+                            ) : (
+                              <div className="text-2xl sm:text-3xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
+                                {skill.emoji}
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                      <span className="text-xs sm:text-sm font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 line-clamp-2">
-                        {skill.name}
-                      </span>
-                    </div>
-                  </a>
-                ))}
-            </div>
-          </section>
-        ))}
+                          <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
+                            {skill.name}
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                  <div className="marquee-set">
+                    {categorySkills.map((skill) => (
+                      <a
+                        key={skill.name}
+                        href={skill.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${skill.name} - View docs`}
+                        className="relative bg-rose-50/60 dark:bg-stone-800/50 rounded-xl p-3 hover:shadow-xl hover:shadow-rose-200/40 dark:hover:shadow-rose-900/30 hover:ring-2 hover:ring-rose-300/60 dark:hover:ring-rose-700/50 transition-all duration-250 ease-out flex flex-col items-center justify-center text-center min-h-[90px] sm:min-h-[100px] min-w-[96px] sm:min-w-[108px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900"
+                      >
+                        <div className="flex w-full flex-col items-center justify-center text-center gap-1.5 sm:gap-2">
+                          <div className="flex flex-col items-center justify-center">
+                            {skill.svgl ? (
+                              <SkillIcon route={skill.svgl} alt={`${skill.name} logo`} />
+                            ) : (
+                              <div className="text-2xl sm:text-3xl transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden>
+                                {skill.emoji}
+                              </div>
+                            )}
+                          </div>
+                          <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 group-hover:text-rose-800 dark:group-hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
+                            {skill.name}
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        })}
 
       </div>
       </SectionVenomBackdrop>

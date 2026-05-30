@@ -150,6 +150,32 @@ strong {
   }
 }
 
+/* ── Marquee infinito para habilidades (carrusel automático) ── */
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 2%, black 6%, black 94%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to right, transparent 2%, black 6%, black 94%, transparent 98%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--duration, 30s) linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-set {
+  display: flex;
+  gap: 0.75rem;
+}
+
 /* ── Borde gradiente animado (sugerencia #4) ── */
 @property --gradient-angle {
   syntax: "<angle>";
