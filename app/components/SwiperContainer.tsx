@@ -50,6 +50,9 @@ export default function SwiperContainer() {
 
     let pendingDir: 'next' | 'prev' | null = null;
     let pendingTimer: ReturnType<typeof setTimeout> | null = null;
+    let cachedScrollEl: HTMLElement | null = null;
+    let cachedScrollHeight = 0;
+    let cachedClientHeight = 0;
 
     const onWheel = (e: WheelEvent) => {
       const swiper = swiperRef.current?.swiper;
@@ -58,9 +61,15 @@ export default function SwiperContainer() {
       const scrollEl = swiper.slides[swiper.activeIndex]?.querySelector<HTMLElement>('.scrollbar-hide');
       if (!scrollEl) return;
 
-      const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+      if (scrollEl !== cachedScrollEl) {
+        cachedScrollEl = scrollEl;
+        cachedScrollHeight = scrollEl.scrollHeight;
+        cachedClientHeight = scrollEl.clientHeight;
+      }
+
+      const scrollTop = scrollEl.scrollTop;
       const atTop = scrollTop <= 2;
-      const atBottom = scrollHeight - scrollTop - clientHeight <= 2;
+      const atBottom = cachedScrollHeight - scrollTop - cachedClientHeight <= 2;
       const goingDown = e.deltaY > 0;
 
       const canGoNext = goingDown && atBottom && !swiper.isEnd;
@@ -92,8 +101,20 @@ export default function SwiperContainer() {
     return () => el.removeEventListener('wheel', onWheel);
   }, []);
 
+  const slideToId: Record<number, NavigationItem> = {
+    0: "about",
+    1: "projects",
+    2: "skills",
+    3: "certificates",
+    4: "contact",
+  };
+
   const handleSlideChange = (swiper: SwiperType) => {
     setCurrentSlide(swiper.activeIndex);
+    const id = slideToId[swiper.activeIndex];
+    if (id) {
+      window.dispatchEvent(new CustomEvent('slideChanged', { detail: { slideId: id } }));
+    }
   };
 
   return (

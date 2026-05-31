@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export interface SidebarProps {
   onClose: () => void;
@@ -18,6 +18,15 @@ const navigationItems: { id: NavigationItem; label: string; icon: string }[] = [
 
 export default function Sidebar({ onClose }: SidebarProps) {
   const [activeItem, setActiveItem] = useState<NavigationItem>("about");
+
+  useEffect(() => {
+    const handleSlideChanged = (e: Event) => {
+      const { slideId } = (e as CustomEvent).detail;
+      setActiveItem(slideId as NavigationItem);
+    };
+    window.addEventListener('slideChanged', handleSlideChanged);
+    return () => window.removeEventListener('slideChanged', handleSlideChanged);
+  }, []);
 
   const handleNavigation = (itemId: NavigationItem) => {
     setActiveItem(itemId);
