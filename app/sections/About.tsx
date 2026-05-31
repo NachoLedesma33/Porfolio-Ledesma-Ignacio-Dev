@@ -32,7 +32,7 @@ export default function About({ active = true }: { active?: boolean }) {
               priority
             />
           </div>
-          <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
+          <h1 className="section-heading text-4xl font-display tracking-tight mb-2">
             Sobre Mi
           </h1>
           <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />

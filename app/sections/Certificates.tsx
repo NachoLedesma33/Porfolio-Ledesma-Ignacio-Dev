@@ -87,7 +87,7 @@ export default function Certificates({ active = true }: { active?: boolean }) {
     >
       <SectionVenomBackdrop active={active}>
       <div className="text-center mb-8">
-        <h1 className="section-heading text-4xl font-bold tracking-tight mb-2">
+        <h1 className="section-heading text-4xl font-display tracking-tight mb-2">
           Certificados
         </h1>
         <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
