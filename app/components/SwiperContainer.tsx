@@ -18,8 +18,8 @@ import "swiper/css/pagination";
 
 const slideMapping: Record<NavigationItem, number> = {
   about: 0,
-  skills: 1,
-  projects: 2,
+  projects: 1,
+  skills: 2,
   certificates: 3,
   contact: 4,
 };
@@ -80,13 +80,13 @@ export default function SwiperContainer() {
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Skills />
+            <Projects />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Projects />
+            <Skills />
           </div>
         </SwiperSlide>
         
