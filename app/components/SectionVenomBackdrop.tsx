@@ -1,8 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import VenomBeam from "@/app/components/ui/venom-beam";
-import MorphingBlobs from "@/app/components/MorphingBlobs";
+import dynamic from "next/dynamic";
+
+const VenomBeam = dynamic(() => import("@/app/components/ui/venom-beam"), { ssr: false });
+const MorphingBlobs = dynamic(() => import("@/app/components/MorphingBlobs"), { ssr: false });
 
 /**
  * Fondo tipo [Venom Beam](https://scrollxui.dev/docs/components/venom-beam) con velo

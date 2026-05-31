@@ -37,6 +37,9 @@ export default function RootLayout({
       lang="en"
       className={`${nunito.variable} ${geistMono.variable} ${monoton.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preload" href="/portfolio_placeholder.webp" as="image" type="image/webp" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
         <NoiseOverlay />
         {children}

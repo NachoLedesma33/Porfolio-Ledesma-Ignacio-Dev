@@ -72,8 +72,11 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       return () => ro.disconnect();
     }
 
+    let cachedRect = canvas.getBoundingClientRect();
+
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
+      cachedRect = rect;
       canvas.width = rect.width;
       canvas.height = rect.height;
 
@@ -123,10 +126,9 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
     initParticles();
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
       mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: e.clientX - cachedRect.left,
+        y: e.clientY - cachedRect.top,
       };
     };
 
