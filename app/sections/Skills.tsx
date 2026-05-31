@@ -44,125 +44,124 @@ function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
       alt={alt}
       width={48}
       height={48}
-      unoptimized
       className="h-11 w-11 object-contain transition-transform duration-200 ease-out"
     />
   );
 }
 
-export default function Skills() {
+export default function Skills({ active = true }: { active?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
 
   const skills: Skill[] = [
     {
       name: "JavaScript",
-      svgl: "https://svgl.app/library/javascript.svg",
+      svgl: "/skills/javascript.svg",
       url: "https://developer.mozilla.org/es/docs/Web/JavaScript",
       category: "Frontend",
     },
     {
       name: "TypeScript",
-      svgl: "https://svgl.app/library/typescript.svg",
+      svgl: "/skills/typescript.svg",
       url: "https://www.typescriptlang.org/",
       category: "Frontend",
     },
     {
       name: "HTML",
-      svgl: "https://svgl.app/library/html5.svg",
+      svgl: "/skills/html5.svg",
       url: "https://developer.mozilla.org/es/docs/Web/HTML",
       category: "Frontend",
     },
     {
       name: "CSS",
-      svgl: "https://svgl.app/library/css.svg",
+      svgl: "/skills/css.svg",
       url: "https://developer.mozilla.org/es/docs/Web/CSS",
       category: "Frontend",
     },
     {
       name: "ReactJS",
       svgl: {
-        light: "https://svgl.app/library/react_light.svg",
-        dark: "https://svgl.app/library/react_dark.svg",
+        light: "/skills/react_light.svg",
+        dark: "/skills/react_dark.svg",
       },
       url: "https://react.dev/",
       category: "Frontend",
     },
     {
       name: "Next Js",
-      svgl: "https://svgl.app/library/nextjs_icon_dark.svg",
+      svgl: "/skills/nextjs_icon_dark.svg",
       url: "https://nextjs.org/",
       category: "Frontend",
     },
     {
       name: "Astro",
       svgl: {
-        light: "https://svgl.app/library/astro-icon-light.svg",
-        dark: "https://svgl.app/library/astro-icon-dark.svg",
+        light: "/skills/astro-icon-light.svg",
+        dark: "/skills/astro-icon-dark.svg",
       },
       url: "https://astro.build/",
       category: "Frontend",
     },
     {
       name: "TailwindCSS",
-      svgl: "https://svgl.app/library/tailwindcss.svg",
+      svgl: "/skills/tailwindcss.svg",
       url: "https://tailwindcss.com/",
       category: "Frontend",
     },
     {
       name: "Bootstrap CSS",
-      svgl: "https://svgl.app/library/bootstrap.svg",
+      svgl: "/skills/bootstrap.svg",
       url: "https://getbootstrap.com/",
       category: "Frontend",
     },
     {
       name: "Node.js",
-      svgl: "https://svgl.app/library/nodejs.svg",
+      svgl: "/skills/nodejs.svg",
       url: "https://nodejs.org/",
       category: "Backend",
     },
     {
       name: "NestJS",
-      svgl: "https://svgl.app/library/nestjs.svg",
+      svgl: "/skills/nestjs.svg",
       url: "https://nestjs.com/",
       category: "Backend",
     },
     {
       name: "Java",
-      svgl: "https://svgl.app/library/java.svg",
+      svgl: "/skills/java.svg",
       url: "https://www.java.com/",
       category: "Backend",
     },
     {
       name: "Python",
-      svgl: "https://svgl.app/library/python.svg",
+      svgl: "/skills/python.svg",
       url: "https://www.python.org/",
       category: "Backend",
     },
     {
       name: "Spring Boot",
-      svgl: "https://svgl.app/library/spring.svg",
+      svgl: "/skills/spring.svg",
       url: "https://spring.io/projects/spring-boot",
       category: "Backend",
     },
     {
       name: "Django",
-      svgl: "https://svgl.app/library/django.svg",
+      svgl: "/skills/django.svg",
       url: "https://www.djangoproject.com/",
       category: "Backend",
     },
     {
       name: "Flask",
       svgl: {
-        light: "https://svgl.app/library/flask-light.svg",
-        dark: "https://svgl.app/library/flask-dark.svg",
+        light: "/skills/flask-light.svg",
+        dark: "/skills/flask-dark.svg",
       },
       url: "https://flask.palletsprojects.com/",
       category: "Backend",
     },
     {
       name: "FastAPI",
-      svgl: "https://svgl.app/library/fastapi.svg",
+      svgl: "/skills/fastapi.svg",
       url: "https://fastapi.tiangolo.com/",
       category: "Backend",
     },
@@ -174,60 +173,60 @@ export default function Skills() {
     },
     {
       name: "PostgreSQL",
-      svgl: "https://svgl.app/library/postgresql.svg",
+      svgl: "/skills/postgresql.svg",
       url: "https://www.postgresql.org/",
       category: "Database",
     },
     {
       name: "MySQL",
       svgl: {
-        light: "https://svgl.app/library/mysql-icon-light.svg",
-        dark: "https://svgl.app/library/mysql-icon-dark.svg",
+        light: "/skills/mysql-icon-light.svg",
+        dark: "/skills/mysql-icon-dark.svg",
       },
       url: "https://www.mysql.com/",
       category: "Database",
     },
     {
       name: "SQLite",
-      svgl: "https://svgl.app/library/sqlite.svg",
+      svgl: "/skills/sqlite.svg",
       url: "https://www.sqlite.org/",
       category: "Database",
     },
     {
       name: "MongoDB",
       svgl: {
-        light: "https://svgl.app/library/mongodb-icon-light.svg",
-        dark: "https://svgl.app/library/mongodb-icon-dark.svg",
+        light: "/skills/mongodb-icon-light.svg",
+        dark: "/skills/mongodb-icon-dark.svg",
       },
       url: "https://www.mongodb.com/",
       category: "Database",
     },
     {
       name: "Docker",
-      svgl: "https://svgl.app/library/docker.svg",
+      svgl: "/skills/docker.svg",
       url: "https://www.docker.com/",
       category: "DevOps & Tools",
     },
     {
       name: "AWS",
       svgl: {
-        light: "https://svgl.app/library/aws_light.svg",
-        dark: "https://svgl.app/library/aws_dark.svg",
+        light: "/skills/aws_light.svg",
+        dark: "/skills/aws_dark.svg",
       },
       url: "https://aws.amazon.com/",
       category: "DevOps & Tools",
     },
     {
       name: "Git",
-      svgl: "https://svgl.app/library/git.svg",
+      svgl: "/skills/git.svg",
       url: "https://git-scm.com/",
       category: "DevOps & Tools",
     },
     {
       name: "Github",
       svgl: {
-        light: "https://svgl.app/library/github_light.svg",
-        dark: "https://svgl.app/library/github_dark.svg",
+        light: "/skills/github_light.svg",
+        dark: "/skills/github_dark.svg",
       },
       url: "https://github.com/",
       category: "DevOps & Tools",
@@ -235,15 +234,15 @@ export default function Skills() {
     {
       name: "BASH",
       svgl: {
-        light: "https://svgl.app/library/bash.svg",
-        dark: "https://svgl.app/library/bash_dark.svg",
+        light: "/skills/bash.svg",
+        dark: "/skills/bash_dark.svg",
       },
       url: "https://www.gnu.org/software/bash/",
       category: "DevOps & Tools",
     },
     {
       name: "GraphQL",
-      svgl: "https://svgl.app/library/graphql.svg",
+      svgl: "/skills/graphql.svg",
       url: "https://graphql.org/",
       category: "DevOps & Tools",
     },
@@ -256,7 +255,7 @@ export default function Skills() {
       ref={scrollRef}
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-2 sm:p-3 lg:p-4 overflow-y-auto min-h-screen"
     >
-      <SectionVenomBackdrop>
+      <SectionVenomBackdrop active={active}>
       <header className="text-center mb-10 sm:mb-12">
         <h1 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
           Habilidades

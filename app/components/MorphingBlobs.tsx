@@ -14,7 +14,7 @@ function useIsDark() {
   );
 }
 
-export default function MorphingBlobs() {
+export default function MorphingBlobs({ active = true }: { active?: boolean }) {
   const isDark = useIsDark();
 
   const blobs = isDark
@@ -45,6 +45,7 @@ export default function MorphingBlobs() {
             background: blob.color,
             filter: "blur(80px)",
             animation: `morph-blob-${i} ${blob.dur}s ease-in-out ${blob.delay}s infinite alternate`,
+            animationPlayState: active ? "running" : "paused",
             willChange: "transform",
           }}
         />

@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCube, Navigation, Pagination } from "swiper/modules";
+import { EffectCube } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import { NavigationItem } from "./Sidebar";
-import About from "../sections/About";
-import Skills from "../sections/Skills";
-import Projects from "../sections/Projects";
-import Certificates from "../sections/Certificates";
-import Contact from "../sections/Contact";
 
 import "swiper/css";
 import "swiper/css/effect-cube";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
+const About = dynamic(() => import("../sections/About"));
+const Projects = dynamic(() => import("../sections/Projects"));
+const Skills = dynamic(() => import("../sections/Skills"));
+const Certificates = dynamic(() => import("../sections/Certificates"));
+const Contact = dynamic(() => import("../sections/Contact"));
 
 const slideMapping: Record<NavigationItem, number> = {
   about: 0,
@@ -111,42 +111,37 @@ export default function SwiperContainer() {
           shadowOffset: 20,
           shadowScale: 0.94,
         }}
-        navigation={false}
-        pagination={false}
-        modules={[EffectCube, Navigation, Pagination]}
+        modules={[EffectCube]}
         onSlideChange={handleSlideChange}
         className="w-full h-screen max-h-[600px] px-0.5 sm:px-2 lg:px-3"
-        style={{
-          "--swiper-navigation-size": "30px",
-        } as React.CSSProperties}
       >
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <About />
+            <About active={currentSlide === 0} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Projects />
+            <Projects active={currentSlide === 1} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Skills />
+            <Skills active={currentSlide === 2} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Certificates />
+            <Certificates active={currentSlide === 3} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Contact />
+            <Contact active={currentSlide === 4} />
           </div>
         </SwiperSlide>
       </Swiper>

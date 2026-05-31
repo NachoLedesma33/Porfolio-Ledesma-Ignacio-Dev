@@ -20,6 +20,8 @@ export interface VenomBeamProps {
   fill?: boolean;
   /** Modo sección: sin alturas fijas ni puntos decorativos; canvas no captura eventos */
   embed?: boolean;
+  /** Cuando false, salta el dibujado del canvas para ahorrar CPU */
+  active?: boolean;
 }
 
 const VenomBeam: React.FC<VenomBeamProps> = ({
@@ -27,12 +29,16 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
   className = "",
   fill = false,
   embed = false,
+  active = true,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef(0);
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const isDarkRef = useRef(false);
+  const activeRef = useRef(active);
+
+  useEffect(() => { activeRef.current = active; }, [active]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -129,6 +135,11 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
     }
 
     const animate = () => {
+      if (!activeRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       isDarkRef.current = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (isDarkRef.current) {
