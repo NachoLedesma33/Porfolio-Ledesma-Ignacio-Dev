@@ -256,7 +256,7 @@ export default function Skills({ active = true }: { active?: boolean }) {
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-2 sm:p-3 lg:p-4 overflow-y-auto min-h-screen"
     >
       <SectionVenomBackdrop active={active}>
-      <header className="text-center mb-10 sm:mb-12">
+      <header className="text-center pt-4 sm:pt-6 mb-10 sm:mb-12">
         <h1 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-display tracking-tight mb-3">
           Habilidades
         </h1>

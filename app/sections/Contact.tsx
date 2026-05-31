@@ -97,7 +97,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
       <SectionVenomBackdrop active={active}>
-      <div className="text-center mb-8">
+      <div className="text-center pt-4 sm:pt-6 mb-8">
         <h1 className="section-heading text-4xl font-display tracking-tight mb-2">
           Contacto
         </h1>

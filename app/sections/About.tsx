@@ -21,7 +21,7 @@ export default function About({ active = true }: { active?: boolean }) {
       <SectionVenomBackdrop active={active}>
       <div className="w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Profile Section */}
-        <div className="mb-4 sm:mb-6 lg:mb-8">
+        <div className="pt-4 sm:pt-6 lg:pt-8 mb-4 sm:mb-6 lg:mb-8">
           <div className="relative w-32 h-32 mx-auto mb-6 rounded-full shadow-lg shadow-rose-500/25 overflow-hidden ring-4 ring-rose-100 dark:ring-rose-900/40">
             <Image
               src="/portfolio_placeholder.webp"
