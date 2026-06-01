@@ -85,13 +85,13 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       ],
     },
     {
-      title: "API Client - Mini Postman",
+      title: "API Client",
       description: "Cliente API ligero e interactivo construido con Astro y React. Inspirado en Postman, permite enviar solicitudes HTTP, gestionar colecciones, trabajar con variables de entorno, importar/exportar cURL y soportar OpenAPI 3.0. Con arquitectura Astro Islands para rendimiento óptimo.",
       tech: ["Astro", "React", "TypeScript", "TailwindCSS", "Zustand", "Dexie", "IndexedDB"],
       status: "Completed",
       link: "https://client-api-interactive.vercel.app/",
       repo: "https://github.com/NachoLedesma33/client-api-interactive",
-      images: ["/api-client/1placeholder-api-client-v2.webp", "/api-client/2api-client.webp", "/api-client/3api-client.webp", "/api-client/4api-client.webp", "/api-client/5api-client.webp"],
+      images: ["/api-client/1placeholder-api-client-v2.png", "/api-client/2api-client.webp", "/api-client/3api-client.webp", "/api-client/4api-client.webp", "/api-client/5api-client.webp"],
     },
     {
       title: "CraftUI",
