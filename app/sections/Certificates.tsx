@@ -1,82 +1,47 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
+import { Certificate, certificates } from "@/app/lib/certificates";
 
 export default function Certificates({ active = true }: { active?: boolean }) {
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const modalScrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
-  const certificates = [
-    {
-      title: "React Developer Certification",
-      issuer: "Meta",
-      date: "2024",
-      category: "Frontend",
-      description: "Advanced React development including hooks, context, and performance optimization",
-      skills: ["React", "JavaScript", "Hooks", "Performance"]
-    },
-    {
-      title: "TypeScript Fundamentals",
-      issuer: "Microsoft",
-      date: "2024",
-      category: "Languages",
-      description: "Complete TypeScript course covering types, interfaces, generics, and advanced patterns",
-      skills: ["TypeScript", "Types", "Interfaces", "Generics"]
-    },
-    {
-      title: "AWS Cloud Practitioner",
-      issuer: "Amazon Web Services",
-      date: "2023",
-      category: "Cloud",
-      description: "Fundamental AWS services, cloud concepts, and best practices",
-      skills: ["AWS", "Cloud Computing", "Security", "Architecture"]
-    },
-    {
-      title: "Docker & Kubernetes",
-      issuer: "Coursera",
-      date: "2023",
-      category: "DevOps",
-      description: "Containerization and orchestration with Docker and Kubernetes",
-      skills: ["Docker", "Kubernetes", "Containers", "CI/CD"]
-    },
-    {
-      title: "Python for Data Science",
-      issuer: "IBM",
-      date: "2023",
-      category: "Data Science",
-      description: "Python programming for data analysis, visualization, and machine learning",
-      skills: ["Python", "Data Analysis", "NumPy", "Pandas"]
-    },
-    {
-      title: "Full Stack Web Development",
-      issuer: "freeCodeCamp",
-      date: "2022",
-      category: "Full Stack",
-      description: "Complete web development covering frontend, backend, databases, and deployment",
-      skills: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"]
+  useMouseDragScroll(modalScrollRef, !!selectedCertificate);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedCertificate(null);
+      }
+    };
+
+    if (selectedCertificate) {
+      document.addEventListener("keydown", handleEscape);
+      const timer = setTimeout(() => {
+        const backdrop = document.querySelector("[data-certificate-modal-backdrop]");
+        const content = document.querySelector("[data-certificate-modal-content]");
+        if (backdrop) (backdrop as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+        if (content) {
+          content.classList.remove("scale-95", "opacity-0");
+          content.classList.add("scale-100", "opacity-100");
+        }
+      }, 10);
+      return () => {
+        document.removeEventListener("keydown", handleEscape);
+        clearTimeout(timer);
+      };
     }
-  ];
+  }, [selectedCertificate]);
 
-  const categories = Array.from(new Set(certificates.map(cert => cert.category)));
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Frontend":
-        return "from-rose-400 to-red-600";
-      case "Languages":
-        return "from-red-500 to-rose-800";
-      case "Cloud":
-        return "from-orange-500 to-red-700";
-      case "DevOps":
-        return "from-red-600 to-stone-800";
-      case "Data Science":
-        return "from-fuchsia-500 to-rose-700";
-      case "Full Stack":
-        return "from-amber-500 to-red-600";
-      default:
-        return "from-stone-500 to-stone-700";
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      setSelectedCertificate(null);
     }
   };
 
@@ -86,69 +51,92 @@ export default function Certificates({ active = true }: { active?: boolean }) {
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
       <SectionVenomBackdrop active={active}>
-      <div className="text-center pt-4 sm:pt-6 mb-8">
-        <h1 className="section-heading text-4xl font-display tracking-tight mb-2">
-          Certificados
-        </h1>
-        <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
-      </div>
+        <div className="text-center pt-4 sm:pt-6 mb-8">
+          <h1 className="section-heading text-4xl font-display tracking-tight mb-2">
+            Certificados
+          </h1>
+          <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
+        </div>
 
-      <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
-        {categories.map((category) => (
-          <div key={category} className="mb-6 sm:mb-8">
-            <h2 className="text-2xl font-semibold text-stone-800 dark:text-stone-100 mb-4">
-              {category}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {certificates
-                .filter(cert => cert.category === category)
-                .map((cert, index) => (
-                  <AnimatedBorder key={index} rounded="lg" className="hover:shadow-xl hover:ring-1 hover:ring-rose-200/70 dark:hover:ring-rose-900/50 transition-all duration-300 transform hover:-translate-y-1" innerClass="bg-rose-50/30 dark:bg-stone-800">
-                    {/* Certificate Header */}
-                    <div className={`h-32 bg-linear-to-br ${getCategoryColor(cert.category)} relative`}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <svg className="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
+        <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col pb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {certificates.map((certificate) => (
+              <AnimatedBorder
+                key={certificate.title}
+                rounded="lg"
+                className="hover:shadow-xl hover:ring-1 hover:ring-rose-200/70 dark:hover:ring-rose-900/50 transition-all duration-300 transform hover:-translate-y-1"
+                innerClass="bg-rose-50/30 dark:bg-stone-800 overflow-hidden"
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedCertificate(certificate)}
+                  className="w-full text-left cursor-pointer group"
+                  aria-label={`Ver certificado: ${certificate.title}`}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-stone-100 dark:bg-stone-900">
+                    <Image
+                      src={certificate.thumbnail}
+                      alt={certificate.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 dark:bg-stone-900/90 text-stone-900 dark:text-stone-50 text-sm font-medium px-4 py-2 rounded-full shadow-lg">
+                        Ver certificado
+                      </span>
                     </div>
-                    
-                    {/* Certificate Content */}
-                    <div className="p-4 sm:p-6">
-                      <h3 className="text-lg font-bold text-stone-900 dark:text-stone-50 mb-2">
-                        {cert.title}
-                      </h3>
-                      
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-stone-600 dark:text-stone-300">
-                          {cert.issuer}
-                        </span>
-                        <span className="text-xs text-stone-500 dark:text-stone-400">
-                          {cert.date}
-                        </span>
-                      </div>
-                      
-                      <p className="text-sm text-stone-700 dark:text-stone-200 mb-4 line-clamp-3">
-                        {cert.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        {cert.skills.map((skill, skillIndex) => (
-                          <span
-                            key={skillIndex}
-                            className="px-2 py-1 text-xs font-medium bg-rose-100/90 dark:bg-stone-700 text-stone-800 dark:text-stone-200 rounded-full"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </AnimatedBorder>
-                ))}
+                  </div>
+                  <div className="p-4 sm:p-5">
+                    <h3 className="text-lg font-bold text-stone-900 dark:text-stone-50">
+                      {certificate.title}
+                    </h3>
+                  </div>
+                </button>
+              </AnimatedBorder>
+            ))}
+          </div>
+        </div>
+
+        {selectedCertificate && (
+          <div
+            data-certificate-modal-backdrop
+            className="fixed inset-0 bg-black bg-opacity-0 flex items-start justify-center z-50 p-4 pt-16 transition-all duration-300 ease-in-out"
+            onClick={handleBackdropClick}
+          >
+            <div
+              ref={modalScrollRef}
+              data-certificate-modal-content
+              className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg max-w-5xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedCertificate(null)}
+                className="absolute -top-2 -right-2 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg"
+                aria-label="Cerrar"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="p-4 sm:p-6">
+                <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-4 text-center">
+                  {selectedCertificate.title}
+                </h2>
+                <div className="relative w-full min-h-[50vh] flex items-center justify-center bg-stone-50 dark:bg-stone-950 rounded-lg p-2">
+                  <Image
+                    src={selectedCertificate.fullImage}
+                    alt={selectedCertificate.title}
+                    width={916}
+                    height={682}
+                    className="w-full h-auto max-h-[70vh] object-contain rounded-md"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        )}
       </SectionVenomBackdrop>
     </div>
   );
