@@ -13,6 +13,22 @@ export type Project = {
 export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   "Proyectos": [
     {
+      title: "Expense Tracker",
+      description: "Aplicación interactiva y responsive para el control de gastos y finanzas personales. Permite registrar ingresos y egresos, categorizar transacciones en tiempo real, visualizar reportes financieros dinámicos y gestionar presupuestos de manera inteligente para optimizar el rendimiento económico diario.",
+      tech: ["Django 5.0", "Tailwind CSS 4", "HTMX", "Chart.js", "PostgreSQL"],
+      status: "Completed",
+      link: "https://expense-tracker-ten-tau-16.vercel.app",
+      repo: "https://github.com/NachoLedesma33/Expense-tracker",
+      images: [
+        "/transactions/1tranactionplaceholder.png",
+        "/transactions/2transaction.png",
+        "/transactions/3transaction.png",
+        "/transactions/4transation.png",
+        "/transactions/5transaction.png",
+        "/transactions/6transaction.png"
+      ],
+    },
+    {
       title: "CodeReflex",
       description: "Plataforma interactiva de entrenamiento técnico para desarrolladores. Combina el speed typing de código real (Reflex Typing) con la resolución guiada de problemas de algoritmos (Guided Problems). Cuenta con editor Monaco integrado, sistema de gamificación con logros (XP), heatmaps de actividad y soporte multi-lenguaje.",
       tech: ["Next.js 16", "TypeScript", "Monaco Editor", "Zustand", "Tailwind CSS v4", "Zod"],
@@ -112,22 +128,6 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://nacholedesma33.github.io/budgetApp/",
       repo: "https://github.com/NachoLedesma33/budgetApp",
       images: ["/budget-app/PlaceholderBudget.webp", "/budget-app/2budget.webp", "/budget-app/3budget.webp"],
-    },
-    {
-      title: "Expense Tracker",
-      description: "Aplicación interactiva y responsive para el control de gastos y finanzas personales. Permite registrar ingresos y egresos, categorizar transacciones en tiempo real, visualizar reportes financieros dinámicos y gestionar presupuestos de manera inteligente para optimizar el rendimiento económico diario.",
-      tech: ["React", "TypeScript", "Tailwind CSS", "Context API", "LocalStorage"],
-      status: "Completed",
-      link: "https://vercel.com/nacholedesma33s-projects/expense-tracker",
-      repo: "https://github.com/NachoLedesma33/Expense-tracker",
-      images: [
-        "/transactions/1tranactionplaceholder.png",
-        "/transactions/2transaction.png",
-        "/transactions/3transaction.png",
-        "/transactions/4transation.png",
-        "/transactions/5transaction.png",
-        "/transactions/6transaction.png"
-      ],
     }
   ],
   "Juegos (Extra)": [
