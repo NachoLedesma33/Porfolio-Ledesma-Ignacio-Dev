@@ -48,9 +48,9 @@ export default function Projects({ active = true }: { active?: boolean }) {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Completed": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
-      case "In Progress": return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
-      case "Planning": return "bg-rose-100 text-rose-900 dark:bg-rose-950 dark:text-rose-200";
+      case "Completado": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
+      case "En progreso": return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
+      case "Planificación": return "bg-rose-100 text-rose-900 dark:bg-rose-950 dark:text-rose-200";
       default: return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
     }
   };
@@ -65,8 +65,15 @@ export default function Projects({ active = true }: { active?: boolean }) {
 
         <div className="w-full max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 flex-1 flex flex-col space-y-12">
           {projectCategories.map((category) => {
-            const categoryProjects = projectsByCategory[category];
-            if (categoryProjects.length === 0) return null;
+            const rawProjects = projectsByCategory[category];
+            if (rawProjects.length === 0) return null;
+            
+            // Sort: "Completado" first (stack order), "En progreso" last
+            const categoryProjects = [...rawProjects].sort((a, b) => {
+              const aVal = a.status === "Completado" ? 0 : 1;
+              const bVal = b.status === "Completado" ? 0 : 1;
+              return aVal - bVal;
+            });
             return (
               <div key={category} className="space-y-6">
                 <div className="flex items-center gap-3">
