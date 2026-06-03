@@ -103,6 +103,12 @@ export default function Skills({ active = true }: { active?: boolean }) {
       category: "Frontend",
     },
     {
+      name: "Vite",
+      svgl: "/skills/vite.svg",
+      url: "https://vitejs.dev/",
+      category: "Frontend",
+    },
+    {
       name: "TailwindCSS",
       svgl: "/skills/tailwindcss.svg",
       url: "https://tailwindcss.com/",
