@@ -147,6 +147,21 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   ],
   "Juegos (Extra)": [
     {
+      title: "Buscaminas Arcade",
+      description: "Recreación retro del legendario juego de lógica, rediseñado con estética de máquina arcade de los 80. Cuenta con luces de neón dinámicas, selector de dificultad, cronómetro, contador de minas interactivo y un panel de control con palanca física animada para cambiar de modo de juego.",
+      tech: ["React", "JavaScript", "Vite", "CSS3", "HTML5"],
+      status: "Completado",
+      link: "https://busca-minas-liart.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/Busca-minas",
+      images: [
+        "/game-minesweeper/1placeholderbuscaminas.webp",
+        "/game-minesweeper/2buscaminas.png",
+        "/game-minesweeper/3buscaminas.png",
+        "/game-minesweeper/4buscaminas.png",
+        "/game-minesweeper/5buscaminas.png"
+      ],
+    },
+    {
       title: "Game 2048",
       description: "¡Bienvenido al clásico juego 2048 implementado con HTML, CSS y JavaScript puro! Este proyecto es una versión moderna y responsive del popular juego de rompecabezas numérico con interfaz limpia, sistema de puntuación, tema claro/oscuro y compatible con teclado y pantallas táctiles.",
       tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
