@@ -21,10 +21,10 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       repo: "https://github.com/NachoLedesma33/Dev-news",
       images: [
         "/dev-news/1placeholderdevnews.webp",
-        "/dev-news/2devnews.png",
-        "/dev-news/3devnews.png",
-        "/dev-news/4devnews.png",
-        "/dev-news/5devnews.png"
+        "/dev-news/2devnews.webp",
+        "/dev-news/3devnews.webp",
+        "/dev-news/4devnews.webp",
+        "/dev-news/5devnews.webp"
       ],
     },
     {
@@ -35,12 +35,12 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://expense-tracker-ten-tau-16.vercel.app",
       repo: "https://github.com/NachoLedesma33/Expense-tracker",
       images: [
-        "/transactions/1tranactionplaceholder.png",
-        "/transactions/2transaction.png",
-        "/transactions/3transaction.png",
-        "/transactions/4transation.png",
-        "/transactions/5transaction.png",
-        "/transactions/6transaction.png"
+        "/transactions/1tranactionplaceholder.webp",
+        "/transactions/2transaction.webp",
+        "/transactions/3transaction.webp",
+        "/transactions/4transation.webp",
+        "/transactions/5transaction.webp",
+        "/transactions/6transaction.webp"
       ],
     },
     {
@@ -75,7 +75,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://nacholedesma.pythonanywhere.com/",
       repo: "https://github.com/NachoLedesma33/Simulador-de-Carrera-IT",
       images: [
-        "/carrera-IT/1ITplaceholder.png",
+        "/carrera-IT/1ITplaceholder.webp",
         "/carrera-IT/2IT.webp",
         "/carrera-IT/3IT.webp",
         "/carrera-IT/4IT.webp",
@@ -106,7 +106,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completado",
       link: "https://client-api-interactive.vercel.app/",
       repo: "https://github.com/NachoLedesma33/client-api-interactive",
-      images: ["/api-client/1placeholder-api-client-v2.png", "/api-client/2api-client.webp", "/api-client/3api-client.webp", "/api-client/4api-client.webp", "/api-client/5api-client.webp"],
+      images: ["/api-client/1placeholder-api-client-v2.webp", "/api-client/2api-client.webp", "/api-client/3api-client.webp", "/api-client/4api-client.webp", "/api-client/5api-client.webp"],
     },
     {
       title: "CraftUI",
