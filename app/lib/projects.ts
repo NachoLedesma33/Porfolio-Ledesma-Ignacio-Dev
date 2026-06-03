@@ -13,6 +13,21 @@ export type Project = {
 export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   "Proyectos": [
     {
+      title: "Dev-News",
+      description: "Lector moderno y optimizado de Hacker News desarrollado con Next.js 15 (App Router) y Tailwind CSS v4. Soporta búsqueda integrada, filtrado por marcadores persistentes en local storage, fallback automático con datos mock ante caídas del servidor y una integración fluida con un backend serverless en Python/FastAPI desplegado en Vercel para alto rendimiento y caching eficiente.",
+      tech: ["Next.js 15", "React", "FastAPI", "Python", "Tailwind v4", "TypeScript"],
+      status: "Completado",
+      link: "https://dev-news-taupe.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/Dev-news",
+      images: [
+        "/dev-news/1placeholderdevnews.webp",
+        "/dev-news/2devnews.png",
+        "/dev-news/3devnews.png",
+        "/dev-news/4devnews.png",
+        "/dev-news/5devnews.png"
+      ],
+    },
+    {
       title: "Expense Tracker",
       description: "Aplicación interactiva y responsive para el control de gastos y finanzas personales. Permite registrar ingresos y egresos, categorizar transacciones en tiempo real, visualizar reportes financieros dinámicos y gestionar presupuestos de manera inteligente para optimizar el rendimiento económico diario.",
       tech: ["Django 5.0", "Tailwind CSS 4", "HTMX", "Chart.js", "PostgreSQL"],
