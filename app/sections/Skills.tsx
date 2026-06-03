@@ -238,6 +238,12 @@ export default function Skills({ active = true }: { active?: boolean }) {
       category: "DevOps & Tools",
     },
     {
+      name: "GitLab",
+      svgl: "/skills/gitlab.svg",
+      url: "https://gitlab.com/",
+      category: "DevOps & Tools",
+    },
+    {
       name: "BASH",
       svgl: {
         light: "/skills/bash.svg",
