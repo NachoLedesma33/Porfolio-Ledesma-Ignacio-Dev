@@ -266,7 +266,7 @@ export default function Skills({ active = true }: { active?: boolean }) {
             </span>
             Mi Trayectoria
           </h2>
-          <p className="text-sm sm:text-base text-stone-700 dark:text-stone-200 leading-relaxed">
+          <p className="text-sm sm:text-base text-stone-900 dark:text-stone-200 leading-relaxed">
             Durante los últimos 5 años he adquirido y perfeccionado habilidades que me proporcionan un conjunto diverso de herramientas y lenguajes de programación. 
             Esta experiencia me permite abordar desafíos complejos en el desarrollo de software, desde aplicaciones web modernas hasta sistemas backend robustos, 
             siempre manteniendo un enfoque en las mejores prácticas y la calidad del código.
@@ -309,7 +309,7 @@ export default function Skills({ active = true }: { active?: boolean }) {
                             </div>
                           )}
                         </div>
-                        <span className="text-[11px] sm:text-xs font-medium text-stone-700 dark:text-stone-200 hover:text-rose-800 dark:hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
+                        <span className="text-[11px] sm:text-xs font-medium text-stone-900 dark:text-stone-200 hover:text-rose-800 dark:hover:text-rose-300 transition-colors duration-200 leading-tight text-center">
                           {skill.name}
                         </span>
                       </div>

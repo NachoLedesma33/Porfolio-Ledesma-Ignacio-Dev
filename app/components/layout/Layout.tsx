@@ -3,9 +3,31 @@
 import { useState } from "react";
 import Sidebar from "./../Sidebar";
 import SwiperContainer from "./../SwiperContainer";
+import type { NavigationItem } from "./../Sidebar";
+
+const NAV_ORDER: NavigationItem[] = ["about", "projects", "skills", "certificates", "contact"];
+
+const slideMapping: Record<NavigationItem, number> = {
+  about: 0,
+  projects: 1,
+  skills: 2,
+  certificates: 3,
+  contact: 4,
+};
 
 export default function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const activeItem = NAV_ORDER[currentSlide];
+
+  const handleNavigate = (id: NavigationItem) => {
+    setCurrentSlide(slideMapping[id]);
+  };
+
+  const handleSlideChange = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   return (
     <div className="flex h-screen bg-rose-50/60 dark:bg-neutral-950 overflow-hidden">
@@ -16,6 +38,8 @@ export default function Layout() {
       `}>
         <Sidebar 
           onClose={() => setIsSidebarOpen(false)}
+          activeItem={activeItem}
+          onNavigate={handleNavigate}
         />
       </div>
 
@@ -41,7 +65,10 @@ export default function Layout() {
       <div className="flex-1 flex flex-col relative overflow-hidden">
 
         {/* Swiper Container */}
-        <SwiperContainer />
+        <SwiperContainer 
+          currentSlide={currentSlide}
+          onSlideChange={handleSlideChange}
+        />
       </div>
     </div>
   );

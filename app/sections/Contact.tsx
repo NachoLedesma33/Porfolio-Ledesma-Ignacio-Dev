@@ -111,7 +111,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
             Envíame un mensaje
           </h2>
 
-          <p className="text-sm text-stone-600 dark:text-stone-200 mb-4">
+          <p className="text-sm text-stone-700 dark:text-stone-200 mb-4">
             Usá este formulario para contactarme. No compartas contraseñas ni información sensible. Tu email se usa
             únicamente para responderte.
           </p>
@@ -128,7 +128,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
               aria-hidden="true"
             />
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-stone-700 dark:text-stone-200 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-stone-900 dark:text-stone-200 mb-2">
                 Nombre
               </label>
               <input
@@ -147,7 +147,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-stone-700 dark:text-stone-200 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-stone-900 dark:text-stone-200 mb-2">
                 Email
               </label>
               <input
@@ -165,7 +165,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-stone-700 dark:text-stone-200 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-stone-900 dark:text-stone-200 mb-2">
                 Mensaje
               </label>
               <textarea
@@ -217,7 +217,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-stone-600 dark:text-stone-400">Email</p>
+                  <p className="text-sm text-stone-700 dark:text-stone-400">Email</p>
                   <p className="text-stone-900 dark:text-stone-50">nacholedesma33@gmail.com</p>
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function Contact({ active = true }: { active?: boolean }) {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-stone-600 dark:text-stone-400">Ubicación</p>
+                  <p className="text-sm text-stone-700 dark:text-stone-400">Ubicación</p>
                   <p className="text-stone-900 dark:text-stone-50">Cordoba Capital, Cordoba</p>
                 </div>
               </div>

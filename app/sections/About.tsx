@@ -42,12 +42,12 @@ export default function About({ active = true }: { active?: boolean }) {
         <div className="space-y-4 sm:space-y-6 text-left flex-1">
           <SplitReveal
             text="Soy desarrollador full stack con enfoque en la creación de aplicaciones prácticas, claras y bien estructuradas. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de mantener y escalar. Trabajo tanto en frontend como en backend, priorizando una buena experiencia de usuario, rendimiento y lógica sólida detrás de cada proyecto."
-            className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed"
+            className="text-lg text-stone-900 dark:text-stone-200 leading-relaxed"
           />
           
           <SplitReveal
             text="Tengo una orientación marcada hacia proyectos aplicables a entornos reales, como herramientas de gestión, visualización de datos y aplicaciones web funcionales. Me enfoco en resolver problemas de manera eficiente, iterar rápido y mantener un equilibrio entre simplicidad y funcionalidad. Siempre estoy explorando nuevas tecnologías y mejores prácticas para mejorar la calidad de lo que construyo."
-            className="text-lg text-stone-700 dark:text-stone-200 leading-relaxed"
+            className="text-lg text-stone-900 dark:text-stone-200 leading-relaxed"
           />
         </div>
 
@@ -55,15 +55,15 @@ export default function About({ active = true }: { active?: boolean }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-8 sm:mb-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-rose-600 dark:text-rose-400 tabular-nums">5+</div>
-            <div className="text-sm text-stone-600 dark:text-stone-400">Años Exp</div>
+            <div className="text-sm text-stone-700 dark:text-stone-400">Años Exp</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-red-700 dark:text-red-400 tabular-nums">{projectCount}+</div>
-            <div className="text-sm text-stone-600 dark:text-stone-400">Proyectos</div>
+            <div className="text-sm text-stone-700 dark:text-stone-400">Proyectos</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-rose-500 dark:text-rose-300 tabular-nums">100%</div>
-            <div className="text-sm text-stone-600 dark:text-stone-400">Compromiso</div>
+            <div className="text-sm text-stone-700 dark:text-stone-400">Compromiso</div>
           </div>
         </div>
       </div>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { AnimatedThemeToggler } from "../../components/ui/animated-theme-toggler";
 
 export interface SidebarProps {
   onClose: () => void;
+  activeItem: NavigationItem;
+  onNavigate: (id: NavigationItem) => void;
 }
 
 export type NavigationItem = "about" | "skills" | "projects" | "contact" | "certificates";
@@ -17,26 +18,9 @@ const navigationItems: { id: NavigationItem; label: string; icon: string }[] = [
   { id: "contact", label: "Contacto", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
 ];
 
-export default function Sidebar({ onClose }: SidebarProps) {
-  const [activeItem, setActiveItem] = useState<NavigationItem>("about");
-
-  useEffect(() => {
-    const handleSlideChanged = (e: Event) => {
-      const { slideId } = (e as CustomEvent).detail;
-      setActiveItem(slideId as NavigationItem);
-    };
-    window.addEventListener('slideChanged', handleSlideChanged);
-    return () => window.removeEventListener('slideChanged', handleSlideChanged);
-  }, []);
-
+export default function Sidebar({ onClose, activeItem, onNavigate }: SidebarProps) {
   const handleNavigation = (itemId: NavigationItem) => {
-    setActiveItem(itemId);
-    
-    // Emit custom event for Swiper navigation
-    const event = new CustomEvent('navigateToSlide', { detail: { slideId: itemId } });
-    window.dispatchEvent(event);
-    
-    // Close sidebar on mobile after navigation
+    onNavigate(itemId);
     if (window.innerWidth < 1024) {
       onClose();
     }

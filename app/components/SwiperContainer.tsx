@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCube } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-import { NavigationItem } from "./Sidebar";
 
 import "swiper/css";
 import "swiper/css/effect-cube";
@@ -16,32 +15,19 @@ const Skills = dynamic(() => import("../sections/Skills"));
 const Certificates = dynamic(() => import("../sections/Certificates"));
 const Contact = dynamic(() => import("../sections/Contact"));
 
-const slideMapping: Record<NavigationItem, number> = {
-  about: 0,
-  projects: 1,
-  skills: 2,
-  certificates: 3,
-  contact: 4,
-};
+interface SwiperContainerProps {
+  currentSlide: number;
+  onSlideChange: (index: number) => void;
+}
 
-export default function SwiperContainer() {
+export default function SwiperContainer({ currentSlide, onSlideChange }: SwiperContainerProps) {
   const swiperRef = useRef<{ swiper: SwiperType } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const handleNavigate = (event: CustomEvent) => {
-      const { slideId } = event.detail;
-      const targetSlide = slideMapping[slideId as NavigationItem];
-      
-      if (swiperRef.current && targetSlide !== undefined) {
-        swiperRef.current.swiper.slideTo(targetSlide);
-        setCurrentSlide(targetSlide);
-      }
-    };
-
-    window.addEventListener('navigateToSlide', handleNavigate as EventListener);
-    return () => window.removeEventListener('navigateToSlide', handleNavigate as EventListener);
+    if (swiperRef.current?.swiper) {
+      swiperRef.current.swiper.slideTo(currentSlide);
+    }
   }, [currentSlide]);
 
   useEffect(() => {
@@ -101,20 +87,8 @@ export default function SwiperContainer() {
     return () => el.removeEventListener('wheel', onWheel);
   }, []);
 
-  const slideToId: Record<number, NavigationItem> = {
-    0: "about",
-    1: "projects",
-    2: "skills",
-    3: "certificates",
-    4: "contact",
-  };
-
   const handleSlideChange = (swiper: SwiperType) => {
-    setCurrentSlide(swiper.activeIndex);
-    const id = slideToId[swiper.activeIndex];
-    if (id) {
-      window.dispatchEvent(new CustomEvent('slideChanged', { detail: { slideId: id } }));
-    }
+    onSlideChange(swiper.activeIndex);
   };
 
   return (

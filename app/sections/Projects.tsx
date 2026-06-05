@@ -103,7 +103,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                       </div>
                       <div className="p-6">
                         <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-3">{project.title}</h3>
-                        <SplitReveal text={project.description} className="text-stone-600 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed" />
+                        <SplitReveal text={project.description} className="text-stone-700 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed" />
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.tech.map((tech, techIndex) => (
                             <span key={techIndex} className="px-3 py-1 text-sm font-medium bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-100 rounded-full hover:bg-rose-200/90 dark:hover:bg-rose-900 transition-colors">{tech}</span>
@@ -114,7 +114,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                             <button onClick={() => setSelectedProject(project)} className="w-full bg-linear-to-r from-rose-600 to-red-700 text-white font-semibold py-3 px-6 rounded-xl hover:from-rose-700 hover:to-red-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-rose-600/20 hover:shadow-xl cursor-pointer">Ver Proyecto</button>
                           )}
                           <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full bg-rose-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-800 transition-colors text-center">Abrir Proyecto</a>
-                          <div className="text-sm text-stone-600 dark:text-stone-300 space-y-1">
+                          <div className="text-sm text-stone-700 dark:text-stone-300 space-y-1">
                             <p><strong>Tecnologías:</strong> {project.tech.join(", ")}</p>
                             <p><strong>Estado:</strong> <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>{project.status}</span></p>
                           </div>
@@ -148,7 +148,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                   <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-50">{selectedProject.title}</h2>
                   <span className={`px-4 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedProject.status)}`}>{selectedProject.status}</span>
                 </div>
-                <SplitReveal text={selectedProject.description} className="text-lg text-stone-700 dark:text-stone-200 mb-8" />
+                <SplitReveal text={selectedProject.description} className="text-lg text-stone-900 dark:text-stone-200 mb-8" />
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-4">Galería del Proyecto</h3>
                   <div className="flex gap-4 overflow-x-auto pb-4" data-no-vertical-drag-scroll>
@@ -162,7 +162,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">Descripción</h3>
-                    <SplitReveal text={selectedProject.description} className="text-stone-700 dark:text-stone-200" />
+                    <SplitReveal text={selectedProject.description} className="text-stone-900 dark:text-stone-200" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-2">Tecnologías</h3>
@@ -186,7 +186,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
 
         <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-950/30 rounded-lg ring-1 ring-rose-100/70 dark:ring-rose-900/40">
           <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">¿Querés colaborar conmigo?</h3>
-          <p className="text-stone-700 dark:text-stone-200 leading-relaxed">
+          <p className="text-stone-900 dark:text-stone-200 leading-relaxed">
             Si te gustó alguno de mis proyectos, tenés una idea en mente o simplemente querés charlar sobre tecnología, no dudes en contactarme. Siempre estoy abierto a nuevos desafíos y colaboraciones.
           </p>
         </div>
