@@ -187,9 +187,9 @@ export default function Projects({ active = true }: { active?: boolean }) {
         )}
 
         <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-950/30 rounded-lg ring-1 ring-rose-100/70 dark:ring-rose-900/40">
-          <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">Lorem Ipsum</h3>
+          <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200 mb-3">¿Querés colaborar conmigo?</h3>
           <p className="text-stone-700 dark:text-stone-200 leading-relaxed">
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+            Si te gustó alguno de mis proyectos, tenés una idea en mente o simplemente querés charlar sobre tecnología, no dudes en contactarme. Siempre estoy abierto a nuevos desafíos y colaboraciones.
           </p>
         </div>
       </SectionVenomBackdrop>
