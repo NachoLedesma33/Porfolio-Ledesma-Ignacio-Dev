@@ -8,7 +8,9 @@ import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-cube";
+import type { NavigationItem } from "./Sidebar";
 
+const Hero = dynamic(() => import("../sections/Hero"));
 const About = dynamic(() => import("../sections/About"));
 const Projects = dynamic(() => import("../sections/Projects"));
 const Skills = dynamic(() => import("../sections/Skills"));
@@ -18,9 +20,10 @@ const Contact = dynamic(() => import("../sections/Contact"));
 interface SwiperContainerProps {
   currentSlide: number;
   onSlideChange: (index: number) => void;
+  onNavigate: (id: NavigationItem) => void;
 }
 
-export default function SwiperContainer({ currentSlide, onSlideChange }: SwiperContainerProps) {
+export default function SwiperContainer({ currentSlide, onSlideChange, onNavigate }: SwiperContainerProps) {
   const swiperRef = useRef<{ swiper: SwiperType } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -112,31 +115,37 @@ export default function SwiperContainer({ currentSlide, onSlideChange }: SwiperC
       >
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <About active={currentSlide === 0} />
+            <Hero active={currentSlide === 0} onNavigate={onNavigate} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Projects active={currentSlide === 1} />
+            <About active={currentSlide === 1} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Skills active={currentSlide === 2} />
+            <Projects active={currentSlide === 2} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Certificates active={currentSlide === 3} />
+            <Skills active={currentSlide === 3} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Contact active={currentSlide === 4} />
+            <Certificates active={currentSlide === 4} />
+          </div>
+        </SwiperSlide>
+        
+        <SwiperSlide className="flex items-center justify-center">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
+            <Contact active={currentSlide === 5} />
           </div>
         </SwiperSlide>
       </Swiper>
