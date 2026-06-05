@@ -12,35 +12,36 @@ export default function Projects({ active = true }: { active?: boolean }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   useMouseDragScroll(scrollRef);
   useMouseDragScroll(modalScrollRef, !!selectedProject);
 
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSelectedProject(null);
-      }
-    };
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
     if (selectedProject) {
-      document.addEventListener("keydown", handleEscape);
-      const timer = setTimeout(() => {
-        const backdrop = document.querySelector("[data-modal-backdrop]");
-        const content = document.querySelector("[data-modal-content]");
-        if (backdrop) (backdrop as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+      dialog.showModal();
+      requestAnimationFrame(() => {
+        const content = dialog.querySelector("[data-modal-content]");
         if (content) {
           content.classList.remove("scale-95", "opacity-0");
           content.classList.add("scale-100", "opacity-100");
         }
-      }, 10);
-      return () => {
-        document.removeEventListener("keydown", handleEscape);
-        clearTimeout(timer);
-      };
+      });
+    } else {
+      const content = dialog.querySelector("[data-modal-content]");
+      if (content) {
+        content.classList.remove("scale-100", "opacity-100");
+        content.classList.add("scale-95", "opacity-0");
+        setTimeout(() => dialog.close(), 300);
+      } else {
+        dialog.close();
+      }
     }
   }, [selectedProject]);
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
     if (event.target === event.currentTarget) {
       setSelectedProject(null);
     }
@@ -128,9 +129,13 @@ export default function Projects({ active = true }: { active?: boolean }) {
         </div>
 
         {selectedProject && (
-          <div data-modal-backdrop className="fixed inset-0 bg-black bg-opacity-0 flex items-start justify-center z-50 p-4 pt-16 transition-all duration-300 ease-in-out" onClick={handleBackdropClick}>
-            <div ref={modalScrollRef} data-modal-content className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg max-w-6xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setSelectedProject(null)} className="absolute -top-2 -right-2 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg" aria-label="Close modal">
+          <dialog
+            ref={dialogRef}
+            className="bg-transparent overflow-visible max-w-6xl w-full p-4"
+            onClick={handleBackdropClick}
+          >
+            <div ref={modalScrollRef} data-modal-content className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50" onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setSelectedProject(null)} className="absolute -top-2 -right-2 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg" aria-label="Cerrar">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               {selectedProject.images && selectedProject.images.length > 0 && (
@@ -176,14 +181,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {selectedProject && (
-          <style jsx>{`
-            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-            @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-          `}</style>
+          </dialog>
         )}
 
         <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-950/30 rounded-lg ring-1 ring-rose-100/70 dark:ring-rose-900/40">

@@ -11,35 +11,36 @@ export default function Certificates({ active = true }: { active?: boolean }) {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   useMouseDragScroll(scrollRef);
   useMouseDragScroll(modalScrollRef, !!selectedCertificate);
 
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setSelectedCertificate(null);
-      }
-    };
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
     if (selectedCertificate) {
-      document.addEventListener("keydown", handleEscape);
-      const timer = setTimeout(() => {
-        const backdrop = document.querySelector("[data-certificate-modal-backdrop]");
-        const content = document.querySelector("[data-certificate-modal-content]");
-        if (backdrop) (backdrop as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+      dialog.showModal();
+      requestAnimationFrame(() => {
+        const content = dialog.querySelector("[data-certificate-modal-content]");
         if (content) {
           content.classList.remove("scale-95", "opacity-0");
           content.classList.add("scale-100", "opacity-100");
         }
-      }, 10);
-      return () => {
-        document.removeEventListener("keydown", handleEscape);
-        clearTimeout(timer);
-      };
+      });
+    } else {
+      const content = dialog.querySelector("[data-certificate-modal-content]");
+      if (content) {
+        content.classList.remove("scale-100", "opacity-100");
+        content.classList.add("scale-95", "opacity-0");
+        setTimeout(() => dialog.close(), 300);
+      } else {
+        dialog.close();
+      }
     }
   }, [selectedCertificate]);
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
     if (event.target === event.currentTarget) {
       setSelectedCertificate(null);
     }
@@ -99,15 +100,15 @@ export default function Certificates({ active = true }: { active?: boolean }) {
         </div>
 
         {selectedCertificate && (
-          <div
-            data-certificate-modal-backdrop
-            className="fixed inset-0 bg-black bg-opacity-0 flex items-start justify-center z-50 p-4 pt-16 transition-all duration-300 ease-in-out"
+          <dialog
+            ref={dialogRef}
+            className="bg-transparent overflow-visible max-w-5xl w-full p-4"
             onClick={handleBackdropClick}
           >
             <div
               ref={modalScrollRef}
               data-certificate-modal-content
-              className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg max-w-5xl w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50"
+              className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -135,7 +136,7 @@ export default function Certificates({ active = true }: { active?: boolean }) {
                 </div>
               </div>
             </div>
-          </div>
+          </dialog>
         )}
       </SectionVenomBackdrop>
     </div>
