@@ -269,9 +269,9 @@ export default function Skills({ active = true }: { active?: boolean }) {
     >
       <SectionVenomBackdrop active={active}>
       <header className="text-center pt-4 sm:pt-6 mb-10 sm:mb-12">
-        <h1 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-display tracking-tight mb-3">
+        <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-display tracking-tight mb-3">
           Habilidades
-        </h1>
+        </h2>
         <div className="accent-rule w-20 h-1 mx-auto rounded-full" />
       </header>
 

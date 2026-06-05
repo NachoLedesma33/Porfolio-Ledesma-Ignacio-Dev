@@ -1,0 +1,16 @@
+{
+  "name": "Ignacio Ledesma - Full Stack Developer",
+  "short_name": "I. Ledesma",
+  "description": "Portafolio de Ignacio Ledesma, desarrollador Full Stack con enfoque en aplicaciones prácticas y escalables.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "/portfolio_placeholder.webp",
+      "sizes": "256x256",
+      "type": "image/webp"
+    }
+  ]
+}

@@ -19,11 +19,44 @@ const monoton = Monoton({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.SITE_URL || "https://ignacio-ledesma.dev";
+
 export const metadata: Metadata = {
   title: "Ignacio Ledesma | Full Stack Developer",
   description: "Portafolio de Ignacio Ledesma, desarrollador Full Stack con enfoque en aplicaciones prácticas y escalables.",
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  manifest: "/manifest.json",
   icons: {
     icon: "/comunidad-de-desarrollo-32.webp",
+  },
+  openGraph: {
+    title: "Ignacio Ledesma | Full Stack Developer",
+    description: "Portafolio de Ignacio Ledesma, desarrollador Full Stack con enfoque en aplicaciones prácticas y escalables.",
+    url: "/",
+    siteName: "Ignacio Ledesma - Portfolio",
+    locale: "es_AR",
+    type: "website",
+    images: [
+      {
+        url: "/portfolio_placeholder.webp",
+        width: 256,
+        height: 256,
+        alt: "Ignacio Ledesma",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Ignacio Ledesma | Full Stack Developer",
+    description: "Portafolio de Ignacio Ledesma, desarrollador Full Stack con enfoque en aplicaciones prácticas y escalables.",
+    images: ["/portfolio_placeholder.webp"],
   },
 };
 
