@@ -43,7 +43,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
   };
 
   return (
-    <div className="w-52 max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl">
+    <div className="w-52 max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl overflow-y-auto scrollbar-hide">
       {/* Header */}
       <div className="p-5 border-b border-red-100/80 dark:border-red-950/60">
         <h2 className="text-lg font-bold tracking-tight text-stone-900 dark:text-red-100">

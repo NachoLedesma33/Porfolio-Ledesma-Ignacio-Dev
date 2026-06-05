@@ -134,7 +134,7 @@ export default function SwiperContainer() {
         }}
         modules={[EffectCube]}
         onSlideChange={handleSlideChange}
-        className="w-full h-screen max-h-[600px] px-0.5 sm:px-2 lg:px-3"
+        className="w-full h-dvh px-0.5 sm:px-2 lg:px-3"
       >
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">

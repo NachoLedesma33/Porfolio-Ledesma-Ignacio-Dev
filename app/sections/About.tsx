@@ -16,7 +16,7 @@ export default function About({ active = true }: { active?: boolean }) {
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide relative w-full h-full flex flex-col items-center justify-center rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 min-h-screen overflow-y-auto"
+      className="scrollbar-hide relative w-full h-full flex flex-col items-center rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto"
     >
       <SectionVenomBackdrop active={active}>
       <div className="w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
