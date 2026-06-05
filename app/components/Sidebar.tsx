@@ -88,7 +88,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
       {/* Footer */}
       <div className="p-3 border-t border-rose-100/80 dark:border-rose-950/60">
         <div className="text-xs text-stone-500 dark:text-rose-200/60">
-          © 2024 Portfolio
+          © {new Date().getFullYear()} Portfolio
         </div>
       </div>
     </div>
