@@ -12,6 +12,7 @@ import type { NavigationItem } from "./Sidebar";
 
 const Hero = dynamic(() => import("../sections/Hero"));
 const About = dynamic(() => import("../sections/About"));
+const Experience = dynamic(() => import("../sections/Experience"));
 const Projects = dynamic(() => import("../sections/Projects"));
 const Skills = dynamic(() => import("../sections/Skills"));
 const Certificates = dynamic(() => import("../sections/Certificates"));
@@ -128,25 +129,31 @@ export default function SwiperContainer({ currentSlide, onSlideChange, onNavigat
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Projects active={currentSlide === 2} />
+            <Experience active={currentSlide === 2} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Skills active={currentSlide === 3} />
+            <Projects active={currentSlide === 3} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Certificates active={currentSlide === 4} />
+            <Skills active={currentSlide === 4} />
           </div>
         </SwiperSlide>
         
         <SwiperSlide className="flex items-center justify-center">
           <div className="w-full h-full p-1 sm:p-2 lg:p-3">
-            <Contact active={currentSlide === 5} />
+            <Certificates active={currentSlide === 5} />
+          </div>
+        </SwiperSlide>
+        
+        <SwiperSlide className="flex items-center justify-center">
+          <div className="w-full h-full p-1 sm:p-2 lg:p-3">
+            <Contact active={currentSlide === 6} />
           </div>
         </SwiperSlide>
       </Swiper>

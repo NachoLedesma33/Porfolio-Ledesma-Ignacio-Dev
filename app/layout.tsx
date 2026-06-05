@@ -34,7 +34,10 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/comunidad-de-desarrollo-32.webp",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
   },
   openGraph: {
     title: "Ignacio Ledesma | Full Stack Developer",

@@ -5,15 +5,16 @@ import Sidebar from "./../Sidebar";
 import SwiperContainer from "./../SwiperContainer";
 import type { NavigationItem } from "./../Sidebar";
 
-const NAV_ORDER: NavigationItem[] = ["inicio", "about", "projects", "skills", "certificates", "contact"];
+const NAV_ORDER: NavigationItem[] = ["inicio", "about", "experience", "projects", "skills", "certificates", "contact"];
 
 const slideMapping: Record<NavigationItem, number> = {
   inicio: 0,
   about: 1,
-  projects: 2,
-  skills: 3,
-  certificates: 4,
-  contact: 5,
+  experience: 2,
+  projects: 3,
+  skills: 4,
+  certificates: 5,
+  contact: 6,
 };
 
 export default function Layout() {

@@ -89,7 +89,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                     <AnimatedBorder key={index} className="shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2" innerClass="bg-white dark:bg-stone-900">
                       <div className="h-40 relative overflow-hidden rounded-t-xl">
                         {project.images && project.images.length > 0 ? (
-                          <Image src={project.images[0]} alt={project.title} width={800} height={320} className="w-full h-full object-cover bg-stone-100 dark:bg-stone-800 rounded-t-xl" priority={index === 0} />
+                          <Image src={project.images[0]} alt={project.title} width={800} height={320} className="w-full h-full object-cover bg-stone-100 dark:bg-stone-800 rounded-t-xl" />
                         ) : (
                           <div className="w-full h-full bg-linear-to-br from-rose-500 to-red-700 flex items-center justify-center">
                             <svg className="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,7 +140,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
               </button>
               {selectedProject.images && selectedProject.images.length > 0 && (
                 <div className="relative h-72 sm:h-96 w-full">
-                  <Image src={selectedProject.images[0]} alt={selectedProject.title} fill className="object-cover rounded-t-lg" priority />
+                  <Image src={selectedProject.images[0]} alt={selectedProject.title} fill className="object-cover rounded-t-lg" />
                 </div>
               )}
               <div className="p-6 sm:p-8">
@@ -154,7 +154,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
                   <div className="flex gap-4 overflow-x-auto pb-4" data-no-vertical-drag-scroll>
                     {selectedProject.images?.map((image, index) => (
                       <div key={index} className="shrink-0">
-                        <Image src={image} alt={`${selectedProject.title} - Imagen ${index + 1}`} width={400} height={300} className="w-96 h-72 object-cover rounded-lg shadow-lg" priority={index < 2} />
+                        <Image src={image} alt={`${selectedProject.title} - Imagen ${index + 1}`} width={400} height={300} className="w-96 h-72 object-cover rounded-lg shadow-lg" />
                       </div>
                     ))}
                   </div>
