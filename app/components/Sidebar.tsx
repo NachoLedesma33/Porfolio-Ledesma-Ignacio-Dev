@@ -6,6 +6,8 @@ export interface SidebarProps {
   onClose: () => void;
   activeItem: NavigationItem;
   onNavigate: (id: NavigationItem) => void;
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
 }
 
 export type NavigationItem = "inicio" | "about" | "experience" | "skills" | "projects" | "contact" | "certificates";
@@ -20,7 +22,13 @@ const navigationItems: { id: NavigationItem; label: string; icon: string }[] = [
   { id: "contact", label: "Contacto", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
 ];
 
-export default function Sidebar({ onClose, activeItem, onNavigate }: SidebarProps) {
+export default function Sidebar({ 
+  onClose, 
+  activeItem, 
+  onNavigate,
+  isCollapsed = false,
+  onToggleCollapse
+}: SidebarProps) {
   const handleNavigation = (itemId: NavigationItem) => {
     onNavigate(itemId);
     if (window.innerWidth < 1024) {
@@ -29,12 +37,22 @@ export default function Sidebar({ onClose, activeItem, onNavigate }: SidebarProp
   };
 
   return (
-    <div className="w-52 max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl overflow-y-auto scrollbar-hide">
+    <div className={`
+      ${isCollapsed ? 'w-52 lg:w-16' : 'w-52 lg:w-52'}
+      max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl overflow-y-auto scrollbar-hide transition-all duration-300 ease-in-out
+    `}>
       {/* Header */}
-      <div className="p-5 border-b border-red-100/80 dark:border-red-950/60">
-        <h2 className="text-lg font-bold tracking-tight text-stone-900 dark:text-red-100">
-          Portfolio <br/> Ledesma Ignacio, Manuel Dev
-        </h2>
+      <div className="p-5 border-b border-red-100/80 dark:border-red-950/60 w-full flex flex-col items-center justify-center relative h-[81px] shrink-0 overflow-hidden">
+        <div className={`transition-all duration-300 flex items-center justify-center ${isCollapsed ? 'opacity-100 scale-100 animate-pulse-slow' : 'opacity-0 scale-50 absolute pointer-events-none'}`}>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
+            P
+          </div>
+        </div>
+        <div className={`transition-all duration-300 w-full ${isCollapsed ? 'opacity-0 scale-95 absolute pointer-events-none' : 'opacity-100 scale-100'}`}>
+          <h2 className="text-lg font-bold tracking-tight text-stone-900 dark:text-red-100 leading-tight">
+            Portfolio <br/> Ledesma Ignacio, Manuel Dev
+          </h2>
+        </div>
       </div>
 
       {/* Navigation */}
@@ -45,12 +63,14 @@ export default function Sidebar({ onClose, activeItem, onNavigate }: SidebarProp
               <button
                 onClick={() => handleNavigation(item.id)}
                 className={`
-                  w-full flex items-center space-x-3 px-3 py-4 text-base font-medium rounded-lg transition-all duration-200
+                  w-full flex items-center rounded-lg transition-all duration-200 py-4
+                  ${isCollapsed ? 'justify-start lg:justify-center lg:px-0 px-3 space-x-3 lg:space-x-0' : 'justify-start px-3 space-x-3'}
                   ${activeItem === item.id
                     ? 'bg-rose-50 dark:bg-red-950/40 text-rose-700 dark:text-red-300 border-l-4 border-red-600 dark:border-red-400'
                     : 'text-stone-700 dark:text-stone-300 hover:bg-rose-50/70 dark:hover:bg-stone-900'
                   }
                 `}
+                title={isCollapsed ? item.label : undefined}
               >
                 <svg 
                   className="w-5 h-5 shrink-0" 
@@ -65,23 +85,57 @@ export default function Sidebar({ onClose, activeItem, onNavigate }: SidebarProp
                     d={item.icon}
                   />
                 </svg>
-                <span className="font-medium">{item.label}</span>
+                <span className={`font-medium transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'opacity-100 lg:opacity-0 lg:w-0 lg:overflow-hidden' : 'opacity-100'}`}>
+                  {item.label}
+                </span>
               </button>
             </li>
           ))}
         </ul>
-        <div className="flex justify-center pt-16">
+        <div className="flex flex-col items-center gap-4 py-14 w-full mt-auto">
           <AnimatedThemeToggler
             variant="circle"
             className="px-3 py-1 rounded-xl text-stone-600 dark:text-rose-200 hover:bg-rose-50 dark:hover:bg-stone-900 transition-colors"
           />
+          
+          <button
+            onClick={() => {
+              if (window.innerWidth < 1024) {
+                onClose();
+              } else {
+                onToggleCollapse?.();
+              }
+            }}
+            className="flex items-center justify-center p-2 rounded-xl text-stone-600 dark:text-rose-200 hover:bg-rose-50 dark:hover:bg-stone-900 transition-colors cursor-pointer"
+            title={isCollapsed ? "Expandir menú" : "Colapsar menú"}
+            aria-label={isCollapsed ? "Expandir menú" : "Colapsar menú"}
+          >
+            {isCollapsed ? (
+              // Icono PanelLeftOpen (Open / Expandir)
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect width="18" height="18" x="3" y="3" rx="2" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 3v18" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="m13 15 3-3-3-3" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              // Icono PanelLeftClose (Close / Colapsar)
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect width="18" height="18" x="3" y="3" rx="2" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 3v18" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                <path d="m16 15-3-3 3-3" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
         </div>
       </nav>
 
       {/* Footer */}
-      <div className="p-3 border-t border-rose-100/80 dark:border-rose-950/60">
-        <div className="text-xs text-stone-500 dark:text-rose-200/60">
+      <div className="p-3 border-t border-rose-100/80 dark:border-rose-950/60 w-full flex items-center justify-center overflow-hidden h-[45px] shrink-0">
+        <div className={`text-xs text-stone-500 dark:text-rose-200/60 whitespace-nowrap transition-all duration-300 ${isCollapsed ? 'opacity-0 scale-95 lg:opacity-0 absolute pointer-events-none' : 'opacity-100 scale-100'}`}>
           © {new Date().getFullYear()} Portfolio
+        </div>
+        <div className={`text-xs text-stone-500 dark:text-rose-200/60 transition-all duration-300 ${isCollapsed ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute pointer-events-none'}`}>
+          ©
         </div>
       </div>
     </div>

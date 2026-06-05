@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./../Sidebar";
 import SwiperContainer from "./../SwiperContainer";
 import type { NavigationItem } from "./../Sidebar";
@@ -19,7 +19,21 @@ const slideMapping: Record<NavigationItem, number> = {
 
 export default function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("sidebar_collapsed");
+    if (saved !== null) {
+      setIsSidebarCollapsed(saved === "true");
+    }
+  }, []);
+
+  const handleToggleCollapse = () => {
+    const newValue = !isSidebarCollapsed;
+    setIsSidebarCollapsed(newValue);
+    localStorage.setItem("sidebar_collapsed", String(newValue));
+  };
 
   const activeItem = NAV_ORDER[currentSlide];
 
@@ -35,13 +49,16 @@ export default function Layout() {
     <div className="flex h-screen bg-rose-50/60 dark:bg-neutral-950 overflow-hidden">
       {/* Sidebar - Desktop: Fixed, Mobile: Drawer */}
       <div className={`
-        fixed lg:relative lg:block z-[60] h-full transition-transform duration-300 ease-in-out
+        fixed lg:relative lg:block z-[60] h-full transition-all duration-300 ease-in-out
+        ${isSidebarCollapsed ? 'w-52 lg:w-16' : 'w-52 lg:w-52'}
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <Sidebar 
           onClose={() => setIsSidebarOpen(false)}
           activeItem={activeItem}
           onNavigate={handleNavigate}
+          isCollapsed={isSidebarCollapsed}
+          onToggleCollapse={handleToggleCollapse}
         />
       </div>
 
