@@ -223,6 +223,10 @@ strong {
   height: 0;
 }
 
+.swiper:not(.swiper-initialized) .swiper-wrapper {
+  visibility: hidden;
+}
+
 dialog[open]::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
 }
