@@ -52,7 +52,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
-        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const dark = document.documentElement.classList.contains("dark");
         const g = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
         if (dark) {
           g.addColorStop(0, "rgba(12, 10, 10, 1)");
@@ -82,7 +82,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
 
       const c = canvas.getContext("2d");
       if (!c) return;
-      isDarkRef.current = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      isDarkRef.current = document.documentElement.classList.contains("dark");
       c.fillStyle = isDarkRef.current ? "#0c0a0a" : "#fef2f2";
       c.fillRect(0, 0, canvas.width, canvas.height);
     };
@@ -136,10 +136,11 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       canvas.addEventListener("mousemove", handleMouseMove);
     }
 
-    const darkModeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    isDarkRef.current = darkModeMq.matches;
-    const handleColorScheme = (e: MediaQueryListEvent) => { isDarkRef.current = e.matches; };
-    darkModeMq.addEventListener("change", handleColorScheme);
+    isDarkRef.current = document.documentElement.classList.contains("dark");
+    const darkClassObserver = new MutationObserver(() => {
+      isDarkRef.current = document.documentElement.classList.contains("dark");
+    });
+    darkClassObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
     const animate = () => {
       if (!activeRef.current) {
@@ -246,7 +247,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
     animate();
 
     return () => {
-      darkModeMq.removeEventListener("change", handleColorScheme);
+      darkClassObserver.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
       if (!embed) {

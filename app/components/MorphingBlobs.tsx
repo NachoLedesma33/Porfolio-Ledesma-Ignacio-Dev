@@ -1,18 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-
-function useIsDark() {
-  return useSyncExternalStore(
-    (onChange) => {
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      mq.addEventListener("change", onChange);
-      return () => mq.removeEventListener("change", onChange);
-    },
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches,
-    () => false
-  );
-}
+import { useIsDark } from "@/app/hooks/useIsDark";
 
 export default function MorphingBlobs({ active = true }: { active?: boolean }) {
   const isDark = useIsDark();

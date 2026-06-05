@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useSyncExternalStore } from "react";
+import { useRef } from "react";
 import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
+import { useIsDark } from "@/app/hooks/useIsDark";
 
 type SvglRoute = string | { light: string; dark: string };
 
@@ -15,26 +16,8 @@ type Skill = {
   emoji?: string;
 };
 
-function subscribePreferredDark(cb: () => void) {
-  const mq = window.matchMedia("(prefers-color-scheme: dark)");
-  mq.addEventListener("change", cb);
-  return () => mq.removeEventListener("change", cb);
-}
-
-function getPreferredDarkSnapshot() {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
-
-function getPreferredDarkServerSnapshot() {
-  return false;
-}
-
 function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
-  const prefersDark = useSyncExternalStore(
-    subscribePreferredDark,
-    getPreferredDarkSnapshot,
-    getPreferredDarkServerSnapshot
-  );
+  const prefersDark = useIsDark();
 
   const src = typeof route === "string" ? route : prefersDark ? route.dark : route.light;
 

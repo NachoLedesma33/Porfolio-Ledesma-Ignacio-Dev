@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { AnimatedThemeToggler } from "../../components/ui/animated-theme-toggler";
 
 export interface SidebarProps {
   onClose: () => void;
@@ -51,7 +52,7 @@ export default function Sidebar({ onClose }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-3 w-full items-center justify-center">
+      <nav className="flex-1 p-3 w-full flex flex-col">
         <ul className="space-y-1">
           {navigationItems.map((item) => (
             <li key={item.id}>
@@ -83,6 +84,12 @@ export default function Sidebar({ onClose }: SidebarProps) {
             </li>
           ))}
         </ul>
+        <div className="flex justify-center pt-24">
+          <AnimatedThemeToggler
+            variant="circle"
+            className="p-3 rounded-xl text-stone-600 dark:text-rose-200 hover:bg-rose-50 dark:hover:bg-stone-900 transition-colors"
+          />
+        </div>
       </nav>
 
       {/* Footer */}
