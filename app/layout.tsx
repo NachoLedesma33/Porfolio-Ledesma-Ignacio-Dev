@@ -71,13 +71,10 @@ export default function RootLayout({
       className={`${nunito.variable} ${geistMono.variable} ${monoton.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preload" href="/portfolio_placeholder.webp" as="image" type="image/webp" />
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
         <script dangerouslySetInnerHTML={{
           __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t!="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})()`
         }} />
-      </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
         <NoiseOverlay />
         {children}
       </body>

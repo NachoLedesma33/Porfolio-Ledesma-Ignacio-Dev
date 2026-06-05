@@ -28,8 +28,9 @@ export default function SwiperContainer({ currentSlide, onSlideChange, onNavigat
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (swiperRef.current?.swiper) {
-      swiperRef.current.swiper.slideTo(currentSlide);
+    const swiper = swiperRef.current?.swiper;
+    if (swiper && swiper.activeIndex !== currentSlide) {
+      swiper.slideTo(currentSlide);
     }
   }, [currentSlide]);
 
