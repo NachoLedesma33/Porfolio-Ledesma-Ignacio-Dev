@@ -23,7 +23,7 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
     if (!deleting && charIndex < current.length) {
       timeout = setTimeout(() => setCharIndex((c) => c + 1), 15);
     } else if (!deleting && charIndex === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 500);
+      timeout = setTimeout(() => setDeleting(true), 2500);
     } else if (deleting && charIndex > 0) {
       timeout = setTimeout(() => setCharIndex((c) => c - 1), 8);
     } else if (deleting && charIndex === 0) {
