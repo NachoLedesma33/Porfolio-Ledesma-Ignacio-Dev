@@ -54,6 +54,8 @@ export default function Layout() {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        aria-label={isSidebarOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={isSidebarOpen}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white dark:bg-stone-900 rounded-lg shadow-md ring-1 ring-rose-200/80 dark:ring-rose-900/50 text-stone-800 dark:text-rose-100"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
