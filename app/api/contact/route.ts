@@ -1,4 +1,6 @@
 import { Resend } from "resend";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,28 +19,49 @@ function getClientIp(request: Request): string {
 }
 
 function isValidEmail(email: string): boolean {
-  // Intentionally simple: we only need to reject obvious invalid input.
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
-const rateLimitStore: Map<string, number[]> = new Map();
+let ratelimit: Ratelimit | null = null;
 
-function rateLimitCheck(key: string): { allowed: boolean; retryAfterSeconds: number } {
+try {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    ratelimit = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, "60 s"),
+      analytics: true,
+      prefix: "portfolio",
+    });
+  }
+} catch {
+  // fallback: in-memory rate limiting below
+}
+
+const FALLBACK_WINDOW_MS = 60_000;
+const FALLBACK_MAX_REQUESTS = 5;
+const fallbackStore: Map<string, number[]> = new Map();
+
+async function checkRateLimit(key: string): Promise<{ allowed: boolean; retryAfterSeconds: number }> {
+  if (ratelimit) {
+    const { success, reset } = await ratelimit.limit(key);
+    if (success) return { allowed: true, retryAfterSeconds: 0 };
+    const retryAfterSeconds = Math.max(1, Math.ceil((reset - Date.now()) / 1000));
+    return { allowed: false, retryAfterSeconds };
+  }
+
   const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const existing = rateLimitStore.get(key) ?? [];
+  const windowStart = now - FALLBACK_WINDOW_MS;
+  const existing = fallbackStore.get(key) ?? [];
   const fresh = existing.filter(ts => ts > windowStart);
   fresh.push(now);
-  rateLimitStore.set(key, fresh);
+  fallbackStore.set(key, fresh);
 
-  if (fresh.length <= RATE_LIMIT_MAX_REQUESTS) {
+  if (fresh.length <= FALLBACK_MAX_REQUESTS) {
     return { allowed: true, retryAfterSeconds: 0 };
   }
 
   const oldest = fresh[0] ?? now;
-  const retryAfterSeconds = Math.max(1, Math.ceil((oldest + RATE_LIMIT_WINDOW_MS - now) / 1000));
+  const retryAfterSeconds = Math.max(1, Math.ceil((oldest + FALLBACK_WINDOW_MS - now) / 1000));
   return { allowed: false, retryAfterSeconds };
 }
 
@@ -51,7 +74,7 @@ export async function POST(request: Request) {
   }
 
   const ip = getClientIp(request);
-  const { allowed, retryAfterSeconds } = rateLimitCheck(ip);
+  const { allowed, retryAfterSeconds } = await checkRateLimit(ip);
   if (!allowed) {
     return Response.json(
       { ok: false, error: "Too many requests. Please try again shortly." },

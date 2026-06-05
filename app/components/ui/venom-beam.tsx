@@ -136,13 +136,16 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       canvas.addEventListener("mousemove", handleMouseMove);
     }
 
+    const darkModeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    isDarkRef.current = darkModeMq.matches;
+    const handleColorScheme = (e: MediaQueryListEvent) => { isDarkRef.current = e.matches; };
+    darkModeMq.addEventListener("change", handleColorScheme);
+
     const animate = () => {
       if (!activeRef.current) {
         animationRef.current = requestAnimationFrame(animate);
         return;
       }
-
-      isDarkRef.current = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       if (isDarkRef.current) {
         ctx.fillStyle = "rgba(12, 10, 10, 0.4)";
@@ -212,13 +215,15 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
       });
 
       const linkDistance = embed ? 90 : 120;
+      const linkDistanceSq = linkDistance * linkDistance;
       particlesRef.current.forEach((particle, i) => {
         particlesRef.current.slice(i + 1).forEach((otherParticle) => {
           const dx = particle.x - otherParticle.x;
           const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < linkDistance) {
+          if (distSq < linkDistanceSq) {
+            const distance = Math.sqrt(distSq);
             const alpha = ((linkDistance - distance) / linkDistance) * (embed ? 0.2 : 0.35);
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
@@ -241,6 +246,7 @@ const VenomBeam: React.FC<VenomBeamProps> = ({
     animate();
 
     return () => {
+      darkModeMq.removeEventListener("change", handleColorScheme);
       resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
       if (!embed) {
