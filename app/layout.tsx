@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${nunito.variable} ${geistMono.variable} ${monoton.variable} h-full antialiased`}
     >
       <head>
