@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
+import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import { useIsDark } from "@/app/hooks/useIsDark";
 import { skills, type SvglRoute } from "@/app/lib/skills";
@@ -34,7 +34,7 @@ export default function Skills({ active = true }: { active?: boolean }) {
       ref={scrollRef}
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-2 sm:p-3 lg:p-4 overflow-y-auto min-h-screen"
     >
-      <SectionVenomBackdrop active={active}>
+      <SectionBackdrop active={active}>
       <header className="text-center pt-4 sm:pt-6 mb-10 sm:mb-12">
         <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-display tracking-tight mb-3">
           Habilidades
@@ -107,7 +107,7 @@ export default function Skills({ active = true }: { active?: boolean }) {
         })}
 
       </div>
-      </SectionVenomBackdrop>
+      </SectionBackdrop>
     </div>
   );
 }

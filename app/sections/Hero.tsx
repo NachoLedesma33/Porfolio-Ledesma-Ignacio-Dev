@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
+import SectionBackdrop from "@/app/components/SectionBackdrop";
 
 const roles = [
   "Desarrollador Full Stack",
@@ -38,7 +38,7 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
 
   return (
     <div className="scrollbar-hide relative w-full h-full flex flex-col items-center justify-center rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 overflow-y-auto">
-      <SectionVenomBackdrop active={active}>
+      <SectionBackdrop active={active}>
         <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 min-h-[60vh]">
           {/* Greeting */}
           <p className="text-lg sm:text-xl text-rose-600 dark:text-rose-400 font-medium mb-4 tracking-wide">
@@ -88,7 +88,7 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
             </a>
           </div>
         </div>
-      </SectionVenomBackdrop>
+      </SectionBackdrop>
     </div>
   );
 }

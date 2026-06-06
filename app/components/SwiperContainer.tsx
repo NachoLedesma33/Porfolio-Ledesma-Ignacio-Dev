@@ -92,8 +92,13 @@ export default function SwiperContainer({ currentSlide, onSlideChange, onNavigat
     return () => el.removeEventListener('wheel', onWheel);
   }, []);
 
+  const syncSectionBackdrops = () => {
+    window.dispatchEvent(new CustomEvent("section-backdrop-sync"));
+  };
+
   const handleSlideChange = (swiper: SwiperType) => {
     onSlideChange(swiper.activeIndex);
+    syncSectionBackdrops();
   };
 
   return (
@@ -113,6 +118,8 @@ export default function SwiperContainer({ currentSlide, onSlideChange, onNavigat
         }}
         modules={[EffectCube]}
         onSlideChange={handleSlideChange}
+        onInit={syncSectionBackdrops}
+        onResize={syncSectionBackdrops}
         className="w-full h-dvh px-0.5 sm:px-2 lg:px-3"
       >
         <SwiperSlide className="flex items-center justify-center">

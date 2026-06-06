@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
+import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import { Certificate, certificates } from "@/app/lib/certificates";
@@ -51,7 +51,7 @@ export default function Certificates({ active = true }: { active?: boolean }) {
       ref={scrollRef}
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen"
     >
-      <SectionVenomBackdrop active={active}>
+      <SectionBackdrop active={active}>
         <div className="text-center pt-4 sm:pt-6 mb-8">
           <h2 className="section-heading text-4xl font-display tracking-tight mb-2">
             Certificados
@@ -138,7 +138,7 @@ export default function Certificates({ active = true }: { active?: boolean }) {
             </div>
           </dialog>
         )}
-      </SectionVenomBackdrop>
+      </SectionBackdrop>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
+import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
@@ -58,7 +58,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
 
   return (
     <div ref={scrollRef} className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-1 sm:p-2 lg:p-3 overflow-y-auto min-h-screen">
-      <SectionVenomBackdrop active={active}>
+      <SectionBackdrop active={active}>
         <div className="text-center pt-4 sm:pt-6 mb-8">
           <h2 className="section-heading text-4xl font-display tracking-tight mb-2">Proyectos</h2>
           <div className="accent-rule w-24 h-1 mx-auto rounded-full" aria-hidden />
@@ -190,7 +190,7 @@ export default function Projects({ active = true }: { active?: boolean }) {
             Si te gustó alguno de mis proyectos, tenés una idea en mente o simplemente querés charlar sobre tecnología, no dudes en contactarme. Siempre estoy abierto a nuevos desafíos y colaboraciones.
           </p>
         </div>
-      </SectionVenomBackdrop>
+      </SectionBackdrop>
     </div>
   );
 }

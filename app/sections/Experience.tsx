@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import SectionVenomBackdrop from "@/app/components/SectionVenomBackdrop";
+import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import SplitReveal from "@/app/components/SplitReveal";
 
@@ -33,7 +33,7 @@ export default function Experience({ active = true }: { active?: boolean }) {
       ref={scrollRef}
       className="scrollbar-hide relative w-full h-full flex flex-col rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 p-2 sm:p-3 lg:p-4 overflow-y-auto"
     >
-      <SectionVenomBackdrop active={active}>
+      <SectionBackdrop active={active}>
       <header className="text-center pt-4 sm:pt-6 mb-10 sm:mb-12">
         <h2 className="section-heading text-3xl sm:text-4xl lg:text-5xl font-display tracking-tight mb-3">
           Experiencia
@@ -79,7 +79,7 @@ export default function Experience({ active = true }: { active?: boolean }) {
           </div>
         ))}
       </div>
-      </SectionVenomBackdrop>
+      </SectionBackdrop>
     </div>
   );
 }
