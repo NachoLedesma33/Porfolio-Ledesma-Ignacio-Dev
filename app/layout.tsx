@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Geist_Mono, Monoton } from "next/font/google";
+import { Nunito, Geist_Mono, Stack_Sans_Notch } from "next/font/google";
 import "./globals.css";
 import NoiseOverlay from "@/app/components/NoiseOverlay";
 
@@ -13,9 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const monoton = Monoton({
-  variable: "--font-monoton",
-  weight: "400",
+const stackSansNotch = Stack_Sans_Notch({
+  variable: "--font-stack-sans-notch",
   subsets: ["latin"],
 });
 
@@ -71,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${nunito.variable} ${geistMono.variable} ${monoton.variable} h-full antialiased`}
+      className={`${nunito.variable} ${geistMono.variable} ${stackSansNotch.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">

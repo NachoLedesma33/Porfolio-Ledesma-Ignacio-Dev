@@ -32,7 +32,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-nunito);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-monoton);
+  --font-display: var(--font-stack-sans-notch);
 }
 
 body {
