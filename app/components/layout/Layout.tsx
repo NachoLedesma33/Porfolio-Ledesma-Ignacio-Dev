@@ -22,13 +22,6 @@ export default function Layout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("sidebar_collapsed");
-    if (saved !== null) {
-      setIsSidebarCollapsed(saved === "true");
-    }
-  }, []);
-
   const handleToggleCollapse = () => {
     const newValue = !isSidebarCollapsed;
     setIsSidebarCollapsed(newValue);
