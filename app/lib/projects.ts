@@ -59,6 +59,21 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       ],
     },
     {
+      title: "Práctica Exámenes Universitarios Linux",
+      description: "Aplicación web para practicar comandos y conceptos de Linux orientados a exámenes universitarios. Permite repasar ejercicios prácticos de terminal, administración básica del sistema y resolución guiada de problemas, con una interfaz moderna y responsive construida para facilitar el estudio autónomo.",
+      tech: ["Vite 8", "React 19", "TypeScript 6", "Zustand 5", "Tailwind CSS v4", "lucide-react"],
+      status: "Completado",
+      link: "https://practica-examenes-universitarios-li.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/PracticaExamenesUniversitariosLinux",
+      images: [
+        "/SO-practicas-linux/1placeholderpracticaslinux.webp",
+        "/SO-practicas-linux/2practicalinux.webp",
+        "/SO-practicas-linux/3practicalinux.webp",
+        "/SO-practicas-linux/4practicalinux.webp",
+        "/SO-practicas-linux/5practicalinux.webp"
+      ],
+    },
+    {
       title: "MatchFlow",
       description: "Sistema de emparejamiento en tiempo real con algoritmos híbridos para gaming competitivo. Encuentra teammates perfectos para tus juegos favoritos al instante. Soporta 12 juegos populares incluyendo Valorant, League of Legends, CS2, Dota 2 y más.",
       tech: ["Node.js", "TypeScript", "Express", "Socket.io", "React", "Vite", "Tailwind CSS"],

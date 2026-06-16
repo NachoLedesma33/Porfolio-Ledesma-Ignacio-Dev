@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Sidebar from "./../Sidebar";
 import SwiperContainer from "./../SwiperContainer";
 import type { NavigationItem } from "./../Sidebar";
