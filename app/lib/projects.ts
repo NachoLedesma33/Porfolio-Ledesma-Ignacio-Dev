@@ -162,6 +162,26 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   ],
   "Juegos (Extra)": [
     {
+      title: "Lights Out",
+      description: "Juego clásico de rompecabezas Lights Out implementado con React 19 y TypeScript. El tablero consiste en una cuadrícula de luces que deben apagarse todas para ganar. Incluye múltiples resolutores algorítmicos: BFS, A* y álgebra lineal sobre GF(2), además de animaciones fluidas con Framer Motion, estado global con Zustand y componentes de UI con Radix.",
+      tech: ["React 19", "TypeScript", "Vite 8", "Tailwind CSS v4", "Framer Motion", "Zustand", "Radix UI", "React Router v6", "BFS", "A*"],
+      status: "Completado",
+      link: "https://lights-out-game-iml.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/LightsOut-Game",
+      images: [
+        "/lightsouts/1placeholderlightsout.webp",
+        "/lightsouts/2lightsouts.webp",
+        "/lightsouts/3lightsouts.webp",
+        "/lightsouts/4lightsouts.webp",
+        "/lightsouts/5lightsouts.webp",
+        "/lightsouts/6lightsouts.webp",
+        "/lightsouts/7lightouts.webp",
+        "/lightsouts/8lightsouts.webp",
+        "/lightsouts/9lightsouts.webp",
+        "/lightsouts/10lightsouts.webp"
+      ],
+    },
+    {
       title: "Buscaminas Arcade",
       description: "Recreación retro del legendario juego de lógica, rediseñado con estética de máquina arcade de los 80. Cuenta con luces de neón dinámicas, selector de dificultad, cronómetro, contador de minas interactivo y un panel de control con palanca física animada para cambiar de modo de juego.",
       tech: ["React", "JavaScript", "Vite", "CSS3", "HTML5"],
