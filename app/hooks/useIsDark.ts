@@ -1,19 +1,22 @@
-import { useSyncExternalStore } from "react";
-
-function subscribeToDark(cb: () => void) {
-  const observer = new MutationObserver(cb);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-  return () => observer.disconnect();
-}
-
-function getDarkSnapshot() {
-  return document.documentElement.classList.contains("dark");
-}
-
-function getDarkServerSnapshot() {
-  return false;
-}
+"use client";
+import { useState, useEffect } from "react";
 
 export function useIsDark() {
-  return useSyncExternalStore(subscribeToDark, getDarkSnapshot, getDarkServerSnapshot);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
+  }, []);
+
+  return isDark;
 }

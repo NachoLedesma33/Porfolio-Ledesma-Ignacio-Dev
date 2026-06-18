@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCube } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -10,13 +9,13 @@ import "swiper/css";
 import "swiper/css/effect-cube";
 import type { NavigationItem } from "./Sidebar";
 
-const Hero = dynamic(() => import("../sections/Hero"));
-const About = dynamic(() => import("../sections/About"));
-const Experience = dynamic(() => import("../sections/Experience"));
-const Projects = dynamic(() => import("../sections/Projects"));
-const Skills = dynamic(() => import("../sections/Skills"));
-const Certificates = dynamic(() => import("../sections/Certificates"));
-const Contact = dynamic(() => import("../sections/Contact"));
+import Hero from "../sections/Hero";
+import About from "../sections/About";
+import Experience from "../sections/Experience";
+import Projects from "../sections/Projects";
+import Skills from "../sections/Skills";
+import Certificates from "../sections/Certificates";
+import Contact from "../sections/Contact";
 
 interface SwiperContainerProps {
   currentSlide: number;

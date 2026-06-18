@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Nunito, Geist_Mono, Stack_Sans_Notch } from "next/font/google";
+import { Nunito, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import NoiseOverlay from "@/app/components/NoiseOverlay";
+import ThemeInitializer from "@/app/components/ThemeInitializer";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const stackSansNotch = Stack_Sans_Notch({
-  variable: "--font-stack-sans-notch",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -70,13 +71,11 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${nunito.variable} ${geistMono.variable} ${stackSansNotch.variable} h-full antialiased`}
+      className={`${nunito.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(t!="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})()`
-        }} />
+        <ThemeInitializer />
         <NoiseOverlay />
         {children}
       </body>
