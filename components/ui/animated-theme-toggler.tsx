@@ -250,7 +250,7 @@ export const AnimatedThemeToggler = ({
           {
             duration,
             // Star: linear avoids easing overshoot that fights polygon interpolation at t→1; VT group duration is synced above.
-            easing: shape === "star" ? "linear" : "ease-in-out",
+            easing: shape === "star" ? "linear" : "cubic-bezier(0.25, 0.1, 0.25, 1)",
             fill: "forwards",
             pseudoElement: "::view-transition-new(root)",
           }
