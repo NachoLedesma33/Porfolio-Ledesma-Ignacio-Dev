@@ -273,3 +273,10 @@ dialog[open]::backdrop {
     animation: none;
     mix-blend-mode: normal;
 }
+
+.swiper-cube .swiper-slide-active {
+  pointer-events: auto !important;
+}
+.swiper-cube .swiper-slide-active :is(a, button, [role="button"], input, select, textarea, label) {
+  pointer-events: auto !important;
+}
