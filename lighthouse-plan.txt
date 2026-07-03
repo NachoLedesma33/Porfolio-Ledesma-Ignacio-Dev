@@ -1,0 +1,182 @@
+LIGHTHOUSE AUDIT - PLAN DE OPTIMIZACIÓN
+Portfolio-Dev
+=============================================================
+
+MÉTRICAS ACTUALES
+-------------------------------------------------------------
+First Contentful Paint (FCP):  0.3 s
+Largest Contentful Paint (LCP): 1.6 s
+Total Blocking Time (TBT):     4,020 ms
+Cumulative Layout Shift (CLS):  0.002
+Speed Index:                    12.7 s
+
+PROBLEMAS CRÍTICOS DETECTADOS
+-------------------------------------------------------------
+
+1. FORCED REFLOW MASIVO
+   - Archivo: _0v4txvb._.js (chunk de la app)
+   - Total reflow time: ~10,068 ms
+   - Causa: JavaScript consulta propiedades geométricas (offsetWidth, etc.)
+     después de invalidar estilos por cambios en el DOM
+   - Impacto: Bloquea el hilo principal ~10 segundos
+
+2. MINIFY JAVASCRIPT
+   - Peso total transferido: ~730 KiB
+   - Ahorro estimado: 262 KiB
+   - Chunks más pesados:
+     * next_dist_client: 163 KiB (ahorro 73 KiB)
+     * react-dom: 181 KiB (ahorro 49 KiB)
+     * node_modules bundle: 135 KiB (ahorro 48 KiB)
+
+3. REDUCE UNUSED JAVASCRIPT
+   - Peso total: 785 KiB
+   - Ahorro estimado: 418 KiB
+   - next-devtools: 213 KiB (135 KiB no usado)
+   - next_dist_client: 163 KiB (91 KiB no usado)
+
+4. SPEED INDEX MUY ALTO (12.7 s)
+   - Indica que el contenido visual tarda en pintarse completamente
+   - Relacionado con el bloqueo del hilo principal
+
+5. MAIN-THREAD WORK (43.4 s)
+   - Script Evaluation: 16,570 ms
+   - Style & Layout: 11,271 ms
+   - Other: 14,175 ms
+
+6. BACK/FORWARD CACHE BLOQUEADO
+   - Causa: WebSocket detectado en la página
+   - Las páginas con WebSocket no entran en bfcache
+   - Impacto: Navegaciones de retorno son más lentas
+
+7. RENDER-BLOCKING REQUESTS
+   - 3 archivos CSS bloquean el render inicial
+   - Ahorro estimado: 50 ms (bajo impacto, pero fácil de resolver)
+
+PLAN DE ACCIÓN PRIORIZADO
+-------------------------------------------------------------
+
+FASE 1 - INMEDIATO (Semana 1-2): CRÍTICO
+============================================
+
+1.1 ARREGLAR FORCED REFLOW
+    Prioridad: CRÍTICO
+    Impacto esperado: Reducir TBT de 4s a <1s
+    Acción:
+    - Identificar en _0v4txvb._.js qué función consulta offsetWidth
+    - Separar lecturas y escrituras del DOM (batch reads/writes)
+    - Usar requestAnimationFrame para agrupar lecturas
+    - Reemplazar offsetWidth/Height por getBoundingClientRect() si es posible
+    - Considerar ResizeObserver en vez de consultas sincrónicas
+
+1.2 ELIMINAR NEXT-DEVTOOLS DEL BUNDLE DE PRODUCCIÓN
+    Prioridad: CRÍTICO
+    Impacto esperado: -213 KiB transferidos, -135 KiB unused
+    Acción:
+    - Verificar que NEXT_PUBLIC_DEVTOOLS no esté habilitado en build
+    - Asegurar que next-devtools no se incluya en producción
+    - Revisar next.config.js para deshabilitarlo
+
+1.3 OPTIMIZAR CARGA DE SWIPER
+    Prioridad: ALTA
+    Impacto esperado: Reducir bundle JS en ~135 KiB
+    Acción:
+    - Evaluar si swiper completo es necesario
+    - Importar solo módulos específicos (ya se hace parcialmente)
+    - Considerar dynamic import para SwiperContainer
+
+FASE 2 - CORTO PLAZO (Semana 2-3): ALTO
+============================================
+
+2.1 IMPLEMENTAR CODE SPLITTING POR SECCIÓN
+    Prioridad: ALTA
+    Impacto esperado: Reducir JS inicial en ~40%
+    Acción:
+    - Lazy loading de secciones (Hero, About, Projects, etc.)
+    - dynamic(() => import()) con ssr: false para secciones no críticas
+    - Cargar LetterGlitch solo cuando la sección esté activa
+
+2.2 HABILITAR MINIFICACIÓN ÓPTIMA
+    Prioridad: ALTA
+    Impacto esperado: -262 KiB en transferencia
+    Acción:
+    - Verificar modo de producción de Next.js
+    - Asegurar swcMinify habilitado
+    - Revisar terser options en next.config.js
+
+2.3 REDUCIR UNUSED JAVASCRIPT
+    Prioridad: ALTA
+    Impacto esperado: -418 KiB
+    Acción:
+    - Configurar correctamente la transpilación por navegadores objetivo
+    - Revisar browserslist en package.json
+    - Evaluar si se necesita soporte para navegadores legacy
+
+FASE 3 - MEDIANO PLAZO (Semana 3-4): MEDIO
+============================================
+
+3.1 OPTIMIZAR RENDER-BLOCKING CSS
+    Prioridad: MEDIA
+    Impacto esperado: ~50-100 ms en LCP
+    Acción:
+    - Inline CSS crítico
+    - Diferir CSS no crítico con media="print" onload="this.media='all'"
+    - Extraer estilos específicos de secciones activas
+
+3.2 OPTIMIZACIÓN DE ANIMACIONES (LETTERGLITCH)
+    Prioridad: MEDIA
+    Impacto esperado: Reducir Style & Layout de 11s
+    Acción:
+    - Identificar si el glitch canvas contribuye al reflow
+    - Mover lógica de animación a offscreen canvas
+    - Usar transform en vez de propiedades que disparan layout
+
+3.3 WEBSOCKET Y BFCACHE
+    Prioridad: MEDIA
+    Impacto esperado: Navegaciones de retorno instantáneas
+    Acción:
+    - Identificar qué componente usa WebSocket
+    - Cerrar conexión WebSocket al navegar fuera de la sección
+    - Implementar solo en el componente que lo necesita
+
+FASE 4 - MANTENIMIENTO CONTINUO
+============================================
+
+4.1 MONITOREO
+    - Agregar Lighthouse CI en pipeline
+    - Monitorear Core Web Vitals en producción
+    - Establecer alertas de regresión
+
+4.2 PRUEBAS DE RENDIMIENTO
+    - Pruebas en dispositivos móviles reales
+    - Tests con conexiones lentas (3G)
+    - Profile de carga en frío vs. cálida
+
+4.3 DOCUMENTACIÓN
+    - Documentar decisiones de rendimiento
+    - Crear guía de buenas prácticas
+    - Compartir aprendizajes del equipo
+
+MÉTRICAS OBJETIVO
+-------------------------------------------------------------
+Métrica          | Actual   | Objetivo  | Mejora
+FCP              | 0.3 s    | <0.3 s    | Mantener
+LCP              | 1.6 s    | <1.5 s    | -6%
+TBT              | 4,020 ms | <200 ms   | -95%
+CLS              | 0.002    | <0.1      | Mantener
+Speed Index      | 12.7 s   | <2.0 s    | -84%
+Main-thread work | 43.4 s   | <3.0 s    | -93%
+
+RECURSOS NECESARIOS
+-------------------------------------------------------------
+Herramientas:
+- Chrome DevTools Performance Tab (gratuito)
+- Lighthouse CI (gratuito)
+- Webpack Bundle Analyzer (gratuito)
+- React Profiler (gratuito)
+
+Tiempo estimado por fase:
+- Fase 1 (Crítico):   2-3 días
+- Fase 2 (Alto):      3-5 días
+- Fase 3 (Medio):     2-3 días
+- Fase 4 (Continuo):  En adelante
+=============================================================

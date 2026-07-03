@@ -62,6 +62,7 @@ const LetterGlitch = ({
   const reducedMotionRef = useRef(false);
   const colorsRef = useRef<string[]>([]);
   const charsRef = useRef<string[]>([]);
+  const canvasSizeRef = useRef({ width: 0, height: 0 });
 
   const resolvedColors = glitchColors ?? (isDark ? DARK_GLITCH_COLORS : LIGHT_GLITCH_COLORS);
   const resolvedBackground = backgroundColor ?? (isDark ? "#0c0a0a" : "#faf8f8");
@@ -120,9 +121,9 @@ const LetterGlitch = ({
   }, [getRandomChar, getRandomColor]);
 
   const drawLetters = useCallback(() => {
-    if (!context.current || letters.current.length === 0 || !canvasRef.current) return;
+    if (!context.current || letters.current.length === 0) return;
     const ctx = context.current;
-    const { width, height } = resolveContainerSize(canvasRef.current.parentElement ?? canvasRef.current);
+    const { width, height } = canvasSizeRef.current;
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${fontSize}px monospace`;
     ctx.textBaseline = "top";
@@ -143,6 +144,8 @@ const LetterGlitch = ({
 
     const { width, height } = resolveContainerSize(parent);
     if (width === 0 || height === 0) return;
+
+    canvasSizeRef.current = { width, height };
 
     const dpr = window.devicePixelRatio || 1;
 
@@ -305,8 +308,8 @@ const LetterGlitch = ({
 
   return (
     <div
+      style={{ backgroundColor: resolvedBackground, willChange: "transform", transform: "translateZ(0)" }}
       className={`relative h-full w-full overflow-hidden ${className}`}
-      style={{ backgroundColor: resolvedBackground }}
     >
       <canvas ref={canvasRef} className="block h-full w-full" />
       {outerVignette && (
