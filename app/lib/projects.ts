@@ -13,6 +13,15 @@ export type Project = {
 export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   "Proyectos": [
     {
+      title: "QueryLab",
+      description: "Laboratorio interactivo de consultas SQL/GraphQL: una aplicación completa para explorar bases de datos, aprender SQL y practicar consultas a través de 30 ejercicios guiados.",
+      tech: ["TypeScript", "React", "Vite", "Java", "Spring Boot", "CSS", "JavaScript", "Dockerfile", "HTML"],
+      status: "Completado",
+      link: "https://querylab-blush.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/querylab",
+      images: ["/querylab/1placeholderquerylab.png", "/querylab/2querylab.png", "/querylab/3querylab.png", "/querylab/4querylab.png", "/querylab/5querylab.png"],
+    },
+    {
       title: "Dev-News",
       description: "Lector moderno y optimizado de Hacker News desarrollado con Next.js 15 (App Router) y Tailwind CSS v4. Soporta búsqueda integrada, filtrado por marcadores persistentes en local storage, fallback automático con datos mock ante caídas del servidor y una integración fluida con un backend serverless en Python/FastAPI desplegado en Vercel para alto rendimiento y caching eficiente.",
       tech: ["Next.js 15", "React", "FastAPI", "Python", "Tailwind v4", "TypeScript"],
@@ -139,7 +148,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completado",
       link: "https://dashboard-productividad-ledesma.vercel.app/",
       repo: "https://github.com/NachoLedesma33/dashboard-productividad",
-      images: ["/dashboard-productividad/placeholder-productividad.webp", "/dashboard-productividad/uno-productividad.webp", "/dashboard-productividad/dos-productividad.webp", "/dashboard-productividad/tres-productividad.webp"],
+      images: ["/dashboard-productividad/1placeholder-productividad.png", "/dashboard-productividad/2dashboard.png", "/dashboard-productividad/3dashboard.png", "/dashboard-productividad/4dashboard.png"],
     },
     {
       title: "Simulador Visual de Algoritmos",
