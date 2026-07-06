@@ -77,7 +77,7 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
             </button>
 
             <a
-              href="/cv.pdf"
+              href="/cv/CV_Ignacio_Ledesma.pdf"
               download
               className="px-6 sm:px-8 py-3 sm:py-3.5 bg-stone-100 dark:bg-stone-800/50 text-stone-700 dark:text-stone-200 font-semibold rounded-xl ring-2 ring-stone-200 dark:ring-stone-700 hover:ring-stone-400 dark:hover:ring-stone-500 shadow-lg hover:shadow-stone-200/30 dark:hover:shadow-stone-900/30 transition-all duration-200 text-sm sm:text-base inline-flex items-center gap-2"
             >

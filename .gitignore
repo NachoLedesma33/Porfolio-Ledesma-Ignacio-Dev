@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# lighthouse audit artifacts
+lighthouselog*.json
+
 # next.js
 /.next/
 /out/
