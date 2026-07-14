@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import AnimatedBorder from "@/app/components/AnimatedBorder";
 import SplitReveal from "@/app/components/SplitReveal";
 import { Project, projectsByCategory, projectCategories } from "@/app/lib/projects";
 
-export default function Projects({ active = true }: { active?: boolean }) {
+const Projects = memo(function Projects({ active = true }: { active?: boolean }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
@@ -193,4 +193,6 @@ export default function Projects({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Projects;

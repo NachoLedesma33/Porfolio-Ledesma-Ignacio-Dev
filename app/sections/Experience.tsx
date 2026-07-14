@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import SplitReveal from "@/app/components/SplitReveal";
@@ -24,7 +24,7 @@ const experiences = [
   },
 ];
 
-export default function Experience({ active = true }: { active?: boolean }) {
+const Experience = memo(function Experience({ active = true }: { active?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
 
@@ -82,4 +82,6 @@ export default function Experience({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Experience;

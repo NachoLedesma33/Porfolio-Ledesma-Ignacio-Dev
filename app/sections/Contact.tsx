@@ -1,10 +1,10 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useId, useRef, useState, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 
-export default function Contact({ active = true }: { active?: boolean }) {
+const Contact = memo(function Contact({ active = true }: { active?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
   const statusId = useId();
@@ -261,4 +261,6 @@ export default function Contact({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Contact;

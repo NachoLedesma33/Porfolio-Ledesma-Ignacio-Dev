@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { getProjectCount } from "@/app/lib/projects";
 
 const projectCount = getProjectCount();
 
-export default function About({ active = true }: { active?: boolean }) {
+const About = memo(function About({ active = true }: { active?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
 
@@ -70,4 +70,6 @@ export default function About({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default About;

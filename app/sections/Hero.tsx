@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 
 const roles = [
@@ -11,30 +11,37 @@ const roles = [
 
 import type { NavigationItem } from "@/app/components/Sidebar";
 
-export default function Hero({ active = true, onNavigate }: { active?: boolean; onNavigate?: (id: NavigationItem) => void }) {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
+const Hero = memo(function Hero({ active = true, onNavigate }: { active?: boolean; onNavigate?: (id: NavigationItem) => void }) {
+  const typewriterRef = useRef<HTMLSpanElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const current = roles[roleIndex];
+    const state = { roleIndex: 0, charIndex: 0, deleting: false };
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (!deleting && charIndex < current.length) {
-      timeout = setTimeout(() => setCharIndex((c) => c + 1), 15);
-    } else if (!deleting && charIndex === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2500);
-    } else if (deleting && charIndex > 0) {
-      timeout = setTimeout(() => setCharIndex((c) => c - 1), 8);
-    } else if (deleting && charIndex === 0) {
-      timeout = setTimeout(() => {
-        setDeleting(false);
-        setRoleIndex((r) => (r + 1) % roles.length);
-      }, 15);
-    }
+    const tick = () => {
+      const current = roles[state.roleIndex];
 
+      if (!state.deleting && state.charIndex < current.length) {
+        state.charIndex++;
+        if (typewriterRef.current) typewriterRef.current.textContent = current.slice(0, state.charIndex);
+        timeout = setTimeout(tick, 15);
+      } else if (!state.deleting && state.charIndex === current.length) {
+        timeout = setTimeout(() => { state.deleting = true; tick(); }, 2500);
+      } else if (state.deleting && state.charIndex > 0) {
+        state.charIndex--;
+        if (typewriterRef.current) typewriterRef.current.textContent = current.slice(0, state.charIndex);
+        timeout = setTimeout(tick, 8);
+      } else if (state.deleting && state.charIndex === 0) {
+        state.deleting = false;
+        state.roleIndex = (state.roleIndex + 1) % roles.length;
+        timeout = setTimeout(tick, 15);
+      }
+    };
+
+    tick();
     return () => clearTimeout(timeout);
-  }, [charIndex, deleting, roleIndex]);
+  }, []);
 
   return (
     <div className="scrollbar-hide relative w-full h-full flex flex-col items-center justify-center rounded-2xl shadow-xl ring-1 ring-rose-100/70 dark:ring-rose-950/40 overflow-y-auto">
@@ -55,8 +62,8 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
           {/* TypeWriter Role */}
           <div className="h-10 sm:h-12 flex items-center justify-center mb-12">
             <span className="text-xl sm:text-2xl lg:text-3xl text-stone-700 dark:text-stone-200 font-semibold">
-              {roles[roleIndex].slice(0, charIndex)}
-              <span className="inline-block w-0.5 h-6 sm:h-7 ml-0.5 bg-rose-500 dark:bg-rose-400 animate-pulse" />
+              <span ref={typewriterRef}>{roles[0][0]}</span>
+              <span ref={cursorRef} className="inline-block w-0.5 h-6 sm:h-7 ml-0.5 bg-rose-500 dark:bg-rose-400 animate-pulse" />
             </span>
           </div>
 
@@ -91,4 +98,6 @@ export default function Hero({ active = true, onNavigate }: { active?: boolean; 
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Hero;

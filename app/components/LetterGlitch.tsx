@@ -63,13 +63,16 @@ const LetterGlitch = ({
   const colorsRef = useRef<string[]>([]);
   const charsRef = useRef<string[]>([]);
   const canvasSizeRef = useRef({ width: 0, height: 0 });
+  const frameCountRef = useRef(0);
+  const skipFrame = 2;
 
   const resolvedColors = glitchColors ?? (isDark ? DARK_GLITCH_COLORS : LIGHT_GLITCH_COLORS);
   const resolvedBackground = backgroundColor ?? (isDark ? "#0c0a0a" : "#faf8f8");
 
   const fontSize = 16;
-  const charWidth = 10;
-  const charHeight = 20;
+  const baseCharWidth = 10;
+  const baseCharHeight = 20;
+  const maxChars = 3000;
 
   const getRandomChar = useCallback(
     () => charsRef.current[Math.floor(Math.random() * charsRef.current.length)] ?? "A",
@@ -104,10 +107,28 @@ const LetterGlitch = ({
   }, []);
 
   const calculateGrid = (width: number, height: number) => {
-    const columns = Math.ceil(width / charWidth);
-    const rows = Math.ceil(height / charHeight);
+    let columns = Math.ceil(width / baseCharWidth);
+    let rows = Math.ceil(height / baseCharHeight);
+    const total = columns * rows;
+    if (total > maxChars) {
+      const ratio = Math.sqrt(total / maxChars);
+      columns = Math.ceil(columns / ratio);
+      rows = Math.ceil(rows / ratio);
+    }
     return { columns, rows };
   };
+
+  const charWidth = useCallback(() => {
+    const { width } = canvasSizeRef.current;
+    const { columns } = grid.current;
+    return columns > 0 ? width / columns : baseCharWidth;
+  }, []);
+
+  const charHeight = useCallback(() => {
+    const { height } = canvasSizeRef.current;
+    const { rows } = grid.current;
+    return rows > 0 ? height / rows : baseCharHeight;
+  }, []);
 
   const initializeLetters = useCallback((columns: number, rows: number) => {
     grid.current = { columns, rows };
@@ -128,13 +149,29 @@ const LetterGlitch = ({
     ctx.font = `${fontSize}px monospace`;
     ctx.textBaseline = "top";
 
+    const cw = charWidth();
+    const ch = charHeight();
+    const cols = grid.current.columns;
+
+    const groups = new Map<string, { x: number; y: number; char: string }[]>();
     letters.current.forEach((letter, index) => {
-      const x = (index % grid.current.columns) * charWidth;
-      const y = Math.floor(index / grid.current.columns) * charHeight;
-      ctx.fillStyle = letter.color;
-      ctx.fillText(letter.char, x, y);
+      const x = (index % cols) * cw;
+      const y = Math.floor(index / cols) * ch;
+      const group = groups.get(letter.color);
+      if (group) {
+        group.push({ x, y, char: letter.char });
+      } else {
+        groups.set(letter.color, [{ x, y, char: letter.char }]);
+      }
     });
-  }, []);
+
+    for (const [color, items] of groups) {
+      ctx.fillStyle = color;
+      for (const { x, y, char } of items) {
+        ctx.fillText(char, x, y);
+      }
+    }
+  }, [charWidth, charHeight]);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -210,6 +247,11 @@ const LetterGlitch = ({
   const animate = useCallback(() => {
     if (!activeRef.current) return;
 
+    frameCountRef.current++;
+    if (frameCountRef.current > 100) frameCountRef.current = 0;
+
+    const shouldDraw = frameCountRef.current % (skipFrame + 1) === 0;
+
     const now = Date.now();
     if (lastGlitchTime.current === 0) {
       lastGlitchTime.current = now;
@@ -217,11 +259,11 @@ const LetterGlitch = ({
 
     if (!reducedMotionRef.current && now - lastGlitchTime.current >= glitchSpeed) {
       updateLetters();
-      drawLetters();
+      if (shouldDraw) drawLetters();
       lastGlitchTime.current = now;
     }
 
-    if (smooth && !reducedMotionRef.current) {
+    if (smooth && !reducedMotionRef.current && shouldDraw) {
       handleSmoothTransitions();
     }
 

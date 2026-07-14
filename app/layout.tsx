@@ -3,6 +3,7 @@ import { Nunito, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import NoiseOverlay from "@/app/components/NoiseOverlay";
 import ThemeInitializer from "@/app/components/ThemeInitializer";
+import { ThemeProvider } from "@/app/contexts/ThemeContext";
 import WebVitalsReporter from "@/app/components/performance/WebVitalsReporter";
 
 const nunito = Nunito({
@@ -77,9 +78,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans antialiased">
         <ThemeInitializer />
-        <NoiseOverlay />
-        <WebVitalsReporter />
-        {children}
+        <ThemeProvider>
+          <NoiseOverlay />
+          <WebVitalsReporter />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

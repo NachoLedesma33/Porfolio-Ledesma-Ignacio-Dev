@@ -19,7 +19,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completado",
       link: "https://querylab-blush.vercel.app/",
       repo: "https://github.com/NachoLedesma33/querylab",
-      images: ["/querylab/1placeholderquerylab.png", "/querylab/2querylab.png", "/querylab/3querylab.png", "/querylab/4querylab.png", "/querylab/5querylab.png"],
+      images: ["/querylab/1placeholderquerylab.webp", "/querylab/2querylab.webp", "/querylab/3querylab.webp", "/querylab/4querylab.webp", "/querylab/5querylab.webp"],
     },
     {
       title: "Dev-News",
@@ -148,7 +148,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       status: "Completado",
       link: "https://dashboard-productividad-ledesma.vercel.app/",
       repo: "https://github.com/NachoLedesma33/dashboard-productividad",
-      images: ["/dashboard-productividad/1placeholder-productividad.png", "/dashboard-productividad/2dashboard.png", "/dashboard-productividad/3dashboard.png", "/dashboard-productividad/4dashboard.png"],
+      images: ["/dashboard-productividad/1placeholder-productividad.webp", "/dashboard-productividad/2dashboard.webp", "/dashboard-productividad/3dashboard.webp", "/dashboard-productividad/4dashboard.webp"],
     },
     {
       title: "Simulador Visual de Algoritmos",
@@ -199,10 +199,10 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       repo: "https://github.com/NachoLedesma33/Busca-minas",
       images: [
         "/game-minesweeper/1placeholderbuscaminas.webp",
-        "/game-minesweeper/2buscaminas.png",
-        "/game-minesweeper/3buscaminas.png",
-        "/game-minesweeper/4buscaminas.png",
-        "/game-minesweeper/5buscaminas.png"
+        "/game-minesweeper/2buscaminas.webp",
+        "/game-minesweeper/3buscaminas.webp",
+        "/game-minesweeper/4buscaminas.webp",
+        "/game-minesweeper/5buscaminas.webp"
       ],
     },
     {

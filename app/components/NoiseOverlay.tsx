@@ -1,44 +1,11 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
 export default function NoiseOverlay() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const size = 128;
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const generate = () => {
-      const img = ctx.createImageData(size, size);
-      for (let i = 0; i < img.data.length; i += 4) {
-        const v = Math.random() * 255;
-        img.data[i] = v;
-        img.data[i + 1] = v;
-        img.data[i + 2] = v;
-        img.data[i + 3] = 255;
-      }
-      ctx.putImageData(img, 0, 0);
-      if (ref.current) ref.current.style.backgroundImage = `url(${canvas.toDataURL()})`;
-    };
-
-    generate();
-
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const interval = setInterval(generate, 3000);
-      return () => clearInterval(interval);
-    }
-  }, []);
+  const noiseSvg = `data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E`;
 
   return (
     <div
-      ref={ref}
       className="fixed inset-0 pointer-events-none z-[64]"
       style={{
+        backgroundImage: `url("${noiseSvg}")`,
         backgroundRepeat: "repeat",
         backgroundSize: "128px 128px",
         opacity: 0.04,

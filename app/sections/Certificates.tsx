@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import Image from "next/image";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import AnimatedBorder from "@/app/components/AnimatedBorder";
 import { Certificate, certificates } from "@/app/lib/certificates";
 
-export default function Certificates({ active = true }: { active?: boolean }) {
+const Certificates = memo(function Certificates({ active = true }: { active?: boolean }) {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
@@ -141,4 +141,6 @@ export default function Certificates({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Certificates;

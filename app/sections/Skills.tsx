@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import { useIsDark } from "@/app/hooks/useIsDark";
@@ -23,7 +23,7 @@ function SkillIcon({ route, alt }: { route: SvglRoute; alt: string }) {
   );
 }
 
-export default function Skills({ active = true }: { active?: boolean }) {
+const Skills = memo(function Skills({ active = true }: { active?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useMouseDragScroll(scrollRef);
 
@@ -110,4 +110,6 @@ export default function Skills({ active = true }: { active?: boolean }) {
       </SectionBackdrop>
     </div>
   );
-}
+});
+
+export default Skills;

@@ -107,15 +107,15 @@ export default function SwiperContainer({ currentSlide, onSlideChange, onNavigat
       <Swiper
         ref={swiperRef}
         effect="cube"
-        speed={700}
+        speed={400}
         grabCursor={false}
         noSwiping={true}
         noSwipingSelector="p, h1, h2, h3, h4, h5, h6, li, blockquote, pre, code, th, td, label, legend, figcaption, summary, dt, dd, .split-word, .text-balance, .section-heading, .accent-rule span"
         cubeEffect={{
-          shadow: true,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.94,
+          shadow: false,
+          slideShadows: false,
+          shadowOffset: 0,
+          shadowScale: 1,
         }}
         modules={[EffectCube]}
         onSlideChange={handleSlideChange}
