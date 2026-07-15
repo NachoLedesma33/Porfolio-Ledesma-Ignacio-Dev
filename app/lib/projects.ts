@@ -171,6 +171,23 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
   ],
   "Juegos (Extra)": [
     {
+      title: "Pac-Man",
+      description: "Recreación fiel del clásico arcade de los 80 con mecánicas originales: comé puntos, evitá fantasmas, usá power pellets y recogé frutas para sumar puntos extra. Incluye 3 niveles de dificultad progresiva, mapa clásico, sistema de puntuación, animaciones fluidas con Canvas API y efectos de sonido con Web Audio API.",
+      tech: ["React 19", "TypeScript", "CSS", "Tailwind CSS", "Vite", "Web Audio API", "Lucide React"],
+      status: "Completado",
+      link: "https://pac-man-iota.vercel.app",
+      repo: "https://github.com/NachoLedesma33/Pac-Man",
+      images: [
+        "/pac-man/1placeholderpacman.webp",
+        "/pac-man/2pacman.webp",
+        "/pac-man/3pacman.webp",
+        "/pac-man/4pacman.webp",
+        "/pac-man/5pacman.webp",
+        "/pac-man/6pacman.webp",
+        "/pac-man/7pacman.webp",
+      ],
+    },
+    {
       title: "Lights Out",
       description: "Juego clásico de rompecabezas Lights Out implementado con React 19 y TypeScript. El tablero consiste en una cuadrícula de luces que deben apagarse todas para ganar. Incluye múltiples resolutores algorítmicos: BFS, A* y álgebra lineal sobre GF(2), además de animaciones fluidas con Framer Motion, estado global con Zustand y componentes de UI con Radix.",
       tech: ["React 19", "TypeScript", "Vite 8", "Tailwind CSS v4", "Framer Motion", "Zustand", "Radix UI", "React Router v6", "BFS", "A*"],
