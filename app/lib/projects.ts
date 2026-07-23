@@ -137,7 +137,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       description: "Librería de componentes UI modernos, accesibles y altamente personalizables. Diseñada para acelerar el desarrollo frontend con componentes listos para usar, animaciones fluidas, soporte para modo oscuro y una estética premium. Proyecto en proceso de desarrollo.",
       tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       status: "En progreso",
-      link: "https://craft-ui-omega.vercel.app/",
+      link: "https://craft-ui-iml.vercel.app/",
       repo: "https://github.com/NachoLedesma33/CraftUI",
       images: ["/craftUI/1craftUIPlaceholder.webp"],
     },
