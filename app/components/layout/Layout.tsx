@@ -43,7 +43,7 @@ export default function Layout() {
       {/* Sidebar - Desktop: Fixed, Mobile: Drawer */}
       <div className={`
         fixed lg:relative lg:block z-[60] h-full transition-all duration-300 ease-in-out
-        ${isSidebarCollapsed ? 'w-52 lg:w-16' : 'w-52 lg:w-52'}
+        ${isSidebarCollapsed ? 'w-48 lg:w-16' : 'w-48 lg:w-48'}
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <Sidebar 
