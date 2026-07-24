@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, memo } from "react";
+import { createPortal } from "react-dom";
 import SectionBackdrop from "@/app/components/SectionBackdrop";
 import { useMouseDragScroll } from "@/app/hooks/useMouseDragScroll";
 import Image from "next/image";
@@ -10,40 +11,38 @@ import { Project, projectsByCategory, projectCategories } from "@/app/lib/projec
 
 const Projects = memo(function Projects({ active = true }: { active?: boolean }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
   useMouseDragScroll(scrollRef);
   useMouseDragScroll(modalScrollRef, !!selectedProject);
 
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
     if (selectedProject) {
-      dialog.showModal();
       requestAnimationFrame(() => {
-        const content = dialog.querySelector("[data-modal-content]");
+        const content = document.querySelector("[data-modal-content]");
         if (content) {
           content.classList.remove("scale-95", "opacity-0");
           content.classList.add("scale-100", "opacity-100");
         }
       });
-    } else {
-      const content = dialog.querySelector("[data-modal-content]");
-      if (content) {
-        content.classList.remove("scale-100", "opacity-100");
-        content.classList.add("scale-95", "opacity-0");
-        setTimeout(() => dialog.close(), 300);
-      } else {
-        dialog.close();
-      }
     }
   }, [selectedProject]);
 
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
-    if (event.target === event.currentTarget) {
+  const handleCloseModal = () => {
+    const content = document.querySelector("[data-modal-content]");
+    if (content) {
+      content.classList.remove("scale-100", "opacity-100");
+      content.classList.add("scale-95", "opacity-0");
+      setTimeout(() => setSelectedProject(null), 300);
+    } else {
       setSelectedProject(null);
+    }
+  };
+
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      handleCloseModal();
     }
   };
 
@@ -130,13 +129,12 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
         </div>
 
         {selectedProject && (
-          <dialog
-            ref={dialogRef}
-            className="bg-transparent overflow-visible max-w-6xl w-full p-4"
+          <div
+            className="fixed inset-0 z-[50] bg-black/50 flex items-center justify-center p-4 overflow-y-auto"
             onClick={handleBackdropClick}
           >
-            <div ref={modalScrollRef} data-modal-content className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg w-full max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setSelectedProject(null)} className="absolute -top-2 -right-2 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg" aria-label="Cerrar">
+            <div ref={modalScrollRef} data-modal-content className="scrollbar-hide bg-white dark:bg-stone-900 rounded-lg w-full max-w-6xl max-h-[85vh] overflow-y-auto relative transform scale-95 opacity-0 transition-all duration-300 ease-out ring-1 ring-rose-100 dark:ring-rose-950/50 my-auto" onClick={(e) => e.stopPropagation()}>
+              <button onClick={handleCloseModal} className="absolute -top-2 -right-2 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg" aria-label="Cerrar">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               {selectedProject.images && selectedProject.images.length > 0 && (
@@ -156,9 +154,9 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-4">Galería del Proyecto</h3>
                   <div className="flex gap-4 overflow-x-auto pb-4" data-no-vertical-drag-scroll>
                     {selectedProject.images?.map((image, index) => (
-                      <div key={index} className="shrink-0">
-                        <Image src={image} alt={`${selectedProject.title} - Imagen ${index + 1}`} width={400} height={300} className="w-96 h-72 object-cover rounded-lg shadow-lg" />
-                      </div>
+                      <button key={index} onClick={() => setSelectedImageIndex(index)} className="shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-500 rounded-lg">
+                        <Image src={image} alt={`${selectedProject.title} - Imagen ${index + 1}`} width={400} height={300} className="w-96 h-72 object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow" />
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -184,7 +182,7 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
                 </div>
               </div>
             </div>
-          </dialog>
+          </div>
         )}
 
         <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-950/30 rounded-lg ring-1 ring-rose-100/70 dark:ring-rose-900/40">
@@ -194,6 +192,65 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
           </p>
         </div>
       </SectionBackdrop>
+
+      {/* Image Lightbox */}
+      {selectedImageIndex !== null && selectedProject?.images && createPortal(
+        <div 
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center"
+          onClick={() => setSelectedImageIndex(null)}
+        >
+          <button 
+            onClick={() => setSelectedImageIndex(null)}
+            className="absolute top-6 right-6 w-10 h-10 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors z-10"
+            aria-label="Cerrar"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          <div className="relative flex items-center justify-center max-w-[90vw] max-h-[90vh]">
+            {selectedImageIndex > 0 && (
+              <button 
+                onClick={(e) => { e.stopPropagation(); setSelectedImageIndex(selectedImageIndex - 1); }}
+                className="absolute -left-16 w-10 h-10 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                aria-label="Imagen anterior"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+            
+            {selectedImageIndex < selectedProject.images.length - 1 && (
+              <button 
+                onClick={(e) => { e.stopPropagation(); setSelectedImageIndex(selectedImageIndex + 1); }}
+                className="absolute -right-16 w-10 h-10 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors z-10"
+                aria-label="Imagen siguiente"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+            
+            <Image 
+              src={selectedProject.images[selectedImageIndex]} 
+              alt="Vista previa" 
+              width={1920} 
+              height={1080} 
+              quality={95}
+              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+          
+          <div className="text-white text-sm absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/50 px-3 py-1 rounded-full">
+            {selectedImageIndex + 1} / {selectedProject.images.length}
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 });
