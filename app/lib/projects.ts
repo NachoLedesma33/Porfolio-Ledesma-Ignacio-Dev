@@ -2,6 +2,7 @@ export type ProjectCategory = "Proyectos" | "Juegos (Extra)";
 
 export type Project = {
   title: string;
+  subtitle?: string;
   description: string;
   tech: string[];
   status: string;
@@ -20,6 +21,15 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       link: "https://querylab-blush.vercel.app/",
       repo: "https://github.com/NachoLedesma33/querylab",
       images: ["/querylab/1placeholderquerylab.webp", "/querylab/2querylab.webp", "/querylab/3querylab.webp", "/querylab/4querylab.webp", "/querylab/5querylab.webp"],
+    },
+    {
+      title: "En Ritmo",
+      description: "Dashboard interactivo para el seguimiento y análisis de productividad personal. Implementa métricas en tiempo real, gráficos dinámicos y sistema de gestión de tareas con interfaz moderna y responsive diseñada para optimizar el rendimiento diario.",
+      tech: ["TypeScript", "CSS3", "TailwindCSS", "HTML", "React", "Vite"],
+      status: "Completado",
+      link: "https://dashboard-productividad-ledesma.vercel.app/",
+      repo: "https://github.com/NachoLedesma33/dashboard-productividad",
+      images: ["/dashboard-productividad/1placeholderenritmo.webp", "/dashboard-productividad/2enritmo.webp", "/dashboard-productividad/3enritmo.webp", "/dashboard-productividad/4enritmo.webp"],
     },
     {
       title: "Dev-News",
@@ -68,7 +78,7 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       ],
     },
     {
-      title: "Práctica Exámenes Universitarios Linux",
+      title: "Bash.practice",
       description: "Aplicación web para practicar comandos y conceptos de Linux orientados a exámenes universitarios. Permite repasar ejercicios prácticos de terminal, administración básica del sistema y resolución guiada de problemas, con una interfaz moderna y responsive construida para facilitar el estudio autónomo.",
       tech: ["Vite 8", "React 19", "TypeScript 6", "Zustand 5", "Tailwind CSS v4", "lucide-react"],
       status: "Completado",
@@ -142,22 +152,13 @@ export const projectsByCategory: Record<ProjectCategory, Project[]> = {
       images: ["/craftUI/1craftUIPlaceholder.webp"],
     },
     {
-      title: "Dashboard de Productividad",
-      description: "Dashboard interactivo para el seguimiento y análisis de productividad personal. Implementa métricas en tiempo real, gráficos dinámicos y sistema de gestión de tareas con interfaz moderna y responsive diseñada para optimizar el rendimiento diario.",
-      tech: ["TypeScript", "CSS3", "TailwindCSS", "HTML", "React", "Vite"],
-      status: "Completado",
-      link: "https://dashboard-productividad-ledesma.vercel.app/",
-      repo: "https://github.com/NachoLedesma33/dashboard-productividad",
-      images: ["/dashboard-productividad/1placeholder-productividad.webp", "/dashboard-productividad/2dashboard.webp", "/dashboard-productividad/3dashboard.webp", "/dashboard-productividad/4dashboard.webp"],
-    },
-    {
-      title: "Simulador Visual de Algoritmos",
+      title: "AlgoViz",
       description: "Herramienta educativa interactiva para visualizar y entender el funcionamiento de algoritmos de ordenamiento y búsqueda. Permite observar paso a paso cómo operan diferentes algoritmos con controles de velocidad y animaciones fluidas.",
       tech: ["TypeScript", "CSS3", "TailwindCSS", "HTML", "React", "Vite"],
       status: "Completado",
       link: "https://simulador-visual-de-algoritmos-lede.vercel.app/",
       repo: "https://github.com/NachoLedesma33/Simulador-Visual-de-Algoritmos",
-      images: ["/visualizador-algoritmos/placeholderalgoritmo.webp", "/visualizador-algoritmos/uno-algoritmo.webp", "/visualizador-algoritmos/dos-algoritmo.webp", "/visualizador-algoritmos/tres-algoritmo.webp", "/visualizador-algoritmos/cuatro-algoritmo.webp", "/visualizador-algoritmos/cinco-algoritmo.webp"],
+      images: ["/visualizador-algoritmos/1placeholderalgoviz.webp", "/visualizador-algoritmos/2algoviz.webp", "/visualizador-algoritmos/3algoviz.webp", "/visualizador-algoritmos/4algoviz.webp", "/visualizador-algoritmos/5algoviz.webp", "/visualizador-algoritmos/6algoviz.webp", "/visualizador-algoritmos/7algoviz.webp"],
     },
     {
       title: "Budget App",

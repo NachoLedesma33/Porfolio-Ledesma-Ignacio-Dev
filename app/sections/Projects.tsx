@@ -102,7 +102,8 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
                         </div>
                       </div>
                       <div className="p-6">
-                        <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-3">{project.title}</h3>
+                        <h3 className="text-2xl font-bold text-stone-900 dark:text-stone-50 mb-1">{project.title}</h3>
+                        {project.subtitle && <p className="text-sm font-medium text-stone-500 dark:text-stone-400 mb-3">{project.subtitle}</p>}
                         <SplitReveal text={project.description} className="text-stone-700 dark:text-stone-300 mb-6 line-clamp-3 text-base leading-relaxed" />
                         <div className="flex flex-wrap gap-2 mb-6">
                           {project.tech.map((tech, techIndex) => (
@@ -145,7 +146,10 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
               )}
               <div className="p-6 sm:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-                  <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-50">{selectedProject.title}</h2>
+                  <div>
+                    <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-50">{selectedProject.title}</h2>
+                    {selectedProject.subtitle && <p className="text-sm font-medium text-stone-500 dark:text-stone-400 mt-1">{selectedProject.subtitle}</p>}
+                  </div>
                   <span className={`px-4 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedProject.status)}`}>{selectedProject.status}</span>
                 </div>
                 <SplitReveal text={selectedProject.description} className="text-lg text-stone-900 dark:text-stone-200 mb-8" />
