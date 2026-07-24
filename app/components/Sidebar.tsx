@@ -38,7 +38,7 @@ export default function Sidebar({
 
   return (
     <div className={`
-      ${isCollapsed ? 'w-52 lg:w-16' : 'w-52 lg:w-52'}
+      ${isCollapsed ? 'w-48 lg:w-16' : 'w-48 lg:w-48'}
       max-w-[80vw] h-full bg-white/95 dark:bg-stone-950/95 backdrop-blur-md border-r border-red-100/80 dark:border-red-950/60 flex flex-col items-center shadow-xl overflow-y-auto scrollbar-hide transition-all duration-300 ease-in-out
     `}>
       {/* Header */}
