@@ -22,12 +22,13 @@ const About = memo(function About({ active = true }: { active?: boolean }) {
       <div className="about-section w-full max-w-6xl mx-auto text-center px-1 sm:px-2 lg:px-3 flex-1 flex flex-col">
         {/* Profile Section */}
         <div className="pt-4 sm:pt-6 lg:pt-8 mb-4 sm:mb-6 lg:mb-8">
-          <div className="relative w-32 h-32 mx-auto mb-6 rounded-full shadow-lg shadow-rose-500/25 overflow-hidden ring-4 ring-rose-100 dark:ring-rose-900/40">
+          <div className="relative w-48 h-48 mx-auto mb-6 rounded-full shadow-lg shadow-rose-500/25 overflow-hidden ring-4 ring-rose-100 dark:ring-rose-900/40">
             <Image
               src="/portfolio_placeholder.webp"
               alt="Foto de perfil"
               fill
-              sizes="128px"
+              sizes="192px"
+              quality={95}
               className="object-cover"
               priority
             />
@@ -42,12 +43,12 @@ const About = memo(function About({ active = true }: { active?: boolean }) {
         <div className="space-y-4 sm:space-y-6 text-left flex-1">
           <SplitReveal
             text="Soy desarrollador full stack con enfoque en la creación de aplicaciones prácticas, claras y bien estructuradas. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de mantener y escalar. Trabajo tanto en frontend como en backend, priorizando una buena experiencia de usuario, rendimiento y lógica sólida detrás de cada proyecto."
-            className="text-lg text-stone-950 dark:text-stone-200 leading-relaxed"
+            className="text-xl text-stone-950 dark:text-stone-200 leading-relaxed"
           />
           
           <SplitReveal
             text="Tengo una orientación marcada hacia proyectos aplicables a entornos reales, como herramientas de gestión, visualización de datos y aplicaciones web funcionales. Me enfoco en resolver problemas de manera eficiente, iterar rápido y mantener un equilibrio entre simplicidad y funcionalidad. Siempre estoy explorando nuevas tecnologías y mejores prácticas para mejorar la calidad de lo que construyo."
-            className="text-lg text-stone-950 dark:text-stone-200 leading-relaxed"
+            className="text-xl text-stone-950 dark:text-stone-200 leading-relaxed"
           />
         </div>
 
