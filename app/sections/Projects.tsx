@@ -152,7 +152,6 @@ const Projects = memo(function Projects({ active = true }: { active?: boolean })
                   </div>
                   <span className={`px-4 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedProject.status)}`}>{selectedProject.status}</span>
                 </div>
-                <SplitReveal text={selectedProject.description} className="text-lg text-stone-900 dark:text-stone-200 mb-8" />
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-50 mb-4">Galería del Proyecto</h3>
                   <div className="flex gap-4 overflow-x-auto pb-4" data-no-vertical-drag-scroll>
